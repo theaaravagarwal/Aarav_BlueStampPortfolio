@@ -79,7 +79,7 @@ For your first milestone, describe what your project is and how you plan to buil
 
 My starter project is a retro arcade console that allows the user to play classic video games like Tetris, Snake, and Space Invaders. The screen is constructed from two 8x8 dot matrices on the top left and has a screen capable of displaying three digits in the top right. The system can be powered by the battery pack on the back of the device or by using the Micro USB port near to the number screen. The device creates sound by using a buzzer below the red power switch. There are six yellow buttons below those components which control the elements on the screen in various games.
 
-<img src="assets/image.png" alt="Device Image" width="350"/>
+<img src="assets/image.png" alt="Device Image" width="350" style="flex: 1; border-radius: 8px; margin-left: 16px;"/>
 
 
 ### Challenges
