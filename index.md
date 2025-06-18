@@ -1,6 +1,6 @@
 # SmartSole
 
-Description here
+
 
 <!-- Replace this text with a brief description (2-3 sentences) of your project. This description should draw the reader in and make them interested in what you've built. You can include what the biggest challenges, takeaways, and triumphs from completing the project were. As you complete your portfolio, remember your audience is less familiar than you are with all that your project entails! -->
 
@@ -12,13 +12,15 @@ Description here
 
 <!-- **Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.** -->
 
-Image Here (use format below)
-
 <!-- ![Headstone Image](logo.svg) -->
 
 # Final Milestone
 
-Final Milestone stuff goes here
+### Description
+
+### Challenges
+
+### Next Steps
 
 <!-- **Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
 
@@ -33,7 +35,11 @@ For your final milestone, explain the outcome of your project. Key details to in
 
 # Second Milestone
 
-Second Milestone stuff goes here
+### Description
+
+### Challenges
+
+### Next Steps
 
 <!-- **Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
 
@@ -48,7 +54,11 @@ For your second milestone, explain what you've worked on since your previous mil
 
 # First Milestone
 
-First Milestone stuff goes here
+### Description
+
+### Challenges
+
+### Next Steps
 
 <!-- **Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
 
@@ -65,30 +75,26 @@ For your first milestone, describe what your project is and how you plan to buil
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/2HmSv4AucCM?si=lUCH4t8UGWBSdCUS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-## Description
+### Description
 
 My starter project is a retro arcade console that allows the user to play classic video games like Tetris, Snake, and Space Invaders. The screen is constructed from two 8x8 dot matrices on the top left and has a screen capable of displaying three digits in the top right. The system can be powered by the battery pack on the back of the device or by using the Micro USB port near to the number screen. The device creates sound by using a buzzer below the red power switch. There are six yellow buttons below those components which control the elements on the screen in various games.
 
 <img src="assets/image.png" alt="Device Image" width="350"/>
 
 
-## Challenges
+### Challenges
 
 Some challenges I encountered while working on this project were properly soldering the parts to the board as it was time consuming and was the hardest part of this project. I also discovered near the end of the project that I had attached the battery pack backwards and had to spend time fixing my mistake.
 
-## Next Steps
+### Next Steps
 
 I will begin working on my intensive project after this Starter Milestone.
 
 # Schematics
 
-Schematics go here
-
 <!-- Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. -->
 
 # Code
-
-Code here (I assume its only the main file w/o other parts like classes)
 
 <!-- Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. -->
 
@@ -108,8 +114,6 @@ void loop() {
 ```
 
 # Bill of Materials
-
-A table of the parts used on the project
 
 <!-- Here's where you'll list the parts in your project. To add more rows, just copy and paste the example rows below.
 Don't forget to place the link of where to buy each component inside the quotation marks in the corresponding row after href =. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize this to your project needs. -->
