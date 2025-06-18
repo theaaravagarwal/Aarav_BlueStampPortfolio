@@ -1,6 +1,7 @@
 # SmartSole
 
 Description here
+
 <!-- Replace this text with a brief description (2-3 sentences) of your project. This description should draw the reader in and make them interested in what you've built. You can include what the biggest challenges, takeaways, and triumphs from completing the project were. As you complete your portfolio, remember your audience is less familiar than you are with all that your project entails! -->
 
 <!-- You should comment out all portions of your portfolio that you have not completed yet, as well as any instructions: -->
@@ -14,12 +15,6 @@ Description here
 Image Here (use format below)
 
 <!-- ![Headstone Image](logo.svg) -->
-
-# Starter Project
-
-<iframe width="672" height="378" src="https://www.youtube-nocookie.com/embed/2HmSv4AucCM?si=lUCH4t8UGWBSdCUS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-My starter project is a retro arcade console that allows the user to play classic video games like Tetris, Snake, and Space Invaders. 
 
 # Final Milestone
 
@@ -65,6 +60,22 @@ For your first milestone, describe what your project is and how you plan to buil
 - Technical progress you've made so far
 - Challenges you're facing and solving in your future milestones
 - What your plan is to complete your project -->
+
+# Starter Project
+
+<iframe width="672" height="378" src="https://www.youtube-nocookie.com/embed/2HmSv4AucCM?si=lUCH4t8UGWBSdCUS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+## Description
+
+My starter project is a retro arcade console that allows the user to play classic video games like Tetris, Snake, and Space Invaders. 
+
+## Challenges
+
+
+
+## Next Steps
+
+
 
 # Schematics
 
