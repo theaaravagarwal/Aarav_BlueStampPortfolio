@@ -52,6 +52,36 @@ For your second milestone, explain what you've worked on since your previous mil
 
 ### Description
 
+In my first milestone, I focused on the algorithms that would power my project in the future first. I built a few algorithms:
+
+    - Movement Detection
+    - Step Detection  
+    - Distance Estimation
+
+**1. Movement Detection**
+
+    The movement detection algorithm:
+
+    ```cpp
+    static float lastRoll = roll, lastPitch = pitch; //temporary values to find the respective delta values
+    const float EULER_MOVEMENT_THRESHOLD = 5.0f; //degrees, the amount of movement required to register movement
+    float deltaRoll = fabs(roll-lastRoll); //we take the delta roll
+    float deltaPitch = fabs(pitch-lastPitch); //then we take the delta pitch
+
+    if (deltaRoll>EULER_MOVEMENT_THRESHOLD||deltaPitch>EULER_MOVEMENT_THRESHOLD) { //this line just checks if either delta pitch or roll exceeds the threshold we defined above
+        if (!isMoving) { //if we are not already moving
+            isMoving = 1; //we change our flag for movement to true
+            //an action can be performed here
+        }
+    } else { //otherwise
+        if (isMoving) { //if we are moving
+            isMoving = 0; //we change our flag for movement back to false
+            //an action can be performed here
+        }
+    }
+    lastRoll = roll; lastPitch = pitch; //then we reset for next iteration
+    ```
+
 ### Challenges
 
 ### Next Steps
