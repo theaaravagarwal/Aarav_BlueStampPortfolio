@@ -3,7 +3,6 @@
 @import "variables";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
-// Custom CSS Variables for better theming
 :root {
   --primary-color: #2563eb;
   --primary-hover: #1d4ed8;
@@ -37,6 +36,32 @@
   --code-string: #ca8a04;
   --code-number: #b91c1c;
   --code-comment: #64748b;
+  --code-bg-light: #f6f8fa;
+  --code-bg-dark: #222436;
+  --code-border-light: #e1e4e8;
+  --code-border-dark: #2d2f40;
+  --code-text-light: #24292e;
+  --code-text-dark: #e6e9ef;
+  --code-operator-light: #d73a49;
+  --code-operator-dark: #ffad42;
+  --code-keyword-light: #6f42c1;
+  --code-keyword-dark: #82aaff;
+  --code-type-light: #005cc5;
+  --code-type-dark: #c792ea;
+  --code-number-light: #005cc5;
+  --code-number-dark: #f78c6c;
+  --code-string-light: #032f62;
+  --code-string-dark: #c3e88d;
+  --code-comment-light: #6a737d;
+  --code-comment-dark: #5c6370;
+  --code-function-light: #6f42c1;
+  --code-function-dark: #82aaff;
+  --code-constant-light: #e36209;
+  --code-constant-dark: #f78c6c;
+  --code-inline-bg-light: #f3f6fa;
+  --code-inline-bg-dark: #23253a;
+  --code-inline-color-light: #005cc5;
+  --code-inline-color-dark: #82aaff;
 }
 
 @mixin main-content-large {
@@ -386,22 +411,24 @@ a {
   pre,
   .highlight {
     background: var(--code-bg);
-    color: var(--text-primary);
+    color: var(--code-text);
+    border: 1px solid var(--code-border);
     border-radius: 0.5rem;
-    border: 1px solid var(--border-color);
-    padding: 1rem;
-    font-size: 0.97rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    padding: 1rem 1.2rem;
+    font-size: 1rem;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     overflow-x: auto;
-    box-shadow: none;
+    margin: 1.2rem 0;
+    line-height: 1.5;
   }
 
   pre code,
   .highlight code {
     background: transparent;
-    color: var(--text-primary);
+    color: var(--code-text);
     font-size: 1em;
     padding: 0;
+    line-height: 1.5;
   }
 
   .highlight .k,  // keyword
@@ -411,8 +438,8 @@ a {
   .highlight .kr, // keyword reserved
   .highlight .kt  // keyword type
   {
-    color: #7dd3fc !important;
-    font-weight: 600;
+    color: var(--code-keyword) !important;
+    font-weight: bold;
   }
   .highlight .s,  // string
   .highlight .sb,
@@ -426,13 +453,13 @@ a {
   .highlight .sr,
   .highlight .s1,
   .highlight .ss {
-    color: #facc15 !important;
+    color: var(--code-string) !important;
   }
   .highlight .c,  // comment
   .highlight .cm,
   .highlight .c1,
   .highlight .cs {
-    color: #64748b !important;
+    color: var(--code-comment) !important;
     font-style: italic;
   }
   .highlight .m,  // number
@@ -441,7 +468,7 @@ a {
   .highlight .mi,
   .highlight .mo,
   .highlight .il {
-    color: #a5b4fc !important;
+    color: var(--code-number) !important;
   }
   .highlight .na, // attribute
   .highlight .nb, // builtin
@@ -458,7 +485,7 @@ a {
   .highlight .vc,
   .highlight .vg,
   .highlight .vi {
-    color: #38bdf8 !important;
+    color: var(--code-function) !important;
   }
   .highlight .err {
     color: #ef4444 !important;
@@ -468,7 +495,6 @@ a {
     color: #64748b !important;
   }
 
-  // Enhanced iframe styling for videos
   iframe {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
@@ -477,12 +503,10 @@ a {
     max-width: 100%;
   }
 
-  // Enhanced math styling
   .MathJax {
     font-size: 1.1em;
   }
 
-  // Enhanced code block line numbers
   .highlight .lineno {
     color: var(--text-muted);
     background: var(--bg-secondary);
@@ -490,22 +514,20 @@ a {
     padding-right: 1rem;
   }
 
-  // Inline code
   code:not(pre code) {
     background: var(--code-inline-bg);
     color: var(--code-inline-color);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--code-border);
     border-radius: 0.3em;
     padding: 0.08em 0.35em;
     font-size: 0.97em;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     vertical-align: baseline;
     margin: 0;
     box-shadow: none;
     white-space: pre;
   }
 
-  // Copy button for code blocks
   .copy-btn {
     position: absolute !important;
     top: 1rem !important;
@@ -574,12 +596,10 @@ a {
   opacity: 0.8;
 }
 
-// Smooth transitions for all interactive elements
 *, *:before, *:after {
   transition: none !important;
 }
 
-// Dark/light mode support
 @media (prefers-color-scheme: dark) {
   body {
     background: linear-gradient(135deg, #181f2a 0%, #232b3a 100%) !important;
@@ -588,25 +608,25 @@ a {
   .main-content .highlight pre,
   .main-content pre code,
   .main-content .highlight {
-    background: #181f2a !important;
-    color: #e6e9ef !important;
-    border: 1.5px solid #232b3a !important;
+    background: var(--code-bg-dark) !important;
+    color: var(--code-text-dark) !important;
+    border: 1.5px solid var(--code-border-dark) !important;
   }
   .main-content code:not(pre code) {
-    background: #232b3a !important;
-    color: #38bdf8 !important;
+    background: var(--code-inline-bg-dark) !important;
+    color: var(--code-inline-color-dark) !important;
   }
   .main-content table {
-    background: #232b3a !important;
-    color: #e6e9ef !important;
-    border: 1px solid #232b3a !important;
+    background: var(--code-bg-dark) !important;
+    color: var(--code-text-dark) !important;
+    border: 1px solid var(--code-border-dark) !important;
     padding: 1rem !important;
     border-spacing: 0.5rem !important;
     border-collapse: separate !important;
   }
   .main-content td {
-    background: #232b3a !important;
-    color: #e6e9ef !important;
+    background: var(--code-bg-dark) !important;
+    color: var(--code-text-dark) !important;
   }
 }
 @media (prefers-color-scheme: light) {
@@ -617,32 +637,65 @@ a {
   .main-content .highlight pre,
   .main-content pre code,
   .main-content .highlight {
-    background: #f3f6fa !important;
-    color: #232b3a !important;
-    border: 1.5px solid #e0e7ef !important;
+    background: var(--code-bg-light) !important;
+    color: var(--code-text-light) !important;
+    border: 1.5px solid var(--code-border-light) !important;
   }
   .main-content code:not(pre code) {
-    background: #e0e7ef !important;
-    color: #2563eb !important;
+    background: var(--code-inline-bg-light) !important;
+    color: var(--code-inline-color-light) !important;
   }
   .main-content table {
-    background: #fff !important;
-    color: #232b3a !important;
-    border: 1px solid #e0e7ef !important;
+    background: var(--code-bg-light) !important;
+    color: var(--code-text-light) !important;
+    border: 1px solid var(--code-border-light) !important;
   }
   .main-content td {
-    background: #fff !important;
-    color: #232b3a !important;
+    background: var(--code-bg-light) !important;
+    color: var(--code-text-light) !important;
   }
 }
 
-// Consistent spacing and border radii
 .main-content, .site-footer, .page-header, .btn, .main-content pre, .main-content table {
   border-radius: 1rem !important;
 }
 
-// Accessibility: readable font sizes, contrast, focus
 *:focus {
   outline: 2px solid var(--code-inline-color) !important;
   outline-offset: 2px !important;
+}
+
+.main-content .highlight .o, .main-content .highlight .ow {
+  color: var(--code-operator) !important;
+  font-weight: bold;
+}
+
+.main-content .highlight .k, .main-content .highlight .kd, .main-content .highlight .kn, .main-content .highlight .kp, .main-content .highlight .kr, .main-content .highlight .kt {
+  color: var(--code-keyword) !important;
+  font-weight: bold;
+}
+
+.main-content .highlight .nc, .main-content .highlight .nt {
+  color: var(--code-type) !important;
+}
+
+.main-content .highlight .m, .main-content .highlight .mf, .main-content .highlight .mh, .main-content .highlight .mi, .main-content .highlight .mo, .main-content .highlight .il {
+  color: var(--code-number) !important;
+}
+
+.main-content .highlight .s, .main-content .highlight .sb, .main-content .highlight .sc, .main-content .highlight .sd, .main-content .highlight .s2, .main-content .highlight .se, .main-content .highlight .sh, .main-content .highlight .si, .main-content .highlight .sx, .main-content .highlight .sr, .main-content .highlight .s1, .main-content .highlight .ss {
+  color: var(--code-string) !important;
+}
+
+.main-content .highlight .c, .main-content .highlight .cm, .main-content .highlight .c1, .main-content .highlight .cs {
+  color: var(--code-comment) !important;
+  font-style: italic;
+}
+
+.main-content .highlight .nf {
+  color: var(--code-function) !important;
+}
+
+.main-content .highlight .no, .main-content .highlight .na {
+  color: var(--code-constant) !important;
 }
