@@ -8,7 +8,7 @@ The SmartSole is a smart shoe sole designed to monitor physical activity by trac
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
-| Aarav A | Stratford Preparatory | Computer Science | Incoming Sophomore
+| **Aarav A** | Stratford Preparatory | Computer Science | Incoming Sophomore |
 
 <!-- **Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.** -->
 
