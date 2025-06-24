@@ -288,3 +288,6 @@ One of the best parts about Github is that you can view how other people set up 
 To watch the BSE tutorial on how to create a portfolio, click here. -->
 
 <!-- quicklink: (https://theaaravagarwal.github.io/Aarav_BlueStampPortfolio) -->
+
+<!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> -->
