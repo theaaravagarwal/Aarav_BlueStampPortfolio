@@ -214,7 +214,7 @@ In my first milestone, I focused on the algorithms that would power my project i
 
 4. FSR Variance
 
-    This algorithm is used to determine if the user's foot is 
+    This algorithm is used to determine if the user's foot, which is pushing down on the fsr, is not pushing with the same amount of force at all times 
 
     why             ∆
     how             ∆
