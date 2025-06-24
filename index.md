@@ -55,10 +55,18 @@ For your second milestone, explain what you've worked on since your previous mil
 In my first milestone, I focused on the algorithms that would power my project in the future first. I built a few algorithms:
 
     - Movement Detection
-    - Step Detection  
+    - Step Detection
     - Distance Estimation
+    - FSR Variance
 
 1. Movement Detection
+
+    This algorithm is primarily used for power optimization. For example, if we know the user is not moving we do not need to check if they are taking a step as they must be moving to take a step. This algorithm starts by calculating the the change in pitch and roll since the last iteration. Then it checks if the change in pitch and roll exceeds some threshold value in degrees. In much simpler terms, if the accelerometer moves a certain amount of degrees it will be marked as moving. Some challenges I encountered while developing this algorithm were the AHRS (Attitude and Heading Reference System) not correctly calculating the accelerometer's position as well as struggling with the math to convert it from a Quaternion to Euler angles. The math to convert looks something like this: $$ \begin{align*} \text{roll}<del>(\phi) &= \arctan2\left(2(w x + y z),\ 1 - 2(x^2 + y^2)\right) \ \text{pitch}</del>(\theta) &= \arcsin\left(2(w y - z x)\right) \ \text{yaw}~(\psi) &= \arctan2\left(2(w z + x y),\ 1 - 2(y^2 + z^2)\right) \end{align*} $$
+
+    why             √
+    how             √
+    summary         √
+    challenges      ∆
 
     ```cpp
     static float lastRoll = roll, lastPitch = pitch; //temporary values to find the respective delta values
@@ -70,19 +78,48 @@ In my first milestone, I focused on the algorithms that would power my project i
         //the above line checks if either delta pitch or 
         //delta roll exceeds the threshold
         if (!isMoving) { //if we are not already moving
-            isMoving = 1; //we change our flag for movement to true
+            isMoving = 1; //if we have moved the threshold then we must be moving
+                          //so our flag must be true here
             //an action can be performed here
         }
     } else { //otherwise
         if (isMoving) { //if we are moving
-            isMoving = 0; //we change our flag for movement back to false
+            isMoving = 0; //this is set to false so that next iteration we can
+                          //still detect movement as not changing it would be a
+                          //1 way switch rather than a 2 way switch
             //an action can be performed here
         }
     }
     lastRoll = roll; lastPitch = pitch; //then we reset for next iteration
     ```
 
-    The algorithm 
+    The algorithms overall time complexity is $O(1)$ as we perform a fixed number of calculations and comparisons consistently.
+
+2. Step Detection
+
+    
+
+    why             ∆
+    how             ∆
+    summary         ∆
+    challenges      ∆
+
+    ```cpp
+    
+    ```
+
+3. Distance Estimation
+
+    To estimate the total distance traveled, the algorithm simply multiplies the detected number of steps by an average stride length. While not as precise as GPS, this method is computationally inexpensive and effective for this application.
+
+    why             ∆
+    how             ∆
+    summary         ∆
+    challenges      ∆
+
+    ```cpp
+    
+    ```
 
 ### Challenges
 
