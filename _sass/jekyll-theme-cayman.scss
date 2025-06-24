@@ -27,9 +27,9 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Inter", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 300;
-  line-height: 1.7;
+  line-height: 1.6;
   color: $body-text-color;
   background: #f8f9fa;
 }
@@ -219,7 +219,7 @@ a {
 
   img, video {
     max-width: 100%;
-    width: 100%;
+    width: 50%;
     border-radius: 0.3rem;
     box-shadow: 0 1px 4px rgba(0,0,0,0.04);
     margin: 2rem 0;
@@ -237,37 +237,37 @@ a {
     font-weight: 700;
     color: $section-headings-color;
     line-height: 1.2;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.25px;
   }
 
   p, li, ul, ol, dl, dd, dt {
-    font-size: 1.08em;
+    font-size: 1em;
     font-weight: 300;
     letter-spacing: 0.01em;
-    line-height: 1.7;
+    line-height: 1.6;
   }
 
   code {
-    padding: 2px 6px;
+    padding: 1px 4px;
     font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-    font-size: 0.9em;
+    font-size: 0.85em;
     color: $code-text-color;
     background-color: $code-bg-color;
-    border-radius: 0.3rem;
+    border-radius: 0.2rem;
     word-break: break-word;
     font-weight: 400;
   }
 
   pre {
-    padding: 0.7rem 0.7rem;
+    padding: 0.5rem 0.5rem;
     margin-top: 0;
-    margin-bottom: 1.5rem;
-    font: 13px/1.5 Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    margin-bottom: 1rem;
+    font: 11px/1.4 Consolas, "Liberation Mono", Menlo, Courier, monospace;
     color: $code-text-color;
     word-wrap: normal;
     background-color: $code-bg-color;
     border: solid 1px $border-color;
-    border-radius: 0.4rem;
+    border-radius: 0.3rem;
     overflow-x: auto;
     white-space: pre;
     max-width: 100%;
@@ -296,11 +296,11 @@ a {
 
   .highlight pre,
   pre {
-    padding: 1.2rem;
+    padding: 0.5rem 0.5rem;
     overflow: auto;
-    font-size: 1em;
-    line-height: 1.5;
-    border-radius: 0.4rem;
+    font-size: 11px;
+    line-height: 1.4;
+    border-radius: 0.3rem;
     -webkit-overflow-scrolling: touch;
   }
 
@@ -315,6 +315,7 @@ a {
     word-wrap: normal;
     background-color: transparent;
     border: 0;
+    font-size: 11px;
 
     &:before,
     &:after {

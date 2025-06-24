@@ -168,7 +168,7 @@ In my first milestone, I focused on the algorithms that would power my project i
 
 3. Distance Estimation
 
-    This algorithm estimates the distance traveled by the user by combining step detection from the pedometer with dynamic stride length estimation. It calculates stride length based on the peak acceleration detected during each step, then multiplies the stride length by the number of steps taken to update the total distance. This approach adapts to the user's walking or running style for more accurate distance measurement.
+    This algorithm estimates the distance traveled by the user by combining step detection from the pedometer with dynamic stride length estimation. It calculates stride length based on the peak acceleration detected during each step, then multiplies the stride length by the number of steps taken to update the total distance. This approach adapts to the user's walking or running style for more accurate distance measurement. The only challenge I faced when creating the distance estimation algorithm was deriving the formula that I used to calculate the user's stride length
 
     why             ∆
     how             ∆
@@ -286,7 +286,11 @@ In my first milestone, I focused on the algorithms that would power my project i
 
 ### Challenges
 
+My main challenge in this milestone was learning how to use the AHRS and accelerometer in the beginning. Learning how the sensors worked and how their libraries were written and what each function did was a lot to do in my first week, but after that I only encountered a few hiccups here and there.
+
 ### Next Steps
+
+In my next milestone I am aiming to assemble my whole project by beginning to attach parts and build schematics/diagrams. I may also alter my algorithms later to work with multiple sensors at once rather than just the accelerometer because the implementing the pedometer would be much easier
 
 <!-- **Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
 
