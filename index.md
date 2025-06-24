@@ -134,7 +134,7 @@ In my first milestone, I focused on the algorithms that would power my project i
         static float lastValley = 0.0f;                        //last valley value, initialized to 0, could also be -inf
         static float lastPeak = 0.0f;                          //last peak value, initialized to 0, could also be -inf
         
-        static bool detectValley = false;                      //a flag for detecting a valley
+        static bool detectValley = 0;                          //a flag for detecting a valley
 
         //detect valley: previous magnitude > last magnitude < current filtered magnitude, and last magnitude is less than 
         if (previousMagnitude > lastMagnitude && lastMagnitude < filteredMagnitude && lastMagnitude < -threshold * 0.5f) {
@@ -152,7 +152,7 @@ In my first milestone, I focused on the algorithms that would power my project i
 
             stepCount++;                                       //then increment step count
 
-            detectValley = false;                              //then reset valley detection flag
+            detectValley = 0;                                  //then reset valley detection flag
 
             lastPeak = lastMagnitude;                          //we store last peak value
         }
@@ -168,7 +168,7 @@ In my first milestone, I focused on the algorithms that would power my project i
 
 3. Distance Estimation
 
-    This algorithm is
+    This algorithm is used for estimating the distance travelled by the user. This algorithm uses the pedometer 
 
     ```cpp
     float strideLength = 0.7f;                                  //initial stride length   (meters)
@@ -186,13 +186,16 @@ In my first milestone, I focused on the algorithms that would power my project i
     if (stepCount > lastStepCount) {                            //if a new step has been detected (step count increased)
                                                                 //we will be estimating step length based on the peak acceleration (maxLinearMagnitude)
                                                                 //formula: base length + scale * (peak acceleration - 1g)
+                                                                //the base length is 0.45 because that is the average stride length in meters
+                                                                //the scale is 0.25 because of empirical testing
+                                                                //9.80665 is an exact value for gravity on earth (conversion for m/s^2 to g)
 
         float newStrideLength = 0.45f + 0.25f * (maxLinearMagnitude / 9.80665f - 1.0f);
 
         if (newStrideLength < 0.3f) newStrideLength = 0.3f;     //lower bound clamp
         if (newStrideLength > 1.2f) newStrideLength = 1.2f;     //upper bound clamp
 
-        stlen = dst;
+        strideLength = newStrideLength;                         //replace the previous stride length with our current stride length
 
                                                                 //calculate how many steps were taken since the last update
         int StepsTaken = stepCount - lastStepCount;
@@ -206,11 +209,12 @@ In my first milestone, I focused on the algorithms that would power my project i
     ```
 
     **Time Complexity:** $$O\left(1\right)$$
+
     **Space Complexity:** $$O\left(1\right)$$
 
 4. FSR Variance
 
-    This algorithm is used to measure 
+    This algorithm is used to determine if the user's foot is 
 
     why             ∆
     how             ∆
@@ -218,10 +222,60 @@ In my first milestone, I focused on the algorithms that would power my project i
     challenges      ∆
 
     ```cpp
+    float fsrWindow[10];                                        //the sliding window array
+                                                                //the size is the number of samples in the window
+
+    int fsrIndex = 0;                                           //a pointer to the current index of the window
+
+    bool fsrFullWindow = 0;                                     //flag for if the window is full
+
+    int fsrValue = analogRead(fsr);                             //read the analog output of the fsr sensor (0-4095 on esp32)
+
+    fsrWindow[fsrIndex++] = fsrValue;                           //add that fsr analog value to the window at the index+1 to move it to empty space
     
+    if (fsrIndex>=10) {                                         //if our index is now bigger than our window size, our window is full
+        fsrIndex = 0; fsrFullWIndow = true;                     //we reset the index and flag our window to be full
+    }
+
+    float fsrAverage = 0, fsrVariance = 0;                      //we initialize average and variance variables to track and calculate them
+
+    int n = fsrFullWindow ? 10 : fsrIndex;                      //n here is the number of valid samples in the window (10 if full, otherwise its fsrIndex)
+
+    for (int i = 0; i < n; i++) fsrAverage += fsrWindow[i];     //sum all values in the window to compute the average
+
+    fsrAverage /= n;                                            //divide by n to get the average FSR value
+
+    for (int i = 0; i < n; i++)                                 //now, for each value in the window
+        fsrVariance += (fsrWindow[i] - fsrAverage) *            //subtract the average and square the result, then sum
+                       (fsrWindow[i] - fsrAverage);
+
+    fsrVariance /= n;                                           //divide by n to get the variance (average squared deviation)
+
+    bool fsrStable = true;                                      //flag for if our fsr reading is stable (we assume it is right now)
+
+    for (int i = 0; i < n; i++) {                               //for each value in the window
+        if (abs(fsrWindow[i] - fsrValue) > 500) {               //if the difference between the current window sample 
+                                                                //and the first read value is greater than 500 (arbitrary)
+
+            fsrStable = 0;                                      //then we do not have a stable fsr window and need to change the flag
+            break;                                              //exit the loop once we have concluded its unstable
+        }
+    }
+    if (fsrStable&&fsrFullWindow) {                             //if we are stable and our window is full
+        for (int i = 0; i < 10; i++) fsrWindow[i] = fsrValue;   //we iterate through the entire window and reset to the initial value
+        fsrAverage = fsrValue;                                  //then the average gets reset as the initial value as well
+        fsrVariance = 0;                                        //since we are resetting variance needs to be restored to 0
+    }
+
+    const float FSR_VAR_THRESHOLD = 175175.0f;                  //completely arbitrary value for the variance threshold
+
+    if (fsrFullWindow&&fsrVariance>FSR_VAR_THRESHOLD) playTone(750);
+                                                                //if our window is full, and our variance exceeds the threshold, we buzz
+
+    else stopTone();                                            //otherwise we stop the tone
     ```
 
-    **Time Complexity:** $$O\left(n^{2}\right)$$
+    **Time Complexity:** $$O\left(n\right)$$
 
     **Space Complexity:** $$O\left(n\right)$$
 
@@ -286,16 +340,3 @@ One of the best parts about Github is that you can view how other people set up 
 To watch the BSE tutorial on how to create a portfolio, click here. -->
 
 <!-- quicklink: (https://theaaravagarwal.github.io/Aarav_BlueStampPortfolio) -->
-
-<!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> -->
-
-<!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> -->
-
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script> -->
-
-<!-- <script type="text/javascript" charset="utf-8" 
-src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,
-https://vincenttam.github.io/javascripts/MathJaxLocal.js"></script> -->
-
-<!-- <html><head><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head></html> -->x
