@@ -272,7 +272,7 @@ In my first milestone, I focused on the algorithms that would power my project i
 
     **Time Complexity:** $$O\left(n\right)$$
 
-    **Space Complexity:** $$O\left(n\right)$$
+    **Space Complexity:** $$O\left(1\right)$$
 
 ### Challenges
 
