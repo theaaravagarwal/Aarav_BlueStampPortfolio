@@ -529,7 +529,7 @@ a {
   }
 
   .copy-btn {
-    position: absolute !important;
+    position: fixed !important;
     top: 1rem !important;
     right: 1.5rem !important;
     background: rgba(36, 58, 115, 0.7) !important;
@@ -544,7 +544,7 @@ a {
     cursor: pointer;
     opacity: 0.85;
     transition: background 0.2s, box-shadow 0.2s, opacity 0.2s;
-    z-index: 2;
+    z-index: 9999;
   }
   .copy-btn:hover {
     background: rgba(56, 189, 248, 0.9) !important;
