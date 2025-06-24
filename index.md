@@ -52,7 +52,7 @@ For your second milestone, explain what you've worked on since your previous mil
 
 ### Description
 
-In my first milestone, I focused on the algorithms that would power my project in the future first. I built a few algorithms:
+In my first milestone, I focused on the algorithms that would power my project in the future. I built a few algorithms:
 
     - Movement Detection
     - Step Detection
@@ -61,7 +61,52 @@ In my first milestone, I focused on the algorithms that would power my project i
 
 1. Movement Detection
 
-    This algorithm is primarily used for power optimization. For example, if we know the user is not moving we do not need to check if they are taking a step as they must be moving to take a step. This algorithm starts by calculating the the change in pitch and roll since the last iteration. Then it checks if the change in pitch and roll exceeds some threshold value in degrees. In much simpler terms, if the accelerometer moves a certain amount of degrees it will be marked as moving. Some challenges I encountered while developing this algorithm were the AHRS (Attitude and Heading Reference System) not correctly calculating the accelerometer's position as well as struggling with the math to convert it from a Quaternion to Euler angles. The math to convert looks something like this: $$ \begin{align*} \text{roll}<del>(\phi) &= \arctan2\left(2(w x + y z),\ 1 - 2(x^2 + y^2)\right) \ \text{pitch}</del>(\theta) &= \arcsin\left(2(w y - z x)\right) \ \text{yaw}~(\psi) &= \arctan2\left(2(w z + x y),\ 1 - 2(y^2 + z^2)\right) \end{align*} $$
+    This algorithm is primarily used for power optimization. For example, if we know the user is not moving we do not need to check if they are taking a step as they must be moving to take a step. This algorithm starts by calculating the the change in pitch and roll since the last iteration. Then it checks if the change in pitch and roll exceeds some threshold value in degrees. In much simpler terms, if the accelerometer moves a certain amount of degrees it will be marked as moving. Some challenges I encountered while developing this algorithm were the AHRS (Attitude and Heading Reference System) not correctly calculating the accelerometer's position as well as not being accurate.
+
+
+    ```cpp
+    static float lastRoll = roll, lastPitch = pitch; //values to find the respective delta values
+
+    const float threshold = 5.0f; //degrees, the amount of movement required to register movement
+
+    float deltaRoll = fabs(roll-lastRoll); //we take the delta roll
+
+    float deltaPitch = fabs(pitch-lastPitch); //then we take the delta pitch
+
+    if (deltaRoll>threshold||deltaPitch>threshold) {
+        //the above line checks if either delta pitch or 
+        //delta roll exceeds the threshold
+
+        if (!isMoving) { //if we are not already moving
+
+            isMoving = 1; //if we have exceeded the threshold then we must be moving
+                          //so our flag must be true here
+
+            //an action can be performed here
+        }
+    } else { //otherwise
+
+        if (isMoving) { //if we are moving
+
+            isMoving = 0; //this is set to false so that next iteration we can
+                          //still detect movement as not changing it would be a
+                          //1 way switch rather than a 2 way switch
+
+            //an action can be performed here
+        }
+    }
+    lastRoll = roll;      //shift last roll for the next iteration
+    lastPitch = pitch;    //shift last pitch for next iteration
+    ```
+
+    Time Complexity: $O\left(1\right)$
+
+    Space Complexity: $O\left(1\right)$
+
+2. Step Detection
+
+    This algorithm is used to estimate distance currently and will be used in the future to estimate health. It serves as a step detection algorithm using accelerometer data. The algorithm computes the magnitude of the acceleration vector and estimates the gravitational component. This gravity estimate is subtracted from the raw magnitude to obtain a filtered signal representing the true acceleration. The algorithm then calculates a dynamic threshold based on the average magnitude of recent samples. The algorithm looks for valleys and peaks in the filtered signal that meet specific criteria for step detection: the amplitude must exceed the threshold, the time interval between steps must be less than around 250 ms, and a valid valley must precede the peak. When all these conditions are satisfied, a step is registered. I encountered a lot of challenges when developing this algorithm such as the math behind the low pass filter, and implementing the gravity filtration with the AHRS gravity filtration system.
+
 
     why             √
     how             √
@@ -69,48 +114,114 @@ In my first milestone, I focused on the algorithms that would power my project i
     challenges      ∆
 
     ```cpp
-    static float lastRoll = roll, lastPitch = pitch; //temporary values to find the respective delta values
-    const float threshold = 5.0f; //degrees, the amount of movement required to register movement
-    float deltaRoll = fabs(roll-lastRoll); //we take the delta roll
-    float deltaPitch = fabs(pitch-lastPitch); //then we take the delta pitch
+    void update(const sensors_event_t& accel) {
+        float magnitude = sqrt(
+            accel.acceleration.x * accel.acceleration.x +
+            accel.acceleration.y * accel.acceleration.y +
+            accel.acceleration.z * accel.acceleration.z        //we calculate the magnitude of acceleration using sqrt(ax^2 + ay^2 + az^2)
+        );
 
-    if (deltaRoll>threshold||deltaPitch>threshold) {
-        //the above line checks if either delta pitch or 
-        //delta roll exceeds the threshold
-        if (!isMoving) { //if we are not already moving
-            isMoving = 1; //if we have moved the threshold then we must be moving
-                          //so our flag must be true here
-            //an action can be performed here
+        gravity = alpha * gravity + (1 - alpha) * magnitude;   //then we apply low pass filter to estimate gravity
+
+        float filteredMagnitude = magnitude - gravity;         //remove gravity from raw acceleration to get filtered magnitude
+
+        sum += fabs(filteredMagnitude);                        //accumulate the absolute filtered magnitude (for average)
+        count++;                                               //increment the sample count (for average)
+
+        if (cnt>=50) {                                         //every 50 samples, update the dynamic threshold
+            float average = sum / count;                       //calculate the average magnitude
+            threshold = baseThreshold + average * 0.2f;        //set the threshold based on baseline and average
+            sum = 0.0f; count = 0;                             //reset sum and count for next window
         }
-    } else { //otherwise
-        if (isMoving) { //if we are moving
-            isMoving = 0; //this is set to false so that next iteration we can
-                          //still detect movement as not changing it would be a
-                          //1 way switch rather than a 2 way switch
-            //an action can be performed here
+
+        unsigned long now = millis();                          //get current time in milliseconds
+
+        static float lastValley = 0.0f;                        //last valley value, initialized to 0
+        static float lastPeak = 0.0f;                          //last peak value, initialized to 0
+        
+        static bool detectValley = false;                      //a flag for detecting a valley
+
+        //detect valley: previous magnitude > last magnitude < current filtered magnitude, and last magnitude is less than 
+        if (previousMagnitude > lastMagnitude && lastMagnitude < filteredMagnitude && lastMagnitude < -threshold * 0.5f) {
+            lastValley = lastMagnitude; detectValley = true;
         }
+
+        //detect peak: previous magnitude < last magnitude > current filtered magnitude, and last magnitude exceeds threshold
+        bool detectPeak = (previousMagnitude < lastMagnitude) && (lastMagnitude > filteredMagnitude) && (lastMagnitude > threshold);
+
+        bool amplitudeOk = (lastMagnitude - lastValley) > (threshold * 0.5f); //check if amplitude between last peak and last valley is above threshold
+
+        //iff a valid peak is detected, amplitude is sufficient, enough time has passed since the last step, and a valley was detected
+        if (detectPeak && amplitudeOk && (now - lastStepTime) > minStepInterval && detectValley) {
+            lastStepTime = now;                                //update last step time
+
+            stepCount++;                                       //increment step count
+
+            detectValley = false;                              //reset valley detection flag
+
+            lastPeak = lastMagnitude;                          //store last peak value
+        }
+
+        previousMagnitude = lastMagnitude;                     //update previous magnitude for next iteration
+        lastMagnitude = filteredMagnitude;                     //update last magnitude for next iteration
     }
-    lastRoll = roll; lastPitch = pitch; //then we reset for next iteration
     ```
 
-    The algorithms overall time complexity is $O(1)$ as we perform a fixed number of calculations and comparisons consistently.
+    Time Complexity: $O\left(1\right)$
 
-2. Step Detection
-
-    
-
-    why             ∆
-    how             ∆
-    summary         ∆
-    challenges      ∆
-
-    ```cpp
-    
-    ```
+    Space Complexity $O\left(1\right)$
 
 3. Distance Estimation
 
-    To estimate the total distance traveled, the algorithm simply multiplies the detected number of steps by an average stride length. While not as precise as GPS, this method is computationally inexpensive and effective for this application.
+    This algorithm is 
+
+    why             ∆
+    how             ∆
+    summary         ∆
+    challenges      ∆
+
+    ```cpp
+    float strideLength = 0.7f;                                  //initial stride length   (meters)
+    float distance = 0.0f;                                      //initial total distance  (meters)
+
+    int stepCount = pedometer.getStepCount();                   //we get the current step count from the pedometer
+    int lastStepCount = 0;                                      //initialize our last step count so we can compare
+
+    static float maxLinearMagnitude = 0.0f;                     //we also need to the maximum linear acceleration magnitude since the last step
+
+                                                                //we update the maximum linear magnitude if the current value is higher
+    if (linearMagnitude > maxLinearMagnitude) 
+        maxLinearMagnitude = linearMagnitude;                   //set the new higher value as the new max
+
+    if (stepCount > lastStepCount) {                            //if a new step has been detected (step count increased)
+                                                                //we will be estimating step length based on the peak acceleration (maxLinearMagnitude)
+                                                                //formula: base length + scale * (peak acceleration - 1g)
+
+        float newStrideLength = 0.45f + 0.25f * (maxLinearMagnitude / 9.80665f - 1.0f);
+
+        if (newStrideLength < 0.3f) newStrideLength = 0.3f;     //lower bound clamp
+        if (newStrideLength > 1.2f) newStrideLength = 1.2f;     //upper bound clamp
+
+        stlen = dst;
+
+                                                                //calculate how many steps were taken since the last update
+        int StepsTaken = stepCount - lastStepCount;
+
+        distance += stepsTaken * strideLength;                  //add the distance for these steps to the total distance
+
+        lastStepCount = stepCount;                              //update the last step count
+
+        maxLinearMagnitude = 0.0f;                              //finally reset the maximum linear magnitude for the next iteration
+    }
+    ```
+
+    Time Complexity: $O\left(n^{999}\right)$
+
+    Space Complexity: $O\left(n!^{\sqrt{200!}^{n!}}\right)$
+
+4. FSR Variance
+
+    This algorithm is used to 
 
     why             ∆
     how             ∆
@@ -120,6 +231,10 @@ In my first milestone, I focused on the algorithms that would power my project i
     ```cpp
     
     ```
+
+    Time Complexity: $O\left(ts pmo icl\right)$
+
+    Space Complexity: $O\left(🥀🥀🥀\right)$
 
 ### Challenges
 
@@ -155,14 +270,6 @@ I will begin working on my intensive project after this Starter Milestone.
 # Schematics
 
 <!-- Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. -->
-
-# Code
-
-<!-- Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. -->
-
-```cpp
-//code here
-```
 
 # Bill of Materials
 
