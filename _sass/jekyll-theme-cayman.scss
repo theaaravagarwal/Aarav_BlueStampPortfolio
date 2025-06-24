@@ -1,9 +1,8 @@
 @import "normalize";
 @import "rouge-github";
 @import "variables";
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700|Inter:300,400,700&display=swap');
 
-// Responsive mixins based on main-content width (80rem)
 @mixin main-content-large {
   @media screen and (min-width: 80rem) {
     @content;
@@ -27,9 +26,10 @@
 body {
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
+  font-family: "Inter", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.7;
   color: $body-text-color;
   background: #f8f9fa;
 }
@@ -217,11 +217,12 @@ a {
     vertical-align: middle;
   }
 
-  img {
+  img, video {
     max-width: 100%;
+    width: 100%;
     border-radius: 0.3rem;
     box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    margin: 1.5rem 0;
+    margin: 2rem 0;
     display: block;
   }
 
@@ -239,31 +240,38 @@ a {
     letter-spacing: -0.5px;
   }
 
-  p {
-    margin-bottom: 1.2em;
+  p, li, ul, ol, dl, dd, dt {
+    font-size: 1.08em;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    line-height: 1.7;
   }
 
   code {
     padding: 2px 6px;
     font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-    font-size: 0.98em;
+    font-size: 0.9em;
     color: $code-text-color;
     background-color: $code-bg-color;
     border-radius: 0.3rem;
     word-break: break-word;
+    font-weight: 400;
   }
 
   pre {
-    padding: 1.2rem;
+    padding: 0.7rem 0.7rem;
     margin-top: 0;
     margin-bottom: 1.5rem;
-    font: 1rem Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font: 13px/1.5 Consolas, "Liberation Mono", Menlo, Courier, monospace;
     color: $code-text-color;
     word-wrap: normal;
     background-color: $code-bg-color;
     border: solid 1px $border-color;
     border-radius: 0.4rem;
     overflow-x: auto;
+    white-space: pre;
+    max-width: 100%;
+    box-sizing: border-box;
 
     > code {
       padding: 0;
