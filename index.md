@@ -141,7 +141,7 @@ In my first milestone, I focused on the algorithms that would power my project i
 
         bool amplitudeOk = (lastMagnitude - lastValley) > (threshold * 0.5f); //check if amplitude between last peak and last valley is above threshold
 
-        //iff a valid peak is detected, amplitude is sufficient, enough time has passed since the last step, and a valley was detected
+        //if a valid peak is detected, amplitude is sufficient, enough time has passed since the last step, and a valley was detected
         if (detectPeak && amplitudeOk && (now - lastStepTime) > minStepInterval && detectValley) {
             lastStepTime = now;                                //we update last step time
 
@@ -294,7 +294,7 @@ For your first milestone, describe what your project is and how you plan to buil
 
 My starter project is a retro arcade console that allows the user to play classic video games like Tetris, Snake, and Space Invaders. The screen is constructed from two 8x8 dot matrices on the top left and has a screen capable of displaying three digits in the top right. The system can be powered by the battery pack on the back of the device or by using the Micro USB port near to the number screen. The device creates sound by using a buzzer below the red power switch. There are six yellow buttons below those components which control the elements on the screen in various games.
 
-<center><img src="assets/image.png" alt="Device Image" width="350" style="flex: 1; border-radius: 8px; margin-left: 16px;"/></center>
+<center><img src="assets/image.png" alt="Device Image" width="350" style="border-radius: 8px;"/></center>
 
 ### Challenges
 

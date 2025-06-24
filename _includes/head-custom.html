@@ -305,9 +305,7 @@ pre {
 </style>
 
 <script>
-// Enhanced user experience with smooth interactions
 document.addEventListener('DOMContentLoaded', function() {
-  // Add smooth scrolling to all internal links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -321,7 +319,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Add loading states to buttons
   document.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('click', function() {
       if (!this.disabled) {
@@ -335,11 +332,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Enhanced code block functionality
   document.querySelectorAll('pre code').forEach(block => {
-    // Remove any existing copy button
     if (block.parentElement.querySelector('.copy-btn')) return;
-    // Add copy button
     const copyButton = document.createElement('button');
     copyButton.textContent = 'Copy';
     copyButton.className = 'copy-btn';
@@ -355,14 +349,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Enhanced accessibility
   document.querySelectorAll('img').forEach(img => {
     if (!img.alt) {
       img.alt = 'Image';
     }
   });
 
-  // Enhanced keyboard navigation
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Tab') {
       document.body.classList.add('keyboard-navigation');
