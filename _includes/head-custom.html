@@ -302,30 +302,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Enhanced table of contents (if needed)
-  const headings = document.querySelectorAll('.main-content h1, .main-content h2, .main-content h3');
-  if (headings.length > 3) {
-    const toc = document.createElement('nav');
-    toc.className = 'table-of-contents';
-    toc.innerHTML = '<h4>Table of Contents</h4><ul></ul>';
-    
-    headings.forEach((heading, index) => {
-      const id = heading.id || `heading-${index}`;
-      heading.id = id;
-      
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = `#${id}`;
-      a.textContent = heading.textContent;
-      a.style.paddingLeft = `${(parseInt(heading.tagName.charAt(1)) - 1) * 1}rem`;
-      
-      li.appendChild(a);
-      toc.querySelector('ul').appendChild(li);
-    });
-    
-    document.querySelector('.main-content').insertBefore(toc, document.querySelector('.main-content').firstChild);
-  }
-
   // Enhanced code block functionality
   document.querySelectorAll('pre code').forEach(block => {
     // Add copy button functionality if needed
