@@ -634,3 +634,116 @@ a {
   outline: 2px solid #38bdf8 !important;
   outline-offset: 2px !important;
 }
+
+// Minimal, modern table styling
+.main-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  background: transparent;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  font-size: 1rem;
+}
+.main-content th, .main-content td {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border-color);
+  text-align: center;
+  font-weight: 500;
+}
+.main-content th {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-weight: 700;
+}
+.main-content tr {
+  background: transparent;
+  transition: background 0.2s;
+}
+.main-content tbody tr:hover {
+  background: var(--bg-secondary);
+}
+
+// Minimal code block styling
+.main-content pre,
+.main-content .highlight pre,
+.main-content pre code,
+.main-content .highlight {
+  background: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+  border-radius: 0.5rem !important;
+  border: 1px solid var(--border-color) !important;
+  padding: 1.1rem 1.3rem !important;
+  font-size: 0.98rem !important;
+  font-family: 'JetBrains Mono', 'Fira Mono', 'Consolas', monospace !important;
+  margin: 1.5rem 0 !important;
+  overflow-x: auto;
+}
+.main-content pre code,
+.main-content .highlight code {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+  font-size: 1em !important;
+  padding: 0 !important;
+}
+// Inline code
+.main-content code:not(pre code) {
+  background: var(--bg-secondary) !important;
+  color: var(--primary-color) !important;
+  border-radius: 0.3em !important;
+  padding: 0.12em 0.4em !important;
+  font-size: 0.98em !important;
+  font-family: 'JetBrains Mono', 'Fira Mono', 'Consolas', monospace !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+// Minimal dark/light mode support
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #181f2a;
+    --bg-secondary: #232b3a;
+    --bg-tertiary: #232b3a;
+    --text-primary: #e6e9ef;
+    --border-color: #2d3748;
+  }
+  .main-content th {
+    background: #232b3a;
+    color: #e6e9ef;
+  }
+  .main-content td {
+    color: #e6e9ef;
+  }
+  .main-content tbody tr:hover {
+    background: #232b3a;
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-primary: #fff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #f3f6fa;
+    --text-primary: #232b3a;
+    --border-color: #e0e7ef;
+  }
+  .main-content th {
+    background: #f3f6fa;
+    color: #232b3a;
+  }
+  .main-content td {
+    color: #232b3a;
+  }
+  .main-content tbody tr:hover {
+    background: #f8fafc;
+  }
+}
+
+// Minimal border radius and spacing
+.main-content, .site-footer, .page-header, .btn, .main-content pre, .main-content table {
+  border-radius: 0.5rem !important;
+}
+
+// Minimal focus style for accessibility
+*:focus {
+  outline: 2px solid var(--primary-color) !important;
+  outline-offset: 2px !important;
+}
