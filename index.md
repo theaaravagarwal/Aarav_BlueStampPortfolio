@@ -168,12 +168,7 @@ In my first milestone, I focused on the algorithms that would power my project i
 
 3. Distance Estimation
 
-    This algorithm estimates the distance traveled by the user by combining step detection from the pedometer with dynamic stride length estimation. It calculates stride length based on the peak acceleration detected during each step, then multiplies the stride length by the number of steps taken to update the total distance. This approach adapts to the user's walking or running style for more accurate distance measurement. The only challenge I faced when creating the distance estimation algorithm was deriving the formula that I used to calculate the user's stride length
-
-    why             ∆
-    how             ∆
-    summary         ∆
-    challenges      ∆
+    This algorithm estimates the distance traveled by the user by combining step detection from the pedometer with dynamic stride length estimation. It calculates stride length based on the peak acceleration detected during each step, then multiplies the stride length by the number of steps taken to update the total distance. This approach adapts to the user's walking or running style for more accurate distance measurement. The only challenge I faced when creating the distance estimation algorithm was deriving the formula that I used to calculate the user's stride length.
 
     ```cpp
     float strideLength = 0.7f;                                  //initial stride length   (meters)
@@ -219,12 +214,7 @@ In my first milestone, I focused on the algorithms that would power my project i
 
 4. FSR Variance
 
-    This algorithm is used to determine if the user's foot, which is pushing down on the fsr, is not pushing with the same amount of force at all times. It uses a sliding window approach to determine variance
-
-    why             ∆
-    how             ∆
-    summary         ∆
-    challenges      ∆
+    This algorithm is used to determine if the user's foot, which is pushing down on the FSR (Force Sensitive Resistor), is not applying consistent force. It uses a sliding window approach to calculate variance in the force readings over time. The algorithm maintains a circular buffer of the last 10 FSR readings and computes both the average and variance of these values. When the variance exceeds a predetermined threshold, it indicates that the user's foot pressure is inconsistent, which could signal improper form or instability. The system also includes a stability check to detect sudden large changes in force readings, and if the readings become stable again, it resets the window to the current value to establish a new baseline. This variance-based approach provides a quantitative measure of foot pressure consistency during exercise.
 
     ```cpp
     float fsrWindow[10];                                        //the sliding window array
