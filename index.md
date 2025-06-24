@@ -100,9 +100,9 @@ In my first milestone, I focused on the algorithms that would power my project i
     lastPitch = pitch;                                          //shift last pitch for next iteration
     ```
 
-    **Time Complexity:** $O\left(1\right)$
+    **Time Complexity:** $$O\left(1\right)$$
 
-    **Space Complexity:** $O\left(1\right)$
+    **Space Complexity:** $$O\left(1\right)$$
 
 2. Step Detection
 
@@ -162,9 +162,9 @@ In my first milestone, I focused on the algorithms that would power my project i
     }
     ```
 
-    **Time Complexity:** $O\left(1\right)$
+    **Time Complexity:** $$O\left(1\right)$$
 
-    **Space Complexity:** $O\left(1\right)$
+    **Space Complexity:** $$O\left(1\right)$$
 
 3. Distance Estimation
 
@@ -209,8 +209,8 @@ In my first milestone, I focused on the algorithms that would power my project i
 
     **Space Complexity:** $O\left(\lim_{x \to \infty} \int_{0}^{n!^{n!^{n!}}} \left[ \frac{e^{x^{x^{x}}} + \cos(\pi x)^{\aleph_1}}{\sqrt{2\pi \zeta(\zeta(n!))}} \cdot \left( \sum_{k=1}^{\infty} \frac{(k!)^{k^{k^{k!}}} + \Gamma(\omega^{k!})}{(x+\sin(x^{k!}))^{k!^{k!}}} \right)^{\sqrt{(200!)^{n!^{n!}}} + \tan(\Omega(n))} dx \right]^{\Gamma(\zeta(\zeta(n^{n^{n}}))^{\aleph_0})} \cdot \prod_{j=1}^{\infty} \left( \frac{\Theta(j^{j!})}{\sqrt{j!}} \right)^{\psi(j)} \right)$ -->
 
-    **Time Complexity:** $O\left(1\right)$
-    **Space Complexity:** $O\left(1\right)$
+    **Time Complexity:** $$O\left(1\right)$$
+    **Space Complexity:** $O\left(1\right)$$
 
 4. FSR Variance
 
@@ -225,9 +225,9 @@ In my first milestone, I focused on the algorithms that would power my project i
     
     ```
 
-    **Time Complexity:** $O\left(n^{2}\right)$
+    **Time Complexity:** $$O\left(n^{2}\right)$$
 
-    **Space Complexity:** $O\left(n\right)$
+    **Space Complexity:** $$O\left(n\right)$$
 
 ### Challenges
 
@@ -302,8 +302,4 @@ To watch the BSE tutorial on how to create a portfolio, click here. -->
 src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,
 https://vincenttam.github.io/javascripts/MathJaxLocal.js"></script> -->
 
-<html>
-    <head>
-        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    </head>
-</html>
+<!-- <html><head><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head></html> -->x
