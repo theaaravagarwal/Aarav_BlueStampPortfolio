@@ -100,9 +100,9 @@ In my first milestone, I focused on the algorithms that would power my project i
     lastPitch = pitch;                                          //shift last pitch for next iteration
     ```
 
-    **Time Complexity:** $$O\left(1\right)$$
+    Time Complexity: $$O\left(1\right)$$
 
-    **Space Complexity:** $$O\left(1\right)$$
+    Space Complexity: $$O\left(1\right)$$
 
 2. Step Detection
 
@@ -162,9 +162,9 @@ In my first milestone, I focused on the algorithms that would power my project i
     }
     ```
 
-    **Time Complexity:** $$O\left(1\right)$$
+    Time Complexity: $$O\left(1\right)$$
 
-    **Space Complexity:** $$O\left(1\right)$$
+    Space Complexity: $$O\left(1\right)$$
 
 3. Distance Estimation
 
@@ -208,9 +208,9 @@ In my first milestone, I focused on the algorithms that would power my project i
     }
     ```
 
-    **Time Complexity:** $$O\left(1\right)$$
+    Time Complexity: $$O\left(1\right)$$
 
-    **Space Complexity:** $$O\left(1\right)$$
+    Space Complexity: $$O\left(1\right)$$
 
 4. FSR Variance
 
@@ -270,9 +270,9 @@ In my first milestone, I focused on the algorithms that would power my project i
     else stopTone();                                            //otherwise we stop the tone
     ```
 
-    **Time Complexity:** $$O\left(1\right)$$
+    Time Complexity: $$O\left(1\right)$$
 
-    **Space Complexity:** $$O\left(1\right)$$
+    Space Complexity: $$O\left(1\right)$$
 
 ### Challenges
 

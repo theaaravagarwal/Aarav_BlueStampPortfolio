@@ -248,30 +248,32 @@ a {
   }
 
   code {
-    padding: 1px 4px;
-    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    padding: 2px 6px;
+    font-family: 'JetBrains Mono', Consolas, "Liberation Mono", Menlo, Courier, monospace;
     font-size: 0.93em;
-    color: $code-text-color;
-    background-color: $code-bg-color;
-    border-radius: 0.2rem;
+    color: #24292e;
+    background-color: #f6f8fa;
+    border-radius: 0.25rem;
     word-break: break-word;
     font-weight: 400;
+    border: 1px solid #e1e4e8;
   }
 
   pre {
-    padding: 0.5rem 0.5rem;
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font: 12px/1.4 Consolas, "Liberation Mono", Menlo, Courier, monospace;
-    color: $code-text-color;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem -1rem;
+    font: 12px/1.5 'JetBrains Mono', Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    color: #24292e;
     word-wrap: normal;
-    background-color: $code-bg-color;
-    border: solid 1px $border-color;
-    border-radius: 0.3rem;
+    background-color: #f6f8fa;
+    border: 1px solid #e1e4e8;
+    border-radius: 0.5rem;
     overflow-x: auto;
     white-space: pre;
-    max-width: 100%;
+    max-width: calc(100% + 2rem);
     box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    position: relative;
 
     > code {
       padding: 0;
@@ -296,12 +298,14 @@ a {
 
   .highlight pre,
   pre {
-    padding: 0.5rem 0.5rem;
+    padding: 1rem 1.2rem;
     overflow: auto;
     font-size: 12px;
-    line-height: 1.4;
-    border-radius: 0.3rem;
+    line-height: 1.5;
+    border-radius: 0.5rem;
     -webkit-overflow-scrolling: touch;
+    margin: 1.5rem -1rem;
+    max-width: calc(100% + 2rem);
   }
 
   pre code,
@@ -316,6 +320,7 @@ a {
     background-color: transparent;
     border: 0;
     font-size: 12px;
+    color: #24292e;
 
     &:before,
     &:after {
