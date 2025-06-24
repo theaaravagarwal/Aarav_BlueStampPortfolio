@@ -1,3 +1,6 @@
+<!-- INITIALIZATION STUFF -->
+<script id="MathJax-script" async; src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 # SmartSole
 
 The SmartSole is a smart shoe sole designed to monitor physical activity by tracking steps, jumps, and running patterns using embedded sensors. It provides alerts through sound or vibrations.
@@ -50,6 +53,8 @@ For your second milestone, explain what you've worked on since your previous mil
 
 # First Milestone
 
+
+
 ### Description
 
 In my first milestone, I focused on the algorithms that would power my project in the future. I built a few algorithms:
@@ -62,7 +67,6 @@ In my first milestone, I focused on the algorithms that would power my project i
 1. Movement Detection
 
     This algorithm is primarily used for power optimization. For example, if we know the user is not moving we do not need to check if they are taking a step as they must be moving to take a step. This algorithm starts by calculating the the change in pitch and roll since the last iteration. Then it checks if the change in pitch and roll exceeds some threshold value in degrees. In much simpler terms, if the accelerometer moves a certain amount of degrees it will be marked as moving. Some challenges I encountered while developing this algorithm were the AHRS (Attitude and Heading Reference System) not correctly calculating the accelerometer's position as well as not being accurate.
-
 
     ```cpp
     static float lastRoll = roll, lastPitch = pitch;            //values to find the respective delta values
@@ -107,12 +111,6 @@ In my first milestone, I focused on the algorithms that would power my project i
 
     This algorithm is used to estimate distance currently and will be used in the future to estimate health. It serves as a step detection algorithm using accelerometer data. The algorithm computes the magnitude of the acceleration vector and estimates the gravitational component. This gravity estimate is subtracted from the raw magnitude to obtain a filtered signal representing the true acceleration. The algorithm then calculates a dynamic threshold based on the average magnitude of recent samples. The algorithm looks for valleys and peaks in the filtered signal that meet specific criteria for step detection: the amplitude must exceed the threshold, the time interval between steps must be less than around 250 ms, and a valid valley must precede the peak. When all these conditions are satisfied, a step is registered. I encountered a lot of challenges when developing this algorithm such as the math behind the low pass filter, and implementing the gravity filtration with the AHRS gravity filtration system.
 
-
-    why             √
-    how             √
-    summary         √
-    challenges      ∆
-
     ```cpp
     void update(const sensors_event_t& accel) {
         float magnitude = sqrt(
@@ -123,21 +121,21 @@ In my first milestone, I focused on the algorithms that would power my project i
 
         gravity = alpha * gravity + (1 - alpha) * magnitude;   //then we apply low pass filter to estimate gravity
 
-        float filteredMagnitude = magnitude - gravity;         //remove gravity from raw acceleration to get filtered magnitude
+        float filteredMagnitude = magnitude - gravity;         //we remove gravity from raw acceleration to get filtered magnitude
 
-        sum += fabs(filteredMagnitude);                        //accumulate the absolute filtered magnitude (for average)
+        sum += fabs(filteredMagnitude);                        //then accumulate the absolute filtered magnitude (for average)
         count++;                                               //increment the sample count (for average)
 
-        if (cnt>=50) {                                         //every 50 samples, update the dynamic threshold
-            float average = sum / count;                       //calculate the average magnitude
-            threshold = baseThreshold + average * 0.2f;        //set the threshold based on baseline and average
-            sum = 0.0f; count = 0;                             //reset sum and count for next window
+        if (cnt>=50) {                                         //every 50 samples, update the dynamic threshold (50 is arbitrary)
+            float average = sum / count;                       //we get the average magnitude
+            threshold = baseThreshold + average * 0.2f;        //then we set the threshold based on baseline and average
+            sum = 0.0f; count = 0;                             //finally reset sum and count for next window
         }
 
-        unsigned long now = millis();                          //get current time in milliseconds
+        unsigned long now = millis();                          //we get current time in milliseconds
 
-        static float lastValley = 0.0f;                        //last valley value, initialized to 0
-        static float lastPeak = 0.0f;                          //last peak value, initialized to 0
+        static float lastValley = 0.0f;                        //last valley value, initialized to 0, could also be -inf
+        static float lastPeak = 0.0f;                          //last peak value, initialized to 0, could also be -inf
         
         static bool detectValley = false;                      //a flag for detecting a valley
 
@@ -153,17 +151,17 @@ In my first milestone, I focused on the algorithms that would power my project i
 
         //iff a valid peak is detected, amplitude is sufficient, enough time has passed since the last step, and a valley was detected
         if (detectPeak && amplitudeOk && (now - lastStepTime) > minStepInterval && detectValley) {
-            lastStepTime = now;                                //update last step time
+            lastStepTime = now;                                //we update last step time
 
-            stepCount++;                                       //increment step count
+            stepCount++;                                       //then increment step count
 
-            detectValley = false;                              //reset valley detection flag
+            detectValley = false;                              //then reset valley detection flag
 
-            lastPeak = lastMagnitude;                          //store last peak value
+            lastPeak = lastMagnitude;                          //we store last peak value
         }
 
-        previousMagnitude = lastMagnitude;                     //update previous magnitude for next iteration
-        lastMagnitude = filteredMagnitude;                     //update last magnitude for next iteration
+        previousMagnitude = lastMagnitude;                     //finally update previous magnitude for next iteration
+        lastMagnitude = filteredMagnitude;                     //and update last magnitude for next iteration
     }
     ```
 
@@ -173,12 +171,7 @@ In my first milestone, I focused on the algorithms that would power my project i
 
 3. Distance Estimation
 
-    This algorithm is 
-
-    why             ∆
-    how             ∆
-    summary         ∆
-    challenges      ∆
+    This algorithm is
 
     ```cpp
     float strideLength = 0.7f;                                  //initial stride length   (meters)
@@ -190,7 +183,7 @@ In my first milestone, I focused on the algorithms that would power my project i
     static float maxLinearMagnitude = 0.0f;                     //we also need to the maximum linear acceleration magnitude since the last step
 
                                                                 //we update the maximum linear magnitude if the current value is higher
-    if (linearMagnitude > maxLinearMagnitude) 
+    if (linearMagnitude > maxLinearMagnitude)
         maxLinearMagnitude = linearMagnitude;                   //set the new higher value as the new max
 
     if (stepCount > lastStepCount) {                            //if a new step has been detected (step count increased)
@@ -213,6 +206,7 @@ In my first milestone, I focused on the algorithms that would power my project i
 
         maxLinearMagnitude = 0.0f;                              //finally reset the maximum linear magnitude for the next iteration
     }
+
     ```
 
     Time Complexity: $O\left(n^{999}\right)$
@@ -221,7 +215,7 @@ In my first milestone, I focused on the algorithms that would power my project i
 
 4. FSR Variance
 
-    This algorithm is used to 
+    This algorithm is used to
 
     why             ∆
     how             ∆
