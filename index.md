@@ -1,6 +1,3 @@
-<!-- INITIALIZATION STUFF -->
-<script id="MathJax-script" async; src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
 # SmartSole
 
 The SmartSole is a smart shoe sole designed to monitor physical activity by tracking steps, jumps, and running patterns using embedded sensors. It provides alerts through sound or vibrations.
@@ -103,9 +100,9 @@ In my first milestone, I focused on the algorithms that would power my project i
     lastPitch = pitch;                                          //shift last pitch for next iteration
     ```
 
-    Time Complexity: $O\left(1\right)$
+    **Time Complexity:** $O\left(1\right)$
 
-    Space Complexity: $O\left(1\right)$
+    **Space Complexity:** $O\left(1\right)$
 
 2. Step Detection
 
@@ -165,9 +162,9 @@ In my first milestone, I focused on the algorithms that would power my project i
     }
     ```
 
-    Time Complexity: $O\left(1\right)$
+    **Time Complexity:** $O\left(1\right)$
 
-    Space Complexity $O\left(1\right)$
+    **Space Complexity:** $O\left(1\right)$
 
 3. Distance Estimation
 
@@ -209,9 +206,9 @@ In my first milestone, I focused on the algorithms that would power my project i
 
     ```
 
-    Time Complexity: $O\left(n^{999}\right)$
+    **Time Complexity:** $O\left(n^{999^{999^{999!}}}\right)$
 
-    Space Complexity: $O\left(n!^{\sqrt{200!}^{n!}}\right)$
+    **Space Complexity:** $O\left(n!^{\sqrt{200!}^{n!}}\right)$
 
 4. FSR Variance
 
@@ -226,9 +223,9 @@ In my first milestone, I focused on the algorithms that would power my project i
     
     ```
 
-    Time Complexity: $O\left(ts pmo icl\right)$
+    **Time Complexity:** $O\left(n^{2}\right)$
 
-    Space Complexity: $O\left(🥀🥀🥀\right)$
+    **Space Complexity:** $O\left(n\right)$
 
 ### Challenges
 
