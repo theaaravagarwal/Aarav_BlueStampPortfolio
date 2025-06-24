@@ -56,10 +56,10 @@ For your second milestone, explain what you've worked on since your previous mil
 
 In my first milestone, I focused on the algorithms that would power my project in the future. I built a few algorithms:
 
-    - Movement Detection
-    - Step Detection
-    - Distance Estimation
-    - FSR Variance
+- Movement Detection
+- Step Detection
+- Distance Estimation
+- FSR Variance
 
 1. Movement Detection
 
