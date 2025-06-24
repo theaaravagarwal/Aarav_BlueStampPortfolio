@@ -63,7 +63,7 @@ In my first milestone, I focused on the algorithms that would power my project i
 
 1. Movement Detection
 
-    This algorithm is primarily used for power optimization. For example, if we know the user is not moving we do not need to check if they are taking a step as they must be moving to take a step. This algorithm starts by calculating the the change in pitch and roll since the last iteration. Then it checks if the change in pitch and roll exceeds some threshold value in degrees. In much simpler terms, if the accelerometer moves a certain amount of degrees it will be marked as moving. Some challenges I encountered while developing this algorithm were the AHRS (Attitude and Heading Reference System) not correctly calculating the accelerometer's position as well as not being accurate.
+    This algorithm is designed to optimize power usage by determining whether the user is moving. If the user is stationary, there is no need to check for steps, since movement is a prerequisite for taking a step. The algorithm works by calculating the change in pitch and roll angles between the current and previous readings. If either the change in pitch or roll exceeds a specified threshold (measured in degrees), the system considers the user to be moving. In simpler terms, if the accelerometer detects a significant enough change in orientation, movement is registered. While developing this algorithm, I faced challenges with the AHRS (Attitude and Heading Reference System), which sometimes failed to accurately determine the accelerometer's orientation.
 
     ```cpp
     static float lastRoll = roll, lastPitch = pitch;            //values to find the respective delta values
@@ -168,7 +168,12 @@ In my first milestone, I focused on the algorithms that would power my project i
 
 3. Distance Estimation
 
-    This algorithm is used for estimating the distance travelled by the user. This algorithm uses the pedometer 
+    This algorithm estimates the distance traveled by the user by combining step detection from the pedometer with dynamic stride length estimation. It calculates stride length based on the peak acceleration detected during each step, then multiplies the stride length by the number of steps taken to update the total distance. This approach adapts to the user's walking or running style for more accurate distance measurement.
+
+    why             ∆
+    how             ∆
+    summary         ∆
+    challenges      ∆
 
     ```cpp
     float strideLength = 0.7f;                                  //initial stride length   (meters)
@@ -214,7 +219,7 @@ In my first milestone, I focused on the algorithms that would power my project i
 
 4. FSR Variance
 
-    This algorithm is used to determine if the user's foot, which is pushing down on the fsr, is not pushing with the same amount of force at all times 
+    This algorithm is used to determine if the user's foot, which is pushing down on the fsr, is not pushing with the same amount of force at all times. It uses a sliding window approach to determine variance
 
     why             ∆
     how             ∆
