@@ -218,6 +218,7 @@ a {
   }
 
   code {
+    max-width: 96rem;
     padding: 2px 4px;
     font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
     font-size: 0.9rem;
@@ -271,7 +272,7 @@ a {
   pre code,
   pre tt {
     display: inline;
-    max-width: 96rem;
+    max-width: initial;
     padding: 0;
     margin: 0;
     overflow: initial;
