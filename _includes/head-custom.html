@@ -269,6 +269,39 @@ pre {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: var(--primary-color, #2563eb);
+  color: #fff;
+  border: none;
+  border-radius: 0.4em;
+  padding: 0.25em 0.9em;
+  font-size: 0.85em;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 1;
+  box-shadow: 0 2px 8px 0 rgba(30,41,59,0.08);
+  transition: background 0.2s;
+}
+
+.copy-btn:active {
+  background: #1d4ed8;
+}
+
+@media (prefers-color-scheme: dark) {
+  .copy-btn {
+    background: #3b82f6;
+    color: #fff;
+  }
+  .copy-btn:active {
+    background: #2563eb;
+  }
+}
 </style>
 
 <script>
@@ -304,42 +337,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Enhanced code block functionality
   document.querySelectorAll('pre code').forEach(block => {
-    // Add copy button functionality if needed
+    // Remove any existing copy button
+    if (block.parentElement.querySelector('.copy-btn')) return;
+    // Add copy button
     const copyButton = document.createElement('button');
     copyButton.textContent = 'Copy';
     copyButton.className = 'copy-btn';
-    copyButton.style.cssText = `
-      position: absolute;
-      top: 0.5rem;
-      right: 0.5rem;
-      background: var(--primary-color);
-      color: white;
-      border: none;
-      border-radius: var(--radius-sm);
-      padding: 0.25rem 0.5rem;
-      font-size: 0.75rem;
-      cursor: pointer;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    `;
-    
     block.parentElement.style.position = 'relative';
     block.parentElement.appendChild(copyButton);
-    
-    block.parentElement.addEventListener('mouseenter', () => {
-      copyButton.style.opacity = '1';
-    });
-    
-    block.parentElement.addEventListener('mouseleave', () => {
-      copyButton.style.opacity = '0';
-    });
-    
     copyButton.addEventListener('click', () => {
       navigator.clipboard.writeText(block.textContent).then(() => {
         copyButton.textContent = 'Copied!';
         setTimeout(() => {
           copyButton.textContent = 'Copy';
-        }, 2000);
+        }, 1500);
       });
     });
   });
