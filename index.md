@@ -56,12 +56,7 @@ For your second milestone, explain what you've worked on since your previous mil
 
 In my first milestone, I focused on the algorithms that would power my project in the future. I built a few algorithms:
 
-- Movement Detection
-- Step Detection
-- Distance Estimation
-- FSR Variance
-
-1. Movement Detection
+**1. Movement Detection**
 
     This algorithm is designed to optimize power usage by determining whether the user is moving. If the user is stationary, there is no need to check for steps, since movement is a prerequisite for taking a step. The algorithm works by calculating the change in pitch and roll angles between the current and previous readings. If either the change in pitch or roll exceeds a specified threshold (measured in degrees), the system considers the user to be moving. In simpler terms, if the accelerometer detects a significant enough change in orientation, movement is registered. While developing this algorithm, I faced challenges with the AHRS (Attitude and Heading Reference System), which sometimes failed to accurately determine the accelerometer's orientation.
 
@@ -104,7 +99,7 @@ In my first milestone, I focused on the algorithms that would power my project i
 
     Space Complexity: $$O\left(1\right)$$
 
-2. Step Detection
+**2. Step Detection**
 
     This algorithm is used to estimate distance currently and will be used in the future to estimate health. It serves as a step detection algorithm using accelerometer data. The algorithm computes the magnitude of the acceleration vector and estimates the gravitational component. This gravity estimate is subtracted from the raw magnitude to obtain a filtered signal representing the true acceleration. The algorithm then calculates a dynamic threshold based on the average magnitude of recent samples. The algorithm looks for valleys and peaks in the filtered signal that meet specific criteria for step detection: the amplitude must exceed the threshold, the time interval between steps must be less than around 250 ms, and a valid valley must precede the peak. When all these conditions are satisfied, a step is registered. I encountered a lot of challenges when developing this algorithm such as the math behind the low pass filter, and implementing the gravity filtration with the AHRS gravity filtration system.
 
@@ -166,7 +161,7 @@ In my first milestone, I focused on the algorithms that would power my project i
 
     Space Complexity: $$O\left(1\right)$$
 
-3. Distance Estimation
+**3. Distance Estimation**
 
     This algorithm estimates the distance traveled by the user by combining step detection from the pedometer with dynamic stride length estimation. It calculates stride length based on the peak acceleration detected during each step, then multiplies the stride length by the number of steps taken to update the total distance. This approach adapts to the user's walking or running style for more accurate distance measurement. The only challenge I faced when creating the distance estimation algorithm was deriving the formula that I used to calculate the user's stride length.
 
@@ -212,7 +207,7 @@ In my first milestone, I focused on the algorithms that would power my project i
 
     Space Complexity: $$O\left(1\right)$$
 
-4. FSR Variance
+**4. FSR Variance**
 
     This algorithm is used to determine if the user's foot, which is pushing down on the FSR (Force Sensitive Resistor), is not applying consistent force. It uses a sliding window approach to calculate variance in the force readings over time. The algorithm maintains a circular buffer of the last 10 FSR readings and computes both the average and variance of these values. When the variance exceeds a predetermined threshold, it indicates that the user's foot pressure is inconsistent, which could signal improper form or instability. The system also includes a stability check to detect sudden large changes in force readings, and if the readings become stable again, it resets the window to the current value to establish a new baseline. This variance-based approach provides a quantitative measure of foot pressure consistency during exercise.
 
