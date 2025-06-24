@@ -65,38 +65,38 @@ In my first milestone, I focused on the algorithms that would power my project i
 
 
     ```cpp
-    static float lastRoll = roll, lastPitch = pitch; //values to find the respective delta values
+    static float lastRoll = roll, lastPitch = pitch;            //values to find the respective delta values
 
-    const float threshold = 5.0f; //degrees, the amount of movement required to register movement
+    const float threshold = 5.0f;                               //degrees, the amount of movement required to register movement
 
-    float deltaRoll = fabs(roll-lastRoll); //we take the delta roll
+    float deltaRoll = fabs(roll-lastRoll);                      //we take the delta roll
 
-    float deltaPitch = fabs(pitch-lastPitch); //then we take the delta pitch
+    float deltaPitch = fabs(pitch-lastPitch);                   //then we take the delta pitch
 
     if (deltaRoll>threshold||deltaPitch>threshold) {
-        //the above line checks if either delta pitch or 
-        //delta roll exceeds the threshold
+                                                                //the above line checks if either delta pitch or 
+                                                                //delta roll exceeds the threshold
 
-        if (!isMoving) { //if we are not already moving
+        if (!isMoving) {                                        //if we are not already moving
 
-            isMoving = 1; //if we have exceeded the threshold then we must be moving
-                          //so our flag must be true here
+            isMoving = 1;                                       //if we have exceeded the threshold then we must be moving
+                                                                //so our flag must be true here
 
-            //an action can be performed here
+                                                                //an action can be performed here
         }
-    } else { //otherwise
+    } else {                                                    //otherwise
 
-        if (isMoving) { //if we are moving
+        if (isMoving) {                                         //if we are moving
 
-            isMoving = 0; //this is set to false so that next iteration we can
-                          //still detect movement as not changing it would be a
-                          //1 way switch rather than a 2 way switch
+            isMoving = 0;                                       //this is set to false so that next iteration we can
+                                                                //still detect movement as not changing it would be a
+                                                                //1 way switch rather than a 2 way switch
 
-            //an action can be performed here
+                                                                //an action can be performed here as well
         }
     }
-    lastRoll = roll;      //shift last roll for the next iteration
-    lastPitch = pitch;    //shift last pitch for next iteration
+    lastRoll = roll;                                            //shift last roll for the next iteration
+    lastPitch = pitch;                                          //shift last pitch for next iteration
     ```
 
     Time Complexity: $O\left(1\right)$
