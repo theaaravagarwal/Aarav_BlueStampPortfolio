@@ -17,6 +17,7 @@ class BluetoothApp:
         self.client = None
         self.connected = False
         self.notification_characteristic = None
+        self.loop = None
 
         main_frame = tk.Frame(master)
         main_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
@@ -120,6 +121,8 @@ class BluetoothApp:
             self.master.after(0, lambda: messagebox.showerror("Scan Error", f"Error during scan: {e}"))
             self.master.after(0, lambda: self.status_label.config(text="Status: Scan failed"))
             self.master.after(0, lambda: self.scan_button.config(state=tk.NORMAL, text="🔍 Scan for BLE Devices"))
+        finally:
+            loop.close()
 
     def update_device_list(self):
         self.device_tree.delete(*self.device_tree.get_children())
@@ -134,8 +137,6 @@ class BluetoothApp:
                 ad_data = device.advertisement
                 if hasattr(ad_data, 'rssi'):
                     rssi = ad_data.rssi
-            elif hasattr(device, 'rssi'):
-                rssi = device.rssi
 
             services = "N/A"
             if hasattr(device, 'advertisement') and device.advertisement:
@@ -179,8 +180,6 @@ class BluetoothApp:
                 ad_data = device.advertisement
                 if hasattr(ad_data, 'rssi'):
                     rssi = ad_data.rssi
-            elif hasattr(device, 'rssi'):
-                rssi = device.rssi
             
             services = "N/A"
             if hasattr(device, 'advertisement') and device.advertisement:
@@ -237,6 +236,7 @@ class BluetoothApp:
     def _connect(self):
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
+        self.loop = loop
         try:
             client = BleakClient(self.selected_device.address, loop=loop)
             loop.run_until_complete(client.connect())
@@ -261,20 +261,28 @@ class BluetoothApp:
 
     def discover_services(self):
         async def _discover():
-            services = await self.client.get_services()
-            for service in services:
-                for char in service.characteristics:
-                    if "notify" in char.properties:
-                        try:
-                            await self.client.start_notify(char.uuid, self.notification_handler)
-                            self.notification_characteristic = char.uuid
-                            self.master.after(0, lambda: self.add_received_message(f"Notifications enabled for {char.uuid}"))
-                            break
-                        except Exception as e:
-                            self.master.after(0, lambda: self.add_received_message(f"Failed to enable notifications for {char.uuid}: {e}"))
-            
-            if not self.notification_characteristic:
-                self.master.after(0, lambda: self.add_received_message("No notification characteristics found"))
+            try:
+                services = await self.client.get_services()
+                self.master.after(0, lambda: self.add_received_message("🔍 Discovering services..."))
+                
+                for service in services:
+                    self.master.after(0, lambda s=service: self.add_received_message(f"Service: {s.uuid}"))
+                    for char in service.characteristics:
+                        self.master.after(0, lambda c=char: self.add_received_message(f"  Characteristic: {c.uuid} - Properties: {c.properties}"))
+                        
+                        if "notify" in char.properties or "indicate" in char.properties:
+                            try:
+                                await self.client.start_notify(char.uuid, self.notification_handler)
+                                self.notification_characteristic = char.uuid
+                                self.master.after(0, lambda uuid=char.uuid: self.add_received_message(f"✅ Notifications enabled for {uuid}"))
+                            except Exception as e:
+                                self.master.after(0, lambda uuid=char.uuid, error=e: self.add_received_message(f"❌ Failed to enable notifications for {uuid}: {error}"))
+                
+                if not self.notification_characteristic:
+                    self.master.after(0, lambda: self.add_received_message("⚠️ No notification characteristics found"))
+                    
+            except Exception as e:
+                self.master.after(0, lambda error=e: self.add_received_message(f"❌ Service discovery failed: {error}"))
         
         return _discover()
 
@@ -291,24 +299,61 @@ class BluetoothApp:
             threading.Thread(target=self._disconnect, daemon=True).start()
 
     def _disconnect(self):
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
         try:
-            if self.notification_characteristic:
-                loop.run_until_complete(self.client.stop_notify(self.notification_characteristic))
-                self.notification_characteristic = None
+            if self.client and self.notification_characteristic and self.client.is_connected:
+                try:
+                    if self.loop:
+                        future = asyncio.run_coroutine_threadsafe(
+                            self.client.stop_notify(self.notification_characteristic), 
+                            self.loop
+                        )
+                        future.result(timeout=5.0)
+                except Exception:
+                    pass
             
-            loop.run_until_complete(self.client.disconnect())
+            if self.client and self.client.is_connected:
+                if self.loop:
+                    future = asyncio.run_coroutine_threadsafe(
+                        self.client.disconnect(), 
+                        self.loop
+                    )
+                    future.result(timeout=5.0)
+            
             self.connected = False
             self.client = None
+            self.notification_characteristic = None
+            
+            if self.loop:
+                try:
+                    self.loop.close()
+                except Exception:
+                    pass
+                self.loop = None
+            
             self.master.after(0, lambda: self.status_label.config(text="Status: Disconnected"))
             self.master.after(0, lambda: self.connect_button.config(state=tk.NORMAL, text="Connect"))
             self.master.after(0, lambda: self.disconnect_button.config(state=tk.DISABLED))
             self.master.after(0, lambda: self.send_button.config(state=tk.DISABLED))
             self.master.after(0, lambda: self.message_entry.config(state=tk.DISABLED))
             self.master.after(0, lambda: self.add_received_message("🔌 Disconnected from ESP32"))
-        except Exception as e:
-            self.master.after(0, lambda: messagebox.showerror("Disconnect Error", str(e)))
+            
+        except Exception as disconnect_error:
+            error_msg = str(disconnect_error)
+            self.master.after(0, lambda: messagebox.showerror("Disconnect Error", error_msg))
+            self.master.after(0, lambda: self.status_label.config(text="Status: Disconnect failed"))
+            self.connected = False
+            self.client = None
+            self.notification_characteristic = None
+            if self.loop:
+                try:
+                    self.loop.close()
+                except Exception:
+                    pass
+                self.loop = None
+            self.master.after(0, lambda: self.connect_button.config(state=tk.NORMAL, text="Connect"))
+            self.master.after(0, lambda: self.disconnect_button.config(state=tk.DISABLED))
+            self.master.after(0, lambda: self.send_button.config(state=tk.DISABLED))
+            self.master.after(0, lambda: self.message_entry.config(state=tk.DISABLED))
 
     def send_message(self):
         if self.client and self.connected and self.message_var.get().strip():
@@ -316,25 +361,49 @@ class BluetoothApp:
             threading.Thread(target=self._send_message, args=(message,), daemon=True).start()
 
     def _send_message(self, message):
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
+        if not self.loop or not self.client or not self.connected:
+            self.master.after(0, lambda: messagebox.showerror("Send Error", "Not connected to device"))
+            return
+            
         try:
-            characteristic_uuid = "beb5483e-36e1-4688-b7f5-ea07361b26a8"
+            characteristic_uuids = [
+                "beb5483e-36e1-4688-b7f5-ea07361b26a8",
+                "0000ffe1-0000-1000-8000-00805f9b34fb",
+                "0000ffe0-0000-1000-8000-00805f9b34fb",
+            ]
             
             message_bytes = message.encode('utf-8')
+            success = False
             
-            loop.run_until_complete(self.client.write_gatt_char(characteristic_uuid, message_bytes))
+            for uuid in characteristic_uuids:
+                try:
+                    future = asyncio.run_coroutine_threadsafe(
+                        self.client.write_gatt_char(uuid, message_bytes), 
+                        self.loop
+                    )
+                    future.result(timeout=5.0)
+                    success = True
+                    self.master.after(0, lambda: self.add_received_message(f"📤 Sent via {uuid}: {message}"))
+                    break
+                except Exception as e:
+                    self.master.after(0, lambda uuid=uuid, error=e: self.add_received_message(f"❌ Failed to send via {uuid}: {error}"))
+                    continue
             
-            self.master.after(0, lambda: self.status_label.config(text=f"Status: Message sent: {message}"))
-            self.master.after(0, lambda: self.message_var.set(""))
+            if success:
+                self.master.after(0, lambda: self.status_label.config(text=f"Status: Message sent: {message}"))
+                self.master.after(0, lambda: self.message_var.set(""))
+            else:
+                self.master.after(0, lambda: messagebox.showerror("Send Error", "Failed to send message via any characteristic"))
             
-        except Exception as e:
-            self.master.after(0, lambda: messagebox.showerror("Send Error", f"Failed to send message: {e}"))
+        except Exception as send_error:
+            error_msg = str(send_error)
+            self.master.after(0, lambda: messagebox.showerror("Send Error", f"Failed to send message: {error_msg}"))
 
     def clear_messages(self):
         self.received_text.delete(1.0, tk.END)
 
     def add_received_message(self, message):
+        print(f"DEBUG: {message}")
         self.received_text.insert(tk.END, f"[{self.get_timestamp()}] {message}\n")
         self.received_text.see(tk.END)
 
@@ -342,7 +411,50 @@ class BluetoothApp:
         from datetime import datetime
         return datetime.now().strftime("%H:%M:%S")
 
+    def cleanup(self):
+        """Clean up resources when closing the application"""
+        if self.client and self.connected:
+            try:
+                if self.notification_characteristic and self.client.is_connected and self.loop:
+                    try:
+                        future = asyncio.run_coroutine_threadsafe(
+                            self.client.stop_notify(self.notification_characteristic), 
+                            self.loop
+                        )
+                        future.result(timeout=2.0)
+                    except Exception:
+                        pass
+                
+                if self.client.is_connected and self.loop:
+                    try:
+                        future = asyncio.run_coroutine_threadsafe(
+                            self.client.disconnect(), 
+                            self.loop
+                        )
+                        future.result(timeout=2.0)
+                    except Exception:
+                        pass
+                
+                if self.loop:
+                    try:
+                        self.loop.close()
+                    except Exception:
+                        pass
+            except Exception:
+                pass
+            finally:
+                self.connected = False
+                self.client = None
+                self.notification_characteristic = None
+                self.loop = None
+
 if __name__ == "__main__":
     root = tk.Tk()
     app = BluetoothApp(root)
+    
+    def on_closing():
+        app.cleanup()
+        root.destroy()
+    
+    root.protocol("WM_DELETE_WINDOW", on_closing)
     root.mainloop() 
