@@ -466,6 +466,8 @@ class BluetoothApp:
                 self.connected = False
                 self.client = None
                 self.notification_characteristic = None
+        import time
+        time.sleep(0.5)
         self.stop_loop()
 
     def start_loop_in_thread(self):
@@ -477,8 +479,14 @@ class BluetoothApp:
 
     def stop_loop(self):
         if self.loop and self.loop.is_running():
+            import time
+            time.sleep(0.5)
             self.loop.call_soon_threadsafe(self.loop.stop)
             self.loop_thread.join()
+            # Wait for all tasks to finish before closing
+            pending = asyncio.all_tasks(self.loop)
+            if pending:
+                self.loop.run_until_complete(asyncio.gather(*pending, return_exceptions=True))
             self.loop.close()
             self.loop = None
             self.loop_thread = None
@@ -508,8 +516,14 @@ if __name__ == "__main__":
     app = BluetoothApp(root)
     
     def on_closing():
-        app.cleanup()
+        try:
+            app.cleanup()
+        except Exception as e:
+            print(f"Cleanup error: {e}")
         root.destroy()
     
     root.protocol("WM_DELETE_WINDOW", on_closing)
-    root.mainloop() 
+    try:
+        root.mainloop()
+    except Exception as e:
+        print(f"Mainloop error: {e}") 
