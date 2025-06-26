@@ -1,7 +1,7 @@
 import asyncio
 import threading
 import tkinter as tk
-from tkinter import messagebox, ttk, scrolledtext
+from tkinter import messagebox, ttk, scrolledtext, filedialog
 from bleak import BleakScanner, BleakClient
 from bleak.backends.scanner import AdvertisementData
 
@@ -9,7 +9,13 @@ class BluetoothApp:
     def __init__(self, master):
         self.master = master
         master.title("ESP32 BLE Connector")
-        master.geometry("800x800")
+        window_width = 1000
+        window_height = 1000
+        screen_width = master.winfo_screenwidth()
+        screen_height = master.winfo_screenheight()
+        center_x = int(screen_width / 2 - window_width / 2)
+        center_y = int(screen_height / 2 - window_height / 2)
+        master.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
 
         self.devices = []
         self.device_dict = {}
@@ -94,6 +100,17 @@ class BluetoothApp:
         
         self.received_text = scrolledtext.ScrolledText(received_frame, height=8, width=80, font=("Courier", 10), bg="black", fg="green")
         self.received_text.pack(fill=tk.BOTH, expand=True, pady=(5, 0))
+        
+        # --- Logging controls ---
+        log_frame = tk.Frame(received_frame)
+        log_frame.pack(anchor=tk.W, pady=(5, 0))
+        self.log_to_file_var = tk.BooleanVar(value=False)
+        self.log_file_path = None
+        log_checkbox = tk.Checkbutton(log_frame, text="Log to file", variable=self.log_to_file_var, command=self.on_log_toggle)
+        log_checkbox.pack(side=tk.LEFT)
+        self.choose_log_button = tk.Button(log_frame, text="Choose log file...", command=self.choose_log_file, state=tk.DISABLED)
+        self.choose_log_button.pack(side=tk.LEFT, padx=(5, 0))
+        # --- End logging controls ---
         
         clear_button = tk.Button(received_frame, text="Clear Messages", command=self.clear_messages,
                                font=("Arial", 10), bg="#FF9800", fg="white")
@@ -356,10 +373,10 @@ class BluetoothApp:
 
         try:
             characteristic_uuids = [
-                "a6269c86-5982-4b90-9ce7-c2e249f71c7c",
-                "beb5483e-36e1-4688-b7f5-ea07361b26a8",
-                "0000ffe1-0000-1000-8000-00805f9b34fb",
-                "0000ffe0-0000-1000-8000-00805f9b34fb",
+                "a6269c86-5982-4b90-9ce7-c2e249f71c7c", #new uuid
+                "beb5483e-36e1-4688-b7f5-ea07361b26a8", #old uuid
+                "0000ffe1-0000-1000-8000-00805f9b34fb", #filler
+                "0000ffe0-0000-1000-8000-00805f9b34fb", #filler
             ]
             print(f"{debug_prefix} Characteristic UUIDs to try: {characteristic_uuids}")
 
@@ -411,13 +428,18 @@ class BluetoothApp:
         print(f"DEBUG: {message}")
         self.received_text.insert(tk.END, f"[{self.get_timestamp()}] {message}\n")
         self.received_text.see(tk.END)
+        if getattr(self, 'log_to_file_var', None) and self.log_to_file_var.get() and self.log_file_path:
+            try:
+                with open(self.log_file_path, 'a', encoding='utf-8') as f:
+                    f.write(f"[{self.get_timestamp()}] {message}\n")
+            except Exception as e:
+                print(f"[Log Error] {e}")
 
     def get_timestamp(self):
         from datetime import datetime
         return datetime.now().strftime("%H:%M:%S")
 
     def cleanup(self):
-        """Clean up resources when closing the application"""
         if self.client and self.connected:
             try:
                 if self.notification_characteristic and self.client.is_connected and self.loop:
@@ -460,6 +482,26 @@ class BluetoothApp:
             self.loop.close()
             self.loop = None
             self.loop_thread = None
+
+    def on_log_toggle(self):
+        if self.log_to_file_var.get():
+            self.choose_log_button.config(state=tk.NORMAL)
+            if not self.log_file_path:
+                self.choose_log_file()
+        else:
+            self.choose_log_button.config(state=tk.DISABLED)
+
+    def choose_log_file(self):
+        file_path = filedialog.asksaveasfilename(
+            defaultextension=".txt",
+            filetypes=[("Text files", "*.txt"), ("All files", "*.*")],
+            title="Select log file"
+        )
+        if file_path:
+            self.log_file_path = file_path
+        else:
+            self.log_to_file_var.set(False)
+            self.choose_log_button.config(state=tk.DISABLED)
 
 if __name__ == "__main__":
     root = tk.Tk()
