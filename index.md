@@ -37,15 +37,13 @@ For your final milestone, explain the outcome of your project. Key details to in
 
 This milestone focused on collecting sensor data and using a variety of visualizations to better understand and improve my design and code. I dedicated significant time to building a Bluetooth app for connecting to my ESP32, which proved to be much more challenging than anticipated. Attaching the device securely to my foot also required several iterations, but after some trial and error, I achieved a working prototype. With these foundations in place, I now have a functional system and am excited to keep refining it.
 
----
-
 ### Diagrams & Visualizations
 
 To gain deeper insights into the data and system behavior, I created several types of diagrams and visualizations:
 
 #### 1. Linear Magnitude Analysis
 
-The linear acceleration magnitude ("linmag") was the most important signal for detecting steps, jumps, and other activities. I focused on several visualizations and analyses to understand and tune my algorithms:
+The linear acceleration magnitude (linmag) was the most important signal for detecting steps, jumps, and other activities. I focused on several visualizations and analyses to understand and tune my algorithms:
 
 ##### a. Rolling Statistics on Linear Magnitude
 
@@ -94,7 +92,7 @@ Some of the biggest challenges I faced during this milestone included:
 
 ### Next Steps
 
-Moving forward, I plan to make the hardware setup more robust and user-friendly by designing custom housings for the electronic components and soldering all connections onto a flexible PCB. This will improve durability and comfort, making the device much more practical for everyday use. 
+Moving forward, I plan to make the hardware setup more robust and user-friendly by designing custom housings for the electronic components and soldering all connections onto a flexible PCB. This will improve durability and comfort, making the device much more practical for everyday use.
 
 <!-- **Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
 
