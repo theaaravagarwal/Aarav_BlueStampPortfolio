@@ -3,4 +3,4 @@ This repository is a template for documenting BlueStamp Engineering projects. Us
 
 # Using the app in ./app
 
-To use this app, you must install "bleak" `pip install bleak` and use Python 3.1x please
+To use this app, you must install "bleak" `pip install bleak` and use Python 3.1x
