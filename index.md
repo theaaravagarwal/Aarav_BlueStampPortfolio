@@ -35,7 +35,64 @@ For your final milestone, explain the outcome of your project. Key details to in
 
 ### Description
 
+This milestone focused on collecting sensor data and using a variety of visualizations to better understand and improve my design and code. I dedicated significant time to building a Bluetooth app for connecting to my ESP32, which proved to be much more challenging than anticipated. Attaching the device securely to my foot also required several iterations, but after some trial and error, I achieved a working prototype. With these foundations in place, I now have a functional system and am excited to keep refining it.
+
+---
+
+### Diagrams & Visualizations
+
+To gain deeper insights into the data and system behavior, I created several types of diagrams and visualizations:
+
+#### 1. Linear Magnitude Analysis
+
+The linear acceleration magnitude ("linmag") was the most important signal for detecting steps, jumps, and other activities. I focused on several visualizations and analyses to understand and tune my algorithms:
+
+##### a. Rolling Statistics on Linear Magnitude
+
+<center><img src="assets/roll_linmag.png" alt="Linear Magnitude Rolling Stats" width="350" style="border-radius: 8px;"/></center>
+
+*I calculated the linear acceleration magnitude and overlaid rolling mean and standard deviation statistics. This made it much easier to spot steps and repetitive motions, and to set robust thresholds for event detection.*
+
+##### b. Time Series Decomposition of Linear Magnitude
+
+<center><img src="assets/decomposition_linmag.png" alt="Decomposition of Linear Magnitude" width="350" style="border-radius: 8px;"/></center>
+
+*I broke down the raw linear acceleration magnitude data into trend, seasonality, and noise components. This decomposition helped me identify patterns in walking, running, and jumping, and filter out irrelevant fluctuations.*
+
+##### c. Power Spectral Density (PSD) and FFT of Linear Magnitude
+
+<center><img src="assets/psd_linmag.png" alt="PSD and FFT of Linear Magnitude" width="350" style="border-radius: 8px;"/></center>
+
+*I performed a frequency analysis (FFT and power spectral density) on the linmag signal. This revealed dominant frequencies corresponding to step rates and helped distinguish between walking, running, and jumping. It was a great help for tuning my detection algorithms and understanding the periodicity of different activities.*
+
+---
+
+#### 2. Orientation and 3D Motion Visualizations
+
+While linmag was the primary focus, I also used other visualizations to understand the device's behavior:
+
+##### a. Accelerometer Orientation GIF
+
+<center><img src="assets/cube_orientation.gif" alt="Accelerometer Orientation GIF" width="350" style="border-radius: 8px;"/></center>
+
+*A dynamic visualization (GIF) showing a 3D cube representing the accelerometer's orientation over time as I moved. This helped me intuitively understand how the device tracked foot motion and rotations.*
+
+##### b. 3D Acceleration Space & Trajectory
+
+<center><img src="assets/3d_analysis.png" alt="3D Acceleration Trajectory" width="600" style="border-radius: 8px;"/></center>
+
+*By plotting the acceleration data in 3D space, I could visualize the trajectory of my foot during different activities. This was especially useful for distinguishing between steps, jumps, and other movements. I also mapped the orientation data (pitch, roll, yaw) in a 3D plot to observe how the foot's orientation changed during various activities, which helped in fine-tuning the movement detection algorithms.*
+
+
+
 ### Challenges
+
+Some of the biggest challenges I faced during this milestone included:
+
+* Developing and debugging the Bluetooth Low Energy app to reliably communicate with the ESP32
+* Creating and interpreting various diagrams and visualizations of the collected data (like those described above)
+* Experimenting with different ways to attach the device securely and comfortably to my foot
+* Designing meaningful test cases; just walking around randomly wasn’t enough to draw useful conclusions
 
 ### Next Steps
 
