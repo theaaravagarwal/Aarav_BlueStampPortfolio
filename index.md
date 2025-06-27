@@ -57,7 +57,7 @@ The linear acceleration magnitude ("linmag") was the most important signal for d
 
 <center><img src="assets/decomposition_linmag.png" alt="Decomposition of Linear Magnitude" width="350" style="border-radius: 8px;"/></center>
 
-*I broke down the raw linear acceleration magnitude data into trend, seasonality, and noise components. This decomposition helped me identify patterns in walking, running, and jumping, and filter out irrelevant fluctuations.*
+*I broke down the raw linmag data into trend, seasonality, and noise components. This decomposition helped me identify patterns in walking, running, and jumping, and filter out irrelevant fluctuations.*
 
 ##### c. Power Spectral Density (PSD) and FFT of Linear Magnitude
 
@@ -71,7 +71,7 @@ The linear acceleration magnitude ("linmag") was the most important signal for d
 
 While linmag was the primary focus, I also used other visualizations to understand the device's behavior:
 
-##### a. Accelerometer Orientation GIF
+##### a. Accelerometer Orientation
 
 <center><img src="assets/cube_orientation.gif" alt="Accelerometer Orientation GIF" width="350" style="border-radius: 8px;"/></center>
 
@@ -79,11 +79,9 @@ While linmag was the primary focus, I also used other visualizations to understa
 
 ##### b. 3D Acceleration Space & Trajectory
 
-<center><img src="assets/3d_analysis.png" alt="3D Acceleration Trajectory" width="600" style="border-radius: 8px;"/></center>
+<center><img src="assets/3d_analysis.png" alt="3D Acceleration Trajectory" width="350" style="border-radius: 8px;"/></center>
 
 *By plotting the acceleration data in 3D space, I could visualize the trajectory of my foot during different activities. This was especially useful for distinguishing between steps, jumps, and other movements. I also mapped the orientation data (pitch, roll, yaw) in a 3D plot to observe how the foot's orientation changed during various activities, which helped in fine-tuning the movement detection algorithms.*
-
-
 
 ### Challenges
 
@@ -95,6 +93,8 @@ Some of the biggest challenges I faced during this milestone included:
 * Designing meaningful test cases; just walking around randomly wasn’t enough to draw useful conclusions
 
 ### Next Steps
+
+Moving forward, I plan to make the hardware setup more robust and user-friendly by designing custom housings for the electronic components and soldering all connections onto a flexible PCB. This will improve durability and comfort, making the device much more practical for everyday use. 
 
 <!-- **Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
 
