@@ -370,7 +370,7 @@ Don't forget to place the link of where to buy each component inside the quotati
 
 | **Part Name** | **Purpose** | **Price** | **Qty Required** | **Link** |
 |:--:|:--:|:--:|:--:|:--:|
-| ESP32 Microcontroller | Main microcontroller for processing sensor data and handling communication | $15.00 ($9.99 on sale) | 1 | <a href="https://craftyhandy.com/products/esp32-microcontroller-developed?variant=41267690373210&_gsid=uMzkBAbUT2vk">Link</a> |
+| ESP32 | Main microcontroller for processing sensor data and handling communication | $9.99 | 1 | <a href="https://craftyhandy.com/products/esp32-microcontroller-developed?variant=41267690373210&_gsid=uMzkBAbUT2vk">Link</a> |
 | MPU-6050 IMU Module (Accelerometer/Gyroscope) | Measures acceleration and gyroscopic data to detect steps, jumps, and running | $6.99 | 1 | <a href="https://www.amazon.com/HiLetgo-MPU-6050-Accelerometer-Gyroscope-Converter/dp/B01DK83ZYQ?th=1">Link</a> |
 | Force Sensitive Resistor (FSR) Sensor - Long 200mm | Detects pressure changes to monitor footfalls and activity intensity | $5.99 | 2 | <a href="https://ddrpad.com/products/force-sensitive-resistor-fsr-sensor-long-200mm-size?variant=39251887161396&_gsid=BvxQWwP1pmjv">Link</a> |
 | 3.7V 500mAh LiPo Battery | Power | $6.99 | 1 | <a href="https://www.m416gelblaster.com/products/3-7v-lipo-battery?variant=44402360811828&_gsid=58vchg6kSAzj">Link</a> |
