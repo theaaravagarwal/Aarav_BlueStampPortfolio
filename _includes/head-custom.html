@@ -274,7 +274,7 @@ pre {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  background: var(--primary-color, #2563eb);
+  background: #2563eb;
   color: #fff;
   border: none;
   border-radius: 0.4em;
@@ -289,14 +289,26 @@ pre {
   transition: background 0.2s;
 }
 
+.copy-btn:hover {
+  background: #1d4ed8;
+}
+
 .copy-btn:active {
   background: #1d4ed8;
+}
+
+.copy-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
 }
 
 @media (prefers-color-scheme: dark) {
   .copy-btn {
     background: #3b82f6;
     color: #fff;
+  }
+  .copy-btn:hover {
+    background: #2563eb;
   }
   .copy-btn:active {
     background: #2563eb;
@@ -305,7 +317,9 @@ pre {
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+// Run immediately and also on DOMContentLoaded to ensure it works
+function initializeFeatures() {
+  // Smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -319,6 +333,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // Button loading states
   document.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('click', function() {
       if (!this.disabled) {
@@ -334,61 +349,85 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Enhanced Code Block Copy Button
   function addCopyButtonsToCodeBlocks() {
-    document.querySelectorAll('pre code').forEach(block => {
+    console.log('Adding copy buttons to code blocks...');
+    const codeBlocks = document.querySelectorAll('pre code');
+    console.log('Found', codeBlocks.length, 'code blocks');
+    
+    codeBlocks.forEach((block, index) => {
       const pre = block.parentElement;
-      if (pre.querySelector('.copy-btn')) return;
+      if (pre.querySelector('.copy-btn')) {
+        console.log('Copy button already exists for block', index);
+        return;
+      }
+      
       const copyButton = document.createElement('button');
       copyButton.textContent = 'Copy';
       copyButton.className = 'copy-btn';
       copyButton.setAttribute('tabindex', '0');
       copyButton.setAttribute('aria-label', 'Copy code to clipboard');
       copyButton.setAttribute('type', 'button');
+      
       pre.style.position = 'relative';
       pre.appendChild(copyButton);
-      copyButton.addEventListener('click', () => {
-        if (!navigator.clipboard) {
-          // fallback for older browsers
-          const textarea = document.createElement('textarea');
-          textarea.value = block.textContent;
-          document.body.appendChild(textarea);
-          textarea.select();
-          try {
-            document.execCommand('copy');
+      
+      copyButton.addEventListener('click', async () => {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(block.textContent);
             copyButton.textContent = 'Copied!';
-          } catch (err) {
-            copyButton.textContent = 'Error';
+          } else {
+            // Fallback for older browsers or non-secure contexts
+            const textarea = document.createElement('textarea');
+            textarea.value = block.textContent;
+            textarea.style.position = 'fixed';
+            textarea.style.left = '-999999px';
+            textarea.style.top = '-999999px';
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            
+            try {
+              document.execCommand('copy');
+              copyButton.textContent = 'Copied!';
+            } catch (err) {
+              console.error('Copy failed:', err);
+              copyButton.textContent = 'Error';
+            }
+            
+            document.body.removeChild(textarea);
           }
-          document.body.removeChild(textarea);
-        } else {
-          navigator.clipboard.writeText(block.textContent).then(() => {
-            copyButton.textContent = 'Copied!';
-          }, () => {
-            copyButton.textContent = 'Error';
-          });
+        } catch (err) {
+          console.error('Copy failed:', err);
+          copyButton.textContent = 'Error';
         }
-        copyButton.setAttribute('aria-live', 'polite');
+        
         setTimeout(() => {
           copyButton.textContent = 'Copy';
         }, 1500);
       });
-      // Keyboard accessibility: Enter/Space triggers copy
+      
+      // Keyboard accessibility
       copyButton.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           copyButton.click();
         }
       });
+      
+      console.log('Added copy button to block', index);
     });
   }
+  
   addCopyButtonsToCodeBlocks();
-  // If you use dynamic content, you can call addCopyButtonsToCodeBlocks() again after content loads.
 
+  // Add alt text to images
   document.querySelectorAll('img').forEach(img => {
     if (!img.alt) {
       img.alt = 'Image';
     }
   });
 
+  // Keyboard navigation detection
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Tab') {
       document.body.classList.add('keyboard-navigation');
@@ -398,6 +437,16 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('mousedown', function() {
     document.body.classList.remove('keyboard-navigation');
   });
-});
+}
+
+// Run immediately if DOM is already loaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeFeatures);
+} else {
+  initializeFeatures();
+}
+
+// Also run after a short delay to catch any dynamically loaded content
+setTimeout(initializeFeatures, 1000);
 </script>
 
