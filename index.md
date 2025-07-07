@@ -372,13 +372,13 @@ Don't forget to place the link of where to buy each component inside the quotati
 
 | **Part** | **Note** | **Price** | **Link** |
 |:--:|:--:|:--:|:--:|
-| ESP32 | Main microcontroller for processing sensor data and handling communication | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
-| MPU-6050 IMU Module | Measures acceleration and gyroscopic data to detect steps, jumps, and running | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
-| FSR Sensor | Detects pressure changes to monitor footfalls and activity intensity | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
-| TP4056 USB-C Charging Module | To charge the battery with USB-C | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
-| Buzzer Module | Emits sound alerts for user notifications | $Price | <a href="https://www.digikey.com/en/products/detail/tdk-corporation/PS1720P02/935932?gad_source=1&gad_campaignid=20243136172&gbraid=0AAAAADrbLlghND7nveKo8z1cOduDoowfF&gclid=CjwKCAjwi-DBBhA5EiwAXOHsGYRiIKDfOIqLUmEYs8KGo-pb2CEg-UOhGTu9yFSsHdKHqSCr81CThhoCiZ0QAvD_BwE&gclsrc=aw.ds"> Link </a> |
-| Vibration Motor Module | Gives haptic feedback to alert the user while running | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
-| Flexible PCB | Integrates all electronic components into a flexible form factor suitable for insoles that are constantly changing shape | $Price | <a href="https://www.amazon.com/protoboard-Flexible-breadboard-Circuit-Prototype/dp/B0DFVFDX2V/ref=sr_1_3?crid=1NN6H1CZQWEUW&dib=eyJ2IjoiMSJ9.fgCSooY7xlzVsaXztNDIuxlNaJUvbCUCuF4TOwFaVtqZ53VmWMPX0cUistKDt5DjzE5UrWVCI85zAbxqtQTXOPTKupGqLMceeb5ok34VYuULCEBCG9p-31KL-eH7utkBGQZRzicobyLrjHf2Rc7zgXc2btx_52IjSXu8MuWHSC44peVL4UxVwIkVOknTf95VItoxV3Mu734_2YHuGfRWl76kL9tASuy0RCwSU7VbyqQ.VACdPynqQkaPo9Pi2N4Ms1JdLqukNUEQ1sw_sLpEAT0&dib_tag=se&keywords=Flexible+Protoboard&qid=1748543175&sprefix=flexible+protoboard%2Caps%2C90&sr=8-3"> Link </a> |
+| ESP32 | Main microcontroller for processing sensor data and handling communication | $8.99 | <a href="https://www.amazon.com/dp/B081CSJV2V/">Link</a> |
+| MPU-6050 IMU Module | Measures acceleration and gyroscopic data to detect steps, jumps, and running | $6.99 | <a href="https://www.amazon.com/dp/B07T8ZL8J5/">Link</a> |
+| FSR Sensor | Detects pressure changes to monitor footfalls and activity intensity | $7.95 | <a href="https://www.adafruit.com/product/166">Link</a> |
+| TP4056 USB-C Charging Module | To charge the battery with USB-C | $7.99 (5 pcs) | <a href="https://www.amazon.com/dp/B09V7YQK6T/">Link</a> |
+| Buzzer Module | Emits sound alerts for user notifications | $1.50 | <a href="https://www.digikey.com/en/products/detail/tdk-corporation/PS1720P02/935932?gad_source=1&gad_campaignid=20243136172&gbraid=0AAAAADrbLlghND7nveKo8z1cOduDoowfF&gclid=CjwKCAjwi-DBBhA5EiwAXOHsGYRiIKDfOIqLUmEYs8KGo-pb2CEg-UOhGTu9yFSsHdKHqSCr81CThhoCiZ0QAvD_BwE&gclsrc=aw.ds">Link</a> |
+| Vibration Motor Module | Gives haptic feedback to alert the user while running | $7.99 (5 pcs) | <a href="https://www.amazon.com/dp/B07QK2M8VJ/">Link</a> |
+| Flexible PCB | Integrates all electronic components into a flexible form factor suitable for insoles that are constantly changing shape | $8.99 (5 pcs) | <a href="https://www.amazon.com/protoboard-Flexible-breadboard-Circuit-Prototype/dp/B0DFVFDX2V/">Link</a> |
 
 <!-- # Other Resources/Examples (not needed?)
 
