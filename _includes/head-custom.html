@@ -332,22 +332,56 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  document.querySelectorAll('pre code').forEach(block => {
-    if (block.parentElement.querySelector('.copy-btn')) return;
-    const copyButton = document.createElement('button');
-    copyButton.textContent = 'Copy';
-    copyButton.className = 'copy-btn';
-    block.parentElement.style.position = 'relative';
-    block.parentElement.appendChild(copyButton);
-    copyButton.addEventListener('click', () => {
-      navigator.clipboard.writeText(block.textContent).then(() => {
-        copyButton.textContent = 'Copied!';
+  // Enhanced Code Block Copy Button
+  function addCopyButtonsToCodeBlocks() {
+    document.querySelectorAll('pre code').forEach(block => {
+      const pre = block.parentElement;
+      if (pre.querySelector('.copy-btn')) return;
+      const copyButton = document.createElement('button');
+      copyButton.textContent = 'Copy';
+      copyButton.className = 'copy-btn';
+      copyButton.setAttribute('tabindex', '0');
+      copyButton.setAttribute('aria-label', 'Copy code to clipboard');
+      copyButton.setAttribute('type', 'button');
+      pre.style.position = 'relative';
+      pre.appendChild(copyButton);
+      copyButton.addEventListener('click', () => {
+        if (!navigator.clipboard) {
+          // fallback for older browsers
+          const textarea = document.createElement('textarea');
+          textarea.value = block.textContent;
+          document.body.appendChild(textarea);
+          textarea.select();
+          try {
+            document.execCommand('copy');
+            copyButton.textContent = 'Copied!';
+          } catch (err) {
+            copyButton.textContent = 'Error';
+          }
+          document.body.removeChild(textarea);
+        } else {
+          navigator.clipboard.writeText(block.textContent).then(() => {
+            copyButton.textContent = 'Copied!';
+          }, () => {
+            copyButton.textContent = 'Error';
+          });
+        }
+        copyButton.setAttribute('aria-live', 'polite');
         setTimeout(() => {
           copyButton.textContent = 'Copy';
         }, 1500);
       });
+      // Keyboard accessibility: Enter/Space triggers copy
+      copyButton.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          copyButton.click();
+        }
+      });
     });
-  });
+  }
+  addCopyButtonsToCodeBlocks();
+  // If you use dynamic content, you can call addCopyButtonsToCodeBlocks() again after content loads.
 
   document.querySelectorAll('img').forEach(img => {
     if (!img.alt) {
