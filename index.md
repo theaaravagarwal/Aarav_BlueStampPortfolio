@@ -373,12 +373,10 @@ Don't forget to place the link of where to buy each component inside the quotati
 | ESP32 | Main microcontroller for processing sensor data and handling communication | $9.99 | 1 | <a href="https://craftyhandy.com/products/esp32-microcontroller-developed?variant=41267690373210&_gsid=uMzkBAbUT2vk">Link</a> |
 | MPU-6050 IMU Module (Accelerometer/Gyroscope) | Measures acceleration and gyroscopic data to detect steps, jumps, and running | $6.99 | 1 | <a href="https://www.amazon.com/HiLetgo-MPU-6050-Accelerometer-Gyroscope-Converter/dp/B01DK83ZYQ?th=1">Link</a> |
 | Force Sensitive Resistor (FSR) Sensor - Long 200mm | Detects pressure changes to monitor footfalls and activity intensity | $5.99 | 2 | <a href="https://ddrpad.com/products/force-sensitive-resistor-fsr-sensor-long-200mm-size?variant=39251887161396&_gsid=BvxQWwP1pmjv">Link</a> |
-| 3.7V 500mAh LiPo Battery | Power | $6.99 | 1 | <a href="https://www.m416gelblaster.com/products/3-7v-lipo-battery?variant=44402360811828&_gsid=58vchg6kSAzj">Link</a> |
 | TP4056 USB-C Charging Module | To charge the battery with USB-C | $6.74 | 1 | <a href="https://garsupply.com/en-us/products/tp4056-usb-c-type-c-combo-protection-charging-1a-lithium-battery-charging-board-module?variant=49554664718659&_gsid=GJsuveiHBC3P">Link</a> |
 | Vibration Motor Module (5 Pack) | Gives haptic feedback to alert the user while running | $24.50 | 1 | <a href="https://sifosolutions.com/products/vibration-motor-module-5-pack?variant=47463109132566&_gsid=iNEdwihSUzSD">Link</a> |
 | SeeedStudio Grove Buzzer Module | Emits sound alerts for user notifications | $1.90 | 1 | <a href="https://www.robotshop.com/products/seeedstudio-grove-buzzer-module?variant=42359586881697&_gsid=FuTD3wVtsaCK">Link</a> |
 | Fully Flexible PCB | Integrates all electronic components into a flexible form factor suitable for insoles that are constantly changing shape | $35.00 | 1 | <a href="https://skree.us/products/fully-flexible-pcbs?variant=51374897561891&_gsid=ZVbFXJ49jfnh">Link</a> |
-| 3D-Printed Insole | Aims to make the housing for the product comfortable to wear | $82.00 | 1 | <a href="https://shop.pulsebootlab.com/en-us/products/3d-print-insole?variant=41511042121911&_gsid=69truWwc22ei">Link</a> |
 
 <!-- # Other Resources/Examples (not needed?)
 
