@@ -144,6 +144,8 @@ pre.expanded {
   margin-bottom: 0;
   box-shadow: none;
   letter-spacing: 0.04em;
+  position: relative;
+  z-index: 2;
 }
 
 .code-header span {
@@ -183,7 +185,8 @@ pre.expanded {
   transform: rotate(-90deg);
 }
 
-.code-block-wrapper {
+/* Code block container styling */
+.code-block-container {
   margin: 1.5em 0;
   border-radius: 8px;
   overflow: hidden;
@@ -191,9 +194,21 @@ pre.expanded {
   background: #161b22;
 }
 
-.code-block-wrapper pre {
+.code-block-container pre {
   margin: 0;
   border-radius: 0 0 8px 8px;
+  background: #0d1117;
+  color: #c9d1d9;
+  font-size: 1em;
+  position: relative;
+  z-index: 1;
+}
+
+/* Standalone pre elements (without headers) */
+pre:not(.code-block-container pre) {
+  border-radius: 8px;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 8px 0 rgba(30,41,59,0.08);
   background: #0d1117;
   color: #c9d1d9;
   font-size: 1em;
@@ -224,10 +239,14 @@ pre.collapsed .code-fade-overlay {
   .code-header span {
     color: #8b949e;
   }
-  .code-block-wrapper {
+  .code-block-container {
     background: #161b22;
   }
-  .code-block-wrapper pre {
+  .code-block-container pre {
+    background: #0d1117;
+    color: #c9d1d9;
+  }
+  pre:not(.code-block-container pre) {
     background: #0d1117;
     color: #c9d1d9;
   }
@@ -241,7 +260,7 @@ pre.collapsed .code-fade-overlay {
     font-size: 0.85em;
     padding: 0.4em 0.7em;
   }
-  .code-block-wrapper pre {
+  pre {
     font-size: 0.95em;
   }
 }
@@ -486,6 +505,15 @@ function initializeFeatures() {
       if (pre.previousElementSibling && pre.previousElementSibling.classList.contains('code-header')) {
         return;
       }
+      
+      // Create wrapper container
+      const wrapper = document.createElement('div');
+      wrapper.className = 'code-block-container';
+      wrapper.style.margin = '1.5em 0';
+      wrapper.style.borderRadius = '8px';
+      wrapper.style.overflow = 'hidden';
+      wrapper.style.boxShadow = '0 2px 8px 0 rgba(30,41,59,0.08)';
+      
       // Create header
       const header = document.createElement('div');
       header.className = 'code-header';
@@ -504,8 +532,11 @@ function initializeFeatures() {
       toggleBtn.setAttribute('aria-label', 'Toggle code block visibility');
       header.appendChild(languageLabel);
       header.appendChild(toggleBtn);
-      // Insert header before pre
-      pre.parentNode.insertBefore(header, pre);
+      
+      // Wrap the pre element and insert header
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(header);
+      wrapper.appendChild(pre);
       // Add copy button
       const copyButton = document.createElement('button');
       copyButton.textContent = 'Copy';
