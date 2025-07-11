@@ -187,7 +187,7 @@ In my first milestone, I focused on the algorithms that would power my project i
         sum += fabs(filteredMagnitude);                        //then accumulate the absolute filtered magnitude (for average)
         count++;                                               //increment the sample count (for average)
 
-        if (cnt>=50) {                                         //every 50 samples, update the dynamic threshold (50 is arbitrary)
+        if (count >= 50) {                                     //every 50 samples, update the dynamic threshold (50 is arbitrary)
             float average = sum / count;                       //we get the average magnitude
             threshold = baseThreshold + average * 0.2f;        //then we set the threshold based on baseline and average
             sum = 0.0f; count = 0;                             //finally reset sum and count for next window

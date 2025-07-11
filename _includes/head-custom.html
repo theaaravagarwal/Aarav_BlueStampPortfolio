@@ -134,18 +134,19 @@ pre.expanded {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(36, 41, 46, 0.92); /* subtle dark overlay */
+  background: #161b22; /* match container */
   border: none;
   padding: 0.5em 1em 0.5em 1em;
   font-size: 0.95em;
   font-weight: 600;
   color: #c9d1d9;
-  border-radius: 8px 8px 0 0;
+  border-radius: 8px 8px 0 0; /* match container */
   margin-bottom: 0;
   box-shadow: none;
   letter-spacing: 0.04em;
   position: relative;
   z-index: 2;
+  border-bottom: 1px solid #22262c; /* subtle divider */
 }
 
 .code-header span {
@@ -169,11 +170,14 @@ pre.expanded {
   display: flex;
   align-items: center;
   gap: 0.3em;
+  /* Remove blue border and background on focus */
 }
 
 .code-toggle-btn:hover, .code-toggle-btn:focus {
   background: rgba(56, 139, 253, 0.08);
   color: #58a6ff;
+  outline: none;
+  box-shadow: none;
 }
 
 .collapse-indicator {
@@ -196,12 +200,13 @@ pre.expanded {
 
 .code-block-container pre {
   margin: 0;
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 8px 8px; /* Only bottom corners rounded */
   background: #0d1117;
   color: #c9d1d9;
   font-size: 1em;
   position: relative;
   z-index: 1;
+  /* Remove any top margin or border-radius */
 }
 
 /* Standalone pre elements (without headers) */
@@ -232,15 +237,16 @@ pre.collapsed .code-fade-overlay {
 }
 
 @media (prefers-color-scheme: dark) {
+  .code-block-container {
+    background: #161b22;
+  }
   .code-header {
-    background: rgba(22, 27, 34, 0.95);
+    background: #161b22;
     color: #c9d1d9;
+    border-bottom: 1px solid #22262c;
   }
   .code-header span {
     color: #8b949e;
-  }
-  .code-block-container {
-    background: #161b22;
   }
   .code-block-container pre {
     background: #0d1117;
