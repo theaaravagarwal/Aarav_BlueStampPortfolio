@@ -129,40 +129,39 @@ pre.expanded {
   max-height: none;
 }
 
-/* Code block header with toggle button - improved styling */
+/* --- Modern Code Block Card Styles --- */
+.code-block-container {
+  border-radius: 10px;
+  box-shadow: 0 2px 12px 0 rgba(30,41,59,0.10);
+  overflow: hidden;
+  background: var(--cbg, #181c24);
+}
 .code-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background: #161b22; /* match container */
-  border: none;
-  padding: 0.5em 1em 0.5em 1em;
-  font-size: 0.95em;
+  justify-content: space-between;
+  background: var(--chead, #23283a);
+  color: var(--ctext, #e2e8f0);
   font-weight: 600;
-  color: #c9d1d9;
-  border-radius: 8px 8px 0 0; /* match container */
-  margin-bottom: 0;
-  box-shadow: none;
-  letter-spacing: 0.04em;
-  position: relative;
-  z-index: 2;
-  border-bottom: 1px solid #22262c; /* subtle divider */
+  font-size: 0.97em;
+  padding: 0.7em 1.2em;
+  border-radius: 10px 10px 0 0;
+  border-bottom: 1px solid #23283a;
+  margin: 0;
 }
-
 .code-header span {
   font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
-  font-size: 0.95em;
-  color: #8b949e;
+  color: var(--clabel, #8b949e);
+  font-size: 0.97em;
 }
-
 .code-toggle-btn {
   background: none;
   border: none;
-  border-radius: 4px;
-  padding: 2px 10px;
-  font-size: 0.95em;
+  color: var(--clabel, #8b949e);
+  font-size: 0.97em;
+  padding: 2px 12px;
+  border-radius: 6px;
   cursor: pointer;
-  color: #8b949e;
   transition: background 0.2s, color 0.2s;
   font-weight: 500;
   outline: none;
@@ -170,16 +169,11 @@ pre.expanded {
   display: flex;
   align-items: center;
   gap: 0.3em;
-  /* Remove blue border and background on focus */
 }
-
 .code-toggle-btn:hover, .code-toggle-btn:focus {
-  background: rgba(56, 139, 253, 0.08);
+  background: rgba(56, 139, 253, 0.10);
   color: #58a6ff;
-  outline: none;
-  box-shadow: none;
 }
-
 .collapse-indicator {
   font-size: 1.1em;
   transition: transform 0.2s;
@@ -188,86 +182,52 @@ pre.expanded {
 .collapse-indicator.collapsed {
   transform: rotate(-90deg);
 }
-
-/* Code block container styling */
-.code-block-container {
-  margin: 1.5em 0;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px 0 rgba(30,41,59,0.08);
-  background: #161b22;
-}
-
 .code-block-container pre {
   margin: 0;
-  border-radius: 0 0 8px 8px; /* Only bottom corners rounded */
-  background: #0d1117;
-  color: #c9d1d9;
+  border-radius: 0 0 10px 10px;
+  background: var(--cbg, #181c24);
+  color: #e2e8f0;
   font-size: 1em;
   position: relative;
   z-index: 1;
-  /* Remove any top margin or border-radius */
+  padding: 1.1em 1.2em;
+  line-height: 1.6;
 }
-
-/* Standalone pre elements (without headers) */
-pre:not(.code-block-container pre) {
-  border-radius: 8px;
-  margin: 1.5em 0;
-  box-shadow: 0 2px 8px 0 rgba(30,41,59,0.08);
-  background: #0d1117;
-  color: #c9d1d9;
-  font-size: 1em;
-}
-
-.code-fade-overlay {
+.copy-btn {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 40px;
-  background: linear-gradient(transparent, #161b22);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: 0 0 8px 8px;
-}
-
-pre.collapsed .code-fade-overlay {
+  top: 0.7em;
+  right: 1.2em;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 0.4em;
+  padding: 0.25em 0.9em;
+  font-size: 0.85em;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 10;
   opacity: 1;
+  box-shadow: 0 2px 8px 0 rgba(30,41,59,0.08);
+  transition: background 0.2s;
 }
-
+.copy-btn:hover, .copy-btn:focus {
+  background: #1d4ed8;
+}
 @media (prefers-color-scheme: dark) {
-  .code-block-container {
-    background: #161b22;
-  }
-  .code-header {
-    background: #161b22;
-    color: #c9d1d9;
-    border-bottom: 1px solid #22262c;
-  }
-  .code-header span {
-    color: #8b949e;
-  }
-  .code-block-container pre {
-    background: #0d1117;
-    color: #c9d1d9;
-  }
-  pre:not(.code-block-container pre) {
-    background: #0d1117;
-    color: #c9d1d9;
-  }
-  .code-fade-overlay {
-    background: linear-gradient(transparent, #161b22);
+  :root {
+    --cbg: #181c24;
+    --chead: #23283a;
+    --ctext: #e2e8f0;
+    --clabel: #8b949e;
   }
 }
-
-@media (max-width: 600px) {
-  .code-header {
-    font-size: 0.85em;
-    padding: 0.4em 0.7em;
-  }
-  pre {
-    font-size: 0.95em;
+@media (prefers-color-scheme: light) {
+  :root {
+    --cbg: #f8fafc;
+    --chead: #e2e8f0;
+    --ctext: #23283a;
+    --clabel: #475569;
   }
 }
 
@@ -422,36 +382,8 @@ pre.collapsed .code-fade-overlay {
   to { transform: rotate(360deg); }
 }
 
-.copy-btn {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  background: #2563eb;
-  color: #fff;
-  border: none;
-  border-radius: 0.4em;
-  padding: 0.25em 0.9em;
-  font-size: 0.85em;
-  font-family: inherit;
-  font-weight: 600;
-  cursor: pointer;
-  z-index: 10;
-  opacity: 1;
-  box-shadow: 0 2px 8px 0 rgba(30,41,59,0.08);
-  transition: background 0.2s;
-}
-
-.copy-btn:hover {
-  background: #1d4ed8;
-}
-
 .copy-btn:active {
   background: #1d4ed8;
-}
-
-.copy-btn:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
 }
 
 @media (prefers-color-scheme: dark) {
