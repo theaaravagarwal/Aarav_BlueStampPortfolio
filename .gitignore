@@ -192,6 +192,19 @@ tmp/
 # Node modules (if using any JavaScript tools)
 node_modules/
 
+# Ruby/Jekyll specific
+Gemfile.lock
+.bundle/
+vendor/bundle/
+.jekyll-cache/
+.jekyll-metadata
+_site/
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+*.env
+
 # Compiled files
 *.com
 *.class
