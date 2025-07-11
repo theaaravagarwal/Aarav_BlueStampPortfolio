@@ -482,49 +482,30 @@ function initializeFeatures() {
     
     codeBlocks.forEach((block, index) => {
       const pre = block.parentElement;
-      
       // Skip if already processed
-      if (pre.querySelector('.copy-btn') || pre.closest('.code-block-wrapper')) {
-        console.log('Code block already processed:', index);
+      if (pre.previousElementSibling && pre.previousElementSibling.classList.contains('code-header')) {
         return;
       }
-      
-      // Create wrapper and header
-      const wrapper = document.createElement('div');
-      wrapper.className = 'code-block-wrapper';
-      
+      // Create header
       const header = document.createElement('div');
       header.className = 'code-header';
-      
       // Detect language from class
       const languageClass = Array.from(block.classList).find(cls => cls.startsWith('language-'));
       const language = languageClass ? languageClass.replace('language-', '') : 'code';
-      
       // Create header content
       const languageLabel = document.createElement('span');
       languageLabel.textContent = language.toUpperCase();
       languageLabel.style.letterSpacing = '0.05em';
       languageLabel.style.fontWeight = 'bold';
-      
       const toggleBtn = document.createElement('button');
       toggleBtn.className = 'code-toggle-btn';
       toggleBtn.innerHTML = '<span class="collapse-indicator collapsed">▼</span> Expand';
       toggleBtn.setAttribute('type', 'button');
       toggleBtn.setAttribute('aria-label', 'Toggle code block visibility');
-      
       header.appendChild(languageLabel);
       header.appendChild(toggleBtn);
-      
-      // Add fade overlay to pre
-      const fadeOverlay = document.createElement('div');
-      fadeOverlay.className = 'code-fade-overlay';
-      pre.appendChild(fadeOverlay);
-      
-      // Wrap the pre element
-      pre.parentNode.insertBefore(wrapper, pre);
-      wrapper.appendChild(header);
-      wrapper.appendChild(pre);
-      
+      // Insert header before pre
+      pre.parentNode.insertBefore(header, pre);
       // Add copy button
       const copyButton = document.createElement('button');
       copyButton.textContent = 'Copy';
@@ -533,13 +514,15 @@ function initializeFeatures() {
       copyButton.setAttribute('aria-label', 'Copy code to clipboard');
       copyButton.setAttribute('type', 'button');
       pre.appendChild(copyButton);
-      
+      // Add fade overlay to pre
+      const fadeOverlay = document.createElement('div');
+      fadeOverlay.className = 'code-fade-overlay';
+      pre.appendChild(fadeOverlay);
       // Start collapsed by default
       pre.classList.add('collapsed');
       pre.classList.remove('expanded');
       toggleBtn.innerHTML = '<span class="collapse-indicator collapsed">▼</span> Expand';
       toggleBtn.setAttribute('aria-label', 'Expand code block');
-      
       // Toggle functionality
       let isCollapsed = true;
       function toggleCollapse() {
@@ -563,7 +546,6 @@ function initializeFeatures() {
           toggleCollapse();
         }
       });
-      
       // Copy functionality
       copyButton.addEventListener('click', async () => {
         try {
@@ -580,7 +562,6 @@ function initializeFeatures() {
             document.body.appendChild(textarea);
             textarea.focus();
             textarea.select();
-            
             try {
               document.execCommand('copy');
               copyButton.textContent = 'Copied!';
@@ -588,19 +569,16 @@ function initializeFeatures() {
               console.error('Copy failed:', err);
               copyButton.textContent = 'Error';
             }
-            
             document.body.removeChild(textarea);
           }
         } catch (err) {
           console.error('Copy failed:', err);
           copyButton.textContent = 'Error';
         }
-        
         setTimeout(() => {
           copyButton.textContent = 'Copy';
         }, 1500);
       });
-      
       // Keyboard accessibility for copy button
       copyButton.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -608,14 +586,11 @@ function initializeFeatures() {
           copyButton.click();
         }
       });
-      
       // Apply dark mode styles if needed
       if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         header.classList.add('dark');
         toggleBtn.classList.add('dark');
       }
-      
-      console.log('Added collapsible features to block', index);
     });
   }
   

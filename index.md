@@ -33,6 +33,8 @@ For your final milestone, explain the outcome of your project. Key details to in
 
 # Second Milestone
 
+<center><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/NwhcUSWr9X4?si=KGRe8sVYjBnHwAYJ&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></center>
+
 ### Description
 
 This milestone focused on collecting sensor data and using a variety of visualizations to better understand and improve my design and code. I dedicated significant time to building a Bluetooth app for connecting to my ESP32, which proved to be much more challenging than anticipated. Attaching the device securely to my foot also required several iterations, but after some trial and error, I achieved a working prototype. With these foundations in place, I now have a functional system and am excited to keep refining it.
