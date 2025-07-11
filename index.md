@@ -73,13 +73,19 @@ While linmag was the primary focus, I also used other visualizations to understa
 
 <center><img src="assets/cube_orientation.gif" alt="Accelerometer Orientation GIF" width="350" style="border-radius: 8px;"/></center>
 
-*A dynamic visualization (GIF) showing a 3D cube representing the accelerometer's orientation over time as I moved. This helped me intuitively understand how the device tracked foot motion and rotations.*
+*A dynamic visualization showing a 3D cube representing the accelerometer's orientation over time as I moved. This helped me intuitively understand how the device tracked foot motion and rotations.*
 
 ##### b. 3D Acceleration Space & Trajectory
 
 <center><img src="assets/3d_analysis.png" alt="3D Acceleration Trajectory" width="350" style="border-radius: 8px;"/></center>
 
 *By plotting the acceleration data in 3D space, I could visualize the trajectory of my foot during different activities. This was especially useful for distinguishing between steps, jumps, and other movements. I also mapped the orientation data (pitch, roll, yaw) in a 3D plot to observe how the foot's orientation changed during various activities, which helped in fine-tuning the movement detection algorithms.*
+
+#### 3. Electrical Schematic
+
+<center><img src="assets/m1schem.png" alt="Milestone 1 Schematic" width="350" style="border-radius: 8px;"/></center>
+
+*This schematic shows the wiring and electrical connections for my project during testing. It helped ensure all components were connected correctly and provided a reference for troubleshooting hardware issues.*
 
 ### Challenges
 
@@ -108,6 +114,12 @@ For your second milestone, explain what you've worked on since your previous mil
 <center><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/tkfaOu9K2Xo?si=E-BL46IOyioAcZT6&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></center>
 
 ### Description
+
+**Hardware**
+
+The ESP32 
+
+**Software**
 
 In my first milestone, I focused on the algorithms that would power my project in the future. I built a few algorithms:
 

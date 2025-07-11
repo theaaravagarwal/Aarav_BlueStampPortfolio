@@ -117,6 +117,115 @@ html {
 /* Enhanced code block copy button (if needed) */
 pre {
   position: relative;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+pre.collapsed {
+  max-height: 60px;
+}
+
+pre.expanded {
+  max-height: none;
+}
+
+/* Code block header with toggle button */
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f6f8fa;
+  border: 1px solid #e1e4e8;
+  border-bottom: none;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #586069;
+  border-radius: 6px 6px 0 0;
+  margin-bottom: -1px;
+}
+
+.code-header.dark {
+  background: #2d3748;
+  border-color: #4a5568;
+  color: #a0aec0;
+}
+
+.code-toggle-btn {
+  background: none;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  cursor: pointer;
+  color: #6b7280;
+  transition: all 0.2s ease;
+}
+
+.code-toggle-btn:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.code-toggle-btn.dark {
+  border-color: #4a5568;
+  color: #a0aec0;
+}
+
+.code-toggle-btn.dark:hover {
+  background: #4a5568;
+  border-color: #718096;
+}
+
+.code-toggle-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+/* Code block wrapper */
+.code-block-wrapper {
+  margin: 1rem 0;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.code-block-wrapper pre {
+  margin: 0;
+  border-radius: 0 0 6px 6px;
+}
+
+/* Collapse indicator */
+.collapse-indicator {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.collapse-indicator.collapsed {
+  transform: rotate(-90deg);
+}
+
+/* Fade overlay for collapsed state */
+.code-fade-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(transparent, var(--bg-color, #ffffff));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+pre.collapsed .code-fade-overlay {
+  opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  .code-fade-overlay {
+    background: linear-gradient(transparent, var(--bg-color, #1a202c));
+  }
 }
 
 /* Enhanced table zebra striping */
@@ -347,19 +456,56 @@ function initializeFeatures() {
     });
   });
 
-  // Enhanced Code Block Copy Button
+  // Enhanced Code Block Copy Button and Collapsible Feature
   function addCopyButtonsToCodeBlocks() {
-    console.log('Adding copy buttons to code blocks...');
+    console.log('Adding copy buttons and collapsible features to code blocks...');
     const codeBlocks = document.querySelectorAll('pre code');
     console.log('Found', codeBlocks.length, 'code blocks');
     
     codeBlocks.forEach((block, index) => {
       const pre = block.parentElement;
-      if (pre.querySelector('.copy-btn')) {
-        console.log('Copy button already exists for block', index);
+      
+      // Skip if already processed
+      if (pre.querySelector('.copy-btn') || pre.closest('.code-block-wrapper')) {
+        console.log('Code block already processed:', index);
         return;
       }
       
+      // Create wrapper and header
+      const wrapper = document.createElement('div');
+      wrapper.className = 'code-block-wrapper';
+      
+      const header = document.createElement('div');
+      header.className = 'code-header';
+      
+      // Detect language from class
+      const languageClass = Array.from(block.classList).find(cls => cls.startsWith('language-'));
+      const language = languageClass ? languageClass.replace('language-', '') : 'code';
+      
+      // Create header content
+      const languageLabel = document.createElement('span');
+      languageLabel.textContent = language.toUpperCase();
+      
+      const toggleBtn = document.createElement('button');
+      toggleBtn.className = 'code-toggle-btn';
+      toggleBtn.innerHTML = '<span class="collapse-indicator">▼</span> Collapse';
+      toggleBtn.setAttribute('type', 'button');
+      toggleBtn.setAttribute('aria-label', 'Toggle code block visibility');
+      
+      header.appendChild(languageLabel);
+      header.appendChild(toggleBtn);
+      
+      // Add fade overlay to pre
+      const fadeOverlay = document.createElement('div');
+      fadeOverlay.className = 'code-fade-overlay';
+      pre.appendChild(fadeOverlay);
+      
+      // Wrap the pre element
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(header);
+      wrapper.appendChild(pre);
+      
+      // Add copy button
       const copyButton = document.createElement('button');
       copyButton.textContent = 'Copy';
       copyButton.className = 'copy-btn';
@@ -367,9 +513,36 @@ function initializeFeatures() {
       copyButton.setAttribute('aria-label', 'Copy code to clipboard');
       copyButton.setAttribute('type', 'button');
       
-      pre.style.position = 'relative';
       pre.appendChild(copyButton);
       
+      // Toggle functionality
+      let isCollapsed = false;
+      
+      function toggleCollapse() {
+        isCollapsed = !isCollapsed;
+        
+        if (isCollapsed) {
+          pre.classList.add('collapsed');
+          pre.classList.remove('expanded');
+          toggleBtn.innerHTML = '<span class="collapse-indicator collapsed">▼</span> Expand';
+          toggleBtn.setAttribute('aria-label', 'Expand code block');
+        } else {
+          pre.classList.remove('collapsed');
+          pre.classList.add('expanded');
+          toggleBtn.innerHTML = '<span class="collapse-indicator">▼</span> Collapse';
+          toggleBtn.setAttribute('aria-label', 'Collapse code block');
+        }
+      }
+      
+      toggleBtn.addEventListener('click', toggleCollapse);
+      toggleBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleCollapse();
+        }
+      });
+      
+      // Copy functionality
       copyButton.addEventListener('click', async () => {
         try {
           if (navigator.clipboard && window.isSecureContext) {
@@ -406,7 +579,7 @@ function initializeFeatures() {
         }, 1500);
       });
       
-      // Keyboard accessibility
+      // Keyboard accessibility for copy button
       copyButton.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
@@ -414,7 +587,13 @@ function initializeFeatures() {
         }
       });
       
-      console.log('Added copy button to block', index);
+      // Apply dark mode styles if needed
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        header.classList.add('dark');
+        toggleBtn.classList.add('dark');
+      }
+      
+      console.log('Added collapsible features to block', index);
     });
   }
   
