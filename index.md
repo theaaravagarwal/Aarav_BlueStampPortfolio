@@ -14,13 +14,21 @@ The SmartSole is a smart shoe sole designed to monitor physical activity by trac
 
 <!-- ![Headstone Image](logo.svg) -->
 
-# Final Milestone
+# Third Milestone
+
+
 
 ### Description
 
+
+
 ### Challenges
 
+
+
 ### Next Steps
+
+
 
 <!-- **Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
 
