@@ -273,7 +273,7 @@ class BluetoothApp:
     def discover_services(self):
         async def _discover():
             try:
-                services = await self.client.get_services()
+                services = self.client.services
                 self.master.after(0, lambda: self.add_received_message("Discovering services..."))
                 
                 for service in services:
