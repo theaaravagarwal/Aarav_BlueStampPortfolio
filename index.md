@@ -44,6 +44,7 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 
 <!-- PLACEHOLDER: Add image of all 3d prints/any cad drawings here -->
 <center>This is the battery case that I did not end up using as an ankle strap was more convenient</center>
+<br/>
 <center><img src="assets/bcase.png" alt="Battery Case" width="350" style="border-radius: 8px;"/></center>
 
 <!-- <center><img src="assets/bcasedrawing.png" alt="Battery Case CAD Drawing" width="350" style="border-radius: 8px;"/></center> -->
@@ -64,10 +65,12 @@ I used a flexible PCB to connect the ESP32 to the FSR and other components, whic
 
 <!-- PLACEHOLDER: Add image of soldered flex PCB and connections here -->
 <center>Here, the leftmost rail is the power rail while the middle rail is the ground rail. The rightmost section is reserved for the FSR wiring.</center>
+<br/>
 <center><img src="assets/board1.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
-
+<br/>
 <center>This is the other side of the flex PCB with the components/wires on it.</center>
 <center>The wiring here is directly taken from the breadboard and adapted for the size constraint of the flex PCB</center>
+<br/>
 <center><img src="assets/board2.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
 
 ### Assembly & Integration
@@ -76,9 +79,11 @@ The final assembly involved attaching the battery to the ankle strap using velcr
 
 <!-- PLACEHOLDER: Add image of velcro strap here -->
 <center>This is the inside of the strap, that fuzzy velcro piece is for the outside of the strap to attach to when it wraps around the ankle.</center>
+<br/>
 <center><img src="assets/strapin.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
-
+<br/>
 <center>This is the spiky velcro outside of the strap.</center>
+<br/>
 <center><img src="assets/strapout.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
 
 ### Challenges
