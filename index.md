@@ -59,7 +59,7 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 <center><img src="assets/espcase.png" alt="ESP32 Case" width="350" style="border-radius: 8px;"/></center>
 <center>Figure #, The only issue with the ESP Case was the size of the USB-C port being too small, so the ESP would not fit in nicely. Other than that, this case is very sturdy other than the lid which sometimes can fall off just due to small errors in the print</center>
 <center><img src="assets/esp_body_case_drawing.png" alt="ESP Case Body CAD Drawing" width="350" style="border-radius: 8px;"/></center>
-<br/>
+<br/> <!-- temp newline for spacing -->
 <center><img src="assets/esp_lid_case_drawing.png" alt="ESP Case Lid CAD Drawing" width="350" style="border-radius: 8px;"/></center>
 
 
@@ -70,7 +70,7 @@ I used a flexible PCB to connect the ESP32 to the FSR and other components, whic
 <!-- PLACEHOLDER: Add image of soldered flex PCB and connections here -->
 <center><img src="assets/board1.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
 <center>Here, the leftmost rail is the power rail while the middle rail is the ground rail. The rightmost section is reserved for the FSR wiring.</center>
-<br/>
+<br/> <!-- temp newline for spacing -->
 <center><img src="assets/board2.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
 <center>This is the other side of the flex PCB with the components/wires on it. The wiring here is directly taken from the breadboard and adapted for the size constraint of the flex PCB.</center>
 
@@ -81,7 +81,7 @@ The final assembly involved attaching the battery to the ankle strap using velcr
 <!-- PLACEHOLDER: Add image of velcro strap here -->
 <center><img src="assets/strapin.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
 <center>This is the inside of the strap, that fuzzy velcro piece is for the outside of the strap to attach to when it wraps around the ankle.</center>
-<br/>
+<br/> <!-- temp newline for spacing -->
 <center><img src="assets/strapout.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
 <center>This is the spiky velcro outside of the strap.</center>
 
