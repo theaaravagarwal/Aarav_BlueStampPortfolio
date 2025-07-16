@@ -58,7 +58,9 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 <!-- PLACEHOLDER: Add image of all 3d prints/any cad drawings here -->
 <center><img src="assets/espcase.png" alt="ESP32 Case" width="350" style="border-radius: 8px;"/></center>
 <center>Figure #, The only issue with the ESP Case was the size of the USB-C port being too small, so the ESP would not fit in nicely. Other than that, this case is very sturdy other than the lid which sometimes can fall off just due to small errors in the print</center>
-<center><img src="assets/esp_body_case_drawing.png" alt="Each Clip Version" width="350" style="border-radius: 8px;"/></center>
+<center><img src="assets/esp_body_case_drawing.png" alt="ESP Case Body CAD Drawing" width="350" style="border-radius: 8px;"/></center>
+<br/>
+<center><img src="assets/esp_lid_case_drawing.png" alt="ESP Case Lid CAD Drawing" width="350" style="border-radius: 8px;"/></center>
 
 
 ### Soldering & Flex PCB
