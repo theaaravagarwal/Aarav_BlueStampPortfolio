@@ -34,9 +34,10 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 
 <!-- PLACEHOLDER: Add image of any 3d prints/any cad drawings here -->
 <center><img src="assets/threeclips.png" alt="Each Clip Version" width="350" style="border-radius: 8px;"/></center>
-<center>The first clip from the left is my first attempt at making the clip, but it did not even attach to the shoe collar so I opted to remake it to be wider. The second clip was able to fit on the shoe's collar but lacked the strength and sleekness of the first design, so it was scrapped. The third clip was designed to be able to fit on the lip of the shoe rather than the collar, keeping it space efficient and strong. </center>
-
-<!-- <center><img src="assets/clipdrawing.png" alt="Clip CAD Drawing" width="350" style="border-radius: 8px;"/></center> -->
+<center>Figure#, The first clip from the left is my first attempt at making the clip, but it did not even attach to the shoe collar so I opted to remake it to be wider. The second clip was able to fit on the shoe's collar but lacked the strength and sleekness of the first design, so it was scrapped. The third clip was designed to be able to fit on the lip of the shoe rather than the collar, keeping it space efficient and strong.</center>
+<center><img src="assets/molleclip_self_drawing.png" alt="Each Clip Version" width="350" style="border-radius: 8px;"/></center>
+<br/>
+<center><img src="assets/clipdrawing.png" alt="Clip CAD Drawing" width="350" style="border-radius: 8px;"/></center>
 
 #### Battery Case
 
@@ -45,7 +46,7 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 
 <!-- PLACEHOLDER: Add image of all 3d prints/any cad drawings here -->
 <center><img src="assets/bcase.png" alt="Battery Case" width="350" style="border-radius: 8px;"/></center>
-<center>This is the battery case that I did not end up using as an ankle strap was more convenient</center>
+<center>Figure #, This is the battery case that I did not end up using as an ankle strap was more convenient</center>
 
 <!-- <center><img src="assets/bcasedrawing.png" alt="Battery Case CAD Drawing" width="350" style="border-radius: 8px;"/></center> -->
 
@@ -56,9 +57,9 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 
 <!-- PLACEHOLDER: Add image of all 3d prints/any cad drawings here -->
 <center><img src="assets/espcase.png" alt="ESP32 Case" width="350" style="border-radius: 8px;"/></center>
-<center>The only issue with the ESP Case was the size of the USB-C port being too small, so the ESP would not fit in nicely. Other than that, this case is very sturdy other than the lid which sometimes can fall off just due to small errors in the print</center>
+<center>Figure #, The only issue with the ESP Case was the size of the USB-C port being too small, so the ESP would not fit in nicely. Other than that, this case is very sturdy other than the lid which sometimes can fall off just due to small errors in the print</center>
+<center><img src="assets/esp_body_case_drawing.png" alt="Each Clip Version" width="350" style="border-radius: 8px;"/></center>
 
-<!-- <center><img src="assets/ecasedrawing.png" alt="ESP32 Case CAD Drawing" width="350" style="border-radius: 8px;"/></center> -->
 
 ### Soldering & Flex PCB
 
@@ -459,6 +460,10 @@ Don't forget to place the link of where to buy each component inside the quotati
 | Vibration Motor Module (5 Pack) | Gives haptic feedback to alert the user while running | $24.50 | 1 | <a href="https://sifosolutions.com/products/vibration-motor-module-5-pack?variant=47463109132566&_gsid=iNEdwihSUzSD">Link</a> |
 | SeeedStudio Grove Buzzer Module | Emits sound alerts for user notifications | $1.90 | 1 | <a href="https://www.robotshop.com/products/seeedstudio-grove-buzzer-module?variant=42359586881697&_gsid=FuTD3wVtsaCK">Link</a> |
 | Fully Flexible PCB | Integrates all electronic components into a flexible form factor suitable for insoles that are constantly changing shape | $35.00 | 1 | <a href="https://skree.us/products/fully-flexible-pcbs?variant=51374897561891&_gsid=ZVbFXJ49jfnh">Link</a> |
+
+# Works Cited
+
+<a href="https://www.thingiverse.com/thing:4564452/files">ESP32 Case</a>
 
 <!-- # Other Resources/Examples (not needed?)
 
