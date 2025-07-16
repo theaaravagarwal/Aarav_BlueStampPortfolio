@@ -123,19 +123,19 @@ The linear acceleration magnitude (linmag) was the most important signal for det
 
 <center><img src="assets/roll_linmag.png" alt="Linear Magnitude Rolling Stats" width="350" style="border-radius: 8px;"/></center>
 
-*I calculated the linear acceleration magnitude and overlaid rolling mean and standard deviation statistics. This made it much easier to spot steps and repetitive motions, and to set robust thresholds for event detection.*
+I calculated the linear acceleration magnitude and overlaid rolling mean and standard deviation statistics. This made it much easier to spot steps and repetitive motions, and to set robust thresholds for event detection.
 
 ##### b. Time Series Decomposition of Linear Magnitude
 
 <center><img src="assets/decomposition_linmag.png" alt="Decomposition of Linear Magnitude" width="350" style="border-radius: 8px;"/></center>
 
-*I broke down the raw linmag data into trend, seasonality, and noise components. This decomposition helped me identify patterns in walking, running, and jumping, and filter out irrelevant fluctuations.*
+I broke down the raw linmag data into trend, seasonality, and noise components. This decomposition helped me identify patterns in walking, running, and jumping, and filter out irrelevant fluctuations.
 
 ##### c. Power Spectral Density (PSD) and FFT of Linear Magnitude
 
 <center><img src="assets/psd_linmag.png" alt="PSD and FFT of Linear Magnitude" width="350" style="border-radius: 8px;"/></center>
 
-*I performed a frequency analysis (FFT and power spectral density) on the linmag signal. This revealed dominant frequencies corresponding to step rates and helped distinguish between walking, running, and jumping. It was a great help for tuning my detection algorithms and understanding the periodicity of different activities.*
+I performed a frequency analysis (FFT and power spectral density) on the linmag signal. This revealed dominant frequencies corresponding to step rates and helped distinguish between walking, running, and jumping. It was a great help for tuning my detection algorithms and understanding the periodicity of different activities.
 
 ---
 
@@ -147,19 +147,19 @@ While linmag was the primary focus, I also used other visualizations to understa
 
 <center><img src="assets/cube_orientation.gif" alt="Accelerometer Orientation GIF" width="350" style="border-radius: 8px;"/></center>
 
-*A dynamic visualization showing a 3D cube representing the accelerometer's orientation over time as I moved. This helped me intuitively understand how the device tracked foot motion and rotations.*
+A dynamic visualization showing a 3D cube representing the accelerometer's orientation over time as I moved. This helped me intuitively understand how the device tracked foot motion and rotations.
 
 ##### b. 3D Acceleration Space & Trajectory
 
 <center><img src="assets/3d_analysis.png" alt="3D Acceleration Trajectory" width="350" style="border-radius: 8px;"/></center>
 
-*By plotting the acceleration data in 3D space, I could visualize the trajectory of my foot during different activities. This was especially useful for distinguishing between steps, jumps, and other movements. I also mapped the orientation data (pitch, roll, yaw) in a 3D plot to observe how the foot's orientation changed during various activities, which helped in fine-tuning the movement detection algorithms.*
+By plotting the acceleration data in 3D space, I could visualize the trajectory of my foot during different activities. This was especially useful for distinguishing between steps, jumps, and other movements. I also mapped the orientation data (pitch, roll, yaw) in a 3D plot to observe how the foot's orientation changed during various activities, which helped in fine-tuning the movement detection algorithms.
 
 #### 3. Electrical Schematic
 
 <center><img src="assets/m1schem.png" alt="Milestone 1 Schematic" width="350" style="border-radius: 8px;"/></center>
 
-*This schematic shows the wiring and electrical connections for my project during testing. It helped ensure all components were connected correctly and provided a reference for troubleshooting hardware issues.*
+This schematic shows the wiring and electrical connections for my project during testing. It helped ensure all components were connected correctly and provided a reference for troubleshooting hardware issues.
 
 ### Challenges
 
