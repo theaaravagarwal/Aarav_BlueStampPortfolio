@@ -33,6 +33,9 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 
 
 <!-- PLACEHOLDER: Add image of any 3d prints/any cad drawings here -->
+<center>The first clip from the left is my first attempt at making the clip, but it did not even attach to the shoe collar so I opted to remake it to be wider</center>
+<center>The second clip was able to fit on the shoe's collar but lacked the strength and sleekness of the first design, so it was scrapped</center>
+<center>The third clip was designed to be able to fit on the lip of the shoe rather than the collar, keeping it space efficient and strong</center>
 <center><img src="assets/threeclips.png" alt="Each Clip Version" width="350" style="border-radius: 8px;"/></center>
 
 <!-- <center><img src="assets/clipdrawing.png" alt="Clip CAD Drawing" width="350" style="border-radius: 8px;"/></center> -->
@@ -54,6 +57,8 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 
 
 <!-- PLACEHOLDER: Add image of all 3d prints/any cad drawings here -->
+<center>The only issue with the ESP Case was the size of the USB-C port being too small, so the ESP would not fit in nicely</center>
+<center>Other than that, this case is very sturdy other than the lid which sometimes can fall off just due to small errors in the print</center>
 <center><img src="assets/espcase.png" alt="ESP32 Case" width="350" style="border-radius: 8px;"/></center>
 
 <!-- <center><img src="assets/ecasedrawing.png" alt="ESP32 Case CAD Drawing" width="350" style="border-radius: 8px;"/></center> -->
@@ -83,7 +88,7 @@ The final assembly involved attaching the battery to the ankle strap using velcr
 
 ### Challenges
 
-Some challenges I had while assembling the final product were soldering the connections on the flex PCB as I burned multiple joints off the flex PCB before I could connect two joints together with solder. Another challenge 
+Some challenges I had while assembling the final product were soldering the connections on the flex PCB as I burned multiple joints off the flex PCB before I could connect two joints together with solder. Another challenge was finally deciding on a good design as both the clip and ankle attached devices had downsides I did not like, so I ended up just choosing a hybrid system between them where I attached the battery to the ankle and left the rest of the smaller components on a clip on the shoe.
 
 ### Next Steps
 
