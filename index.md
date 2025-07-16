@@ -33,10 +33,8 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 
 
 <!-- PLACEHOLDER: Add image of any 3d prints/any cad drawings here -->
-<center>The first clip from the left is my first attempt at making the clip, but it did not even attach to the shoe collar so I opted to remake it to be wider</center>
-<center>The second clip was able to fit on the shoe's collar but lacked the strength and sleekness of the first design, so it was scrapped</center>
-<center>The third clip was designed to be able to fit on the lip of the shoe rather than the collar, keeping it space efficient and strong</center>
 <center><img src="assets/threeclips.png" alt="Each Clip Version" width="350" style="border-radius: 8px;"/></center>
+<center>The first clip from the left is my first attempt at making the clip, but it did not even attach to the shoe collar so I opted to remake it to be wider. The second clip was able to fit on the shoe's collar but lacked the strength and sleekness of the first design, so it was scrapped. The third clip was designed to be able to fit on the lip of the shoe rather than the collar, keeping it space efficient and strong. </center>
 
 <!-- <center><img src="assets/clipdrawing.png" alt="Clip CAD Drawing" width="350" style="border-radius: 8px;"/></center> -->
 
@@ -46,8 +44,8 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 
 
 <!-- PLACEHOLDER: Add image of all 3d prints/any cad drawings here -->
-<center>This is the battery case that I did not end up using as an ankle strap was more convenient</center>
 <center><img src="assets/bcase.png" alt="Battery Case" width="350" style="border-radius: 8px;"/></center>
+<center>This is the battery case that I did not end up using as an ankle strap was more convenient</center>
 
 <!-- <center><img src="assets/bcasedrawing.png" alt="Battery Case CAD Drawing" width="350" style="border-radius: 8px;"/></center> -->
 
@@ -57,9 +55,8 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 
 
 <!-- PLACEHOLDER: Add image of all 3d prints/any cad drawings here -->
-<center>The only issue with the ESP Case was the size of the USB-C port being too small, so the ESP would not fit in nicely</center>
-<center>Other than that, this case is very sturdy other than the lid which sometimes can fall off just due to small errors in the print</center>
 <center><img src="assets/espcase.png" alt="ESP32 Case" width="350" style="border-radius: 8px;"/></center>
+<center>The only issue with the ESP Case was the size of the USB-C port being too small, so the ESP would not fit in nicely. Other than that, this case is very sturdy other than the lid which sometimes can fall off just due to small errors in the print</center>
 
 <!-- <center><img src="assets/ecasedrawing.png" alt="ESP32 Case CAD Drawing" width="350" style="border-radius: 8px;"/></center> -->
 
@@ -68,23 +65,22 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 I used a flexible PCB to connect the ESP32 to the FSR and other components, which made the wiring more robust and suitable for the constant movement inside a shoe. Soldering the connections onto the flex PCB was a delicate process, but it greatly improved the durability and reliability of the system. The breadboard and the PCB share the same layout of connections while vastly varying in size and strength as the breadboard had no soldered connections. All connections were tested for continuity and strength before final assembly.
 
 <!-- PLACEHOLDER: Add image of soldered flex PCB and connections here -->
-<center>Here, the leftmost rail is the power rail while the middle rail is the ground rail. The rightmost section is reserved for the FSR wiring.</center>
 <center><img src="assets/board1.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
+<center>Here, the leftmost rail is the power rail while the middle rail is the ground rail. The rightmost section is reserved for the FSR wiring.</center>
 <br/>
-<center>This is the other side of the flex PCB with the components/wires on it.</center>
-<center>The wiring here is directly taken from the breadboard and adapted for the size constraint of the flex PCB</center>
 <center><img src="assets/board2.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
+<center>This is the other side of the flex PCB with the components/wires on it. The wiring here is directly taken from the breadboard and adapted for the size constraint of the flex PCB.</center>
 
 ### Assembly & Integration
 
 The final assembly involved attaching the battery to the ankle strap using velcro, mounting the ESP32 with the custom clip, and securing the FSR to the insole of the shoe with tape. The velcro ankle strap that is pictured below works by just wrapping around itself. I took particular care to ensure that all components were firmly attached. The flex PCB allowed for easy routing of wires and minimized bulk inside the shoe. If you would like to see the final image of the SmartSole please scroll up.
 
 <!-- PLACEHOLDER: Add image of velcro strap here -->
-<center>This is the inside of the strap, that fuzzy velcro piece is for the outside of the strap to attach to when it wraps around the ankle.</center>
 <center><img src="assets/strapin.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
+<center>This is the inside of the strap, that fuzzy velcro piece is for the outside of the strap to attach to when it wraps around the ankle.</center>
 <br/>
-<center>This is the spiky velcro outside of the strap.</center>
 <center><img src="assets/strapout.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
+<center>This is the spiky velcro outside of the strap.</center>
 
 ### Challenges
 
