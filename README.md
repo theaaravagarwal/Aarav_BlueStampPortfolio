@@ -10,6 +10,4 @@ The source code is in ./src
 
 # Extra tools
 
-There is a directory of the tools I used while working on this project including tools I made myself, all in ./tools.
-
-Big tools have their own directories.
+There is a directory of the tools I used while working on this project in ./tools.
