@@ -34,7 +34,7 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 <!-- PLACEHOLDER: Add image of any 3d prints/any cad drawings here -->
 <center><img src="assets/threeclips.png" alt="Each Clip Version" width="350" style="border-radius: 8px;"/></center>
 
-<center><img src="assets/clipdrawing.png" alt="Clip CAD Drawing" width="350" style="border-radius: 8px;"/></center>
+<!-- <center><img src="assets/clipdrawing.png" alt="Clip CAD Drawing" width="350" style="border-radius: 8px;"/></center> -->
 
 #### Battery Case
 
@@ -44,7 +44,7 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 <!-- PLACEHOLDER: Add image of all 3d prints/any cad drawings here -->
 <center><img src="assets/bcase.png" alt="Battery Case" width="350" style="border-radius: 8px;"/></center>
 
-<center><img src="assets/bcasedrawing.png" alt="Battery Case CAD Drawing" width="350" style="border-radius: 8px;"/></center>
+<!-- <center><img src="assets/bcasedrawing.png" alt="Battery Case CAD Drawing" width="350" style="border-radius: 8px;"/></center> -->
 
 #### ESP32 Case
 
@@ -54,7 +54,7 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 <!-- PLACEHOLDER: Add image of all 3d prints/any cad drawings here -->
 <center><img src="assets/espcase.png" alt="ESP32 Case" width="350" style="border-radius: 8px;"/></center>
 
-<center><img src="assets/ecasedrawing.png" alt="ESP32 Case CAD Drawing" width="350" style="border-radius: 8px;"/></center>
+<!-- <center><img src="assets/ecasedrawing.png" alt="ESP32 Case CAD Drawing" width="350" style="border-radius: 8px;"/></center> -->
 
 ### Soldering & Flex PCB
 
@@ -67,13 +67,16 @@ I used a flexible PCB to connect the ESP32 to the FSR and other components, whic
 
 ### Assembly & Integration
 
-The final assembly involved attaching the battery to the ankle strap using velcro, mounting the ESP32 with the custom clip, and securing the FSR to the insole of the shoe with tape. Care was taken to ensure that all components were firmly attached but still comfortable for the user. The flex PCB allowed for easy routing of wires and minimized bulk inside the shoe. After assembly, the system was tested for fit, comfort, and functionality.
+The final assembly involved attaching the battery to the ankle strap using velcro, mounting the ESP32 with the custom clip, and securing the FSR to the insole of the shoe with tape. The velcro ankle strap that is pictured below works by just wrapping around itself. I took particular care to ensure that all components were firmly attached. The flex PCB allowed for easy routing of wires and minimized bulk inside the shoe.
 
 <!-- PLACEHOLDER: Add image of fully assembled SmartSole in the shoe here -->
+<center><img src="assets/strapin.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
+
+<center><img src="assets/strapout.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
 
 ### Challenges
 
-Some challenges I had while assembling the final product were soldering the connections on the flex PCB as I burned multiple joints off the flex PCB before I could connect two joints together with solder. Another challenge I had in this milestone was designing the various 3D prints.
+Some challenges I had while assembling the final product were soldering the connections on the flex PCB as I burned multiple joints off the flex PCB before I could connect two joints together with solder. Another challenge 
 
 ### Next Steps
 
@@ -420,7 +423,7 @@ For your first milestone, describe what your project is and how you plan to buil
 
 My starter project is a retro arcade console that allows the user to play classic video games like Tetris, Snake, and Space Invaders. The screen is constructed from two 8x8 dot matrices on the top left and has a screen capable of displaying three digits in the top right. The system can be powered by the battery pack on the back of the device or by using the Micro USB port near to the number screen. The device creates sound by using a buzzer below the red power switch. There are six yellow buttons below those components which control the elements on the screen in various games.
 
-<center><img src="assets/image.png" alt="Device Image" width="350" style="border-radius: 8px;"/></center>
+<center><img src="assets/starterproj.png" alt="Device Image" width="350" style="border-radius: 8px;"/></center>
 
 ### Challenges
 
