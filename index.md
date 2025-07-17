@@ -33,7 +33,7 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 
 
 <!-- PLACEHOLDER: Add image of any 3d prints/any cad drawings here -->
-<center><img src="assets/threeclips.png" alt="Each Clip Version" width="350" style="border-radius: 8px;"/></center>
+<div style="text-align: right;"><center><img src="assets/threeclips.png" alt="Each Clip Version" width="350" style="border-radius: 8px;"/></center></div>
 <center>Figure#, The first clip from the left is my first attempt at making the clip, but it did not even attach to the shoe collar so I opted to remake it to be wider. The second clip was able to fit on the shoe's collar but lacked the strength and sleekness of the first design, so it was scrapped. The third clip was designed to be able to fit on the lip of the shoe rather than the collar, keeping it space efficient and strong.</center>
 </br>
 <center><img src="assets/molleclip_self_drawing.png" alt="Clip Design #2" width="350" style="border-radius: 8px;"/></center>
