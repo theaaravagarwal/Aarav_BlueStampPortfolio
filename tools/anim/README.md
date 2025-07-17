@@ -1,4 +1,4 @@
-# SmartSole C++ Animation
+# Orientation Animation
 
 **THIS IS EXCLUSIVELY DESIGNED TO WORK ON MACOS**
 
