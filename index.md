@@ -38,6 +38,7 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 <center><img src="assets/molleclip_self_drawing.png" alt="Each Clip Version" width="350" style="border-radius: 8px;"/></center>
 <br/>
 <center><img src="assets/clipdrawing.png" alt="Clip CAD Drawing" width="350" style="border-radius: 8px;"/></center>
+<center>Figure #,</center>
 
 #### Battery Case
 
@@ -443,6 +444,36 @@ Some challenges I encountered while working on this project were properly solder
 ### Next Steps
 
 I will begin working on my intensive project after this Starter Milestone.
+
+# How the Sensors Work
+
+The SmartSole uses several key sensors to monitor physical activity and provide feedback. Here's how each sensor works and contributes to the system:
+
+### Accelerometer
+
+The accelerometer measures linear acceleration in three axes (X, Y, Z) and is the primary sensor for detecting movement patterns. It works by detecting changes in velocity over time:
+
+### Gyroscope
+
+The gyroscope measures angular velocity (rotational speed) around the three axes and provides complementary data to the accelerometer:
+
+- **Orientation Tracking**: While the accelerometer can determine orientation when stationary, the gyroscope tracks how quickly the orientation is changing, providing more accurate real-time orientation data during movement.
+
+- **Rotation Detection**: The gyroscope helps distinguish between different types of movements. For example, a simple step forward might show minimal rotation, while a turn or pivot would show significant angular velocity.
+
+- **Motion Filtering**: Combined with the accelerometer data, the gyroscope helps filter out noise and provides more stable orientation estimates through sensor fusion algorithms.
+
+### Magnetometer
+
+The magnetometer detects the Earth's magnetic field and provides heading information:
+
+- **Orientation Calibration**: The magnetometer helps calibrate the overall orientation system by providing an absolute reference point (magnetic north), improving the accuracy of the accelerometer and gyroscope readings.
+
+### Force Sensitive Resistor (FSR)
+
+The FSR is a polymer sheet with both electrically conducting and non-conducting particles present on the sensing film. When force is applied to the surface, the particles touch the conducting electrodes, causing the resistance of the film to decrease. This change in resistance can be measured and used to sense pressure.
+
+- **Foot Pressure Monitoring**: Placed in the insole, the FSR detects how much pressure the user is applying to different parts of their foot. This helps identify proper foot placement and weight distribution.
 
 <!-- # Schematics -->
 
