@@ -171,10 +171,10 @@ This schematic shows the wiring and electrical connections for my project during
 
 Some of the biggest challenges I faced during this milestone included:
 
-* Developing and debugging the Bluetooth Low Energy app to reliably communicate with the ESP32
-* Creating and interpreting various diagrams and visualizations of the collected data (like those described above)
-* Experimenting with different ways to attach the device securely and comfortably to my foot
-* Designing meaningful test cases; just walking around randomly wasn’t enough to draw useful conclusions
+- Developing and debugging the Bluetooth Low Energy app to reliably communicate with the ESP32
+- Creating and interpreting various diagrams and visualizations of the collected data (like those described above)
+- Experimenting with different ways to attach the device securely and comfortably to my foot
+- Designing meaningful test cases; just walking around randomly wasn’t enough to draw useful conclusions
 
 ### Next Steps
 
