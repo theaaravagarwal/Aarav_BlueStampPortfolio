@@ -70,8 +70,10 @@ I used a flexible PCB to connect the ESP32 to the FSR and other components, whic
 The final assembly involved attaching the battery to the ankle strap using velcro, mounting the ESP32 with the custom clip, and securing the FSR to the insole of the shoe with tape. The velcro ankle strap that is pictured below works by just wrapping around itself. I took particular care to ensure that all components were firmly attached. The flex PCB allowed for easy routing of wires and minimized bulk inside the shoe.
 
 <!-- PLACEHOLDER: Add image of fully assembled SmartSole in the shoe here -->
+<center>This is the inside of the strap, that fuzzy velcro piece is for the outside of the strap to attach to when it wraps around the ankle.</center>
 <center><img src="assets/strapin.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
 
+<center>This is the spiky velcro outside of the strap.</center>
 <center><img src="assets/strapout.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
 
 ### Challenges
