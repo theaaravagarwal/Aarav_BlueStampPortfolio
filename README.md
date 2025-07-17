@@ -8,6 +8,6 @@ To use this app, you must install "bleak" `pip install bleak` and use Python 3.1
 
 The source code is in ./src
 
-# Extra tools
+# Extra Tools
 
 There is a directory of the tools I used while working on this project in ./tools.
