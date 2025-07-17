@@ -12,7 +12,7 @@ The SmartSole is a smart shoe sole designed to monitor physical activity by trac
 
 <!-- **Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.** -->
 
-<!-- ![Headstone Image](logo.svg) -->
+![SmartSole](assets/smartsole.png)
 
 # Third Milestone
 
@@ -42,6 +42,7 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 
 
 <!-- PLACEHOLDER: Add image of all 3d prints/any cad drawings here -->
+<center>This is the battery case that I did not end up using as an ankle strap was more convenient</center>
 <center><img src="assets/bcase.png" alt="Battery Case" width="350" style="border-radius: 8px;"/></center>
 
 <!-- <center><img src="assets/bcasedrawing.png" alt="Battery Case CAD Drawing" width="350" style="border-radius: 8px;"/></center> -->
@@ -61,8 +62,11 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 I used a flexible PCB to connect the ESP32 to the FSR and other components, which made the wiring more robust and suitable for the constant movement inside a shoe. Soldering the connections onto the flex PCB was a delicate process, but it greatly improved the durability and reliability of the system. The breadboard and the PCB share the same layout of connections while vastly varying in size and strength as the breadboard had no soldered connections. All connections were tested for continuity and strength before final assembly.
 
 <!-- PLACEHOLDER: Add image of soldered flex PCB and connections here -->
+<center>The leftmost rail is the power rail while the middle rail is the ground rail. The rightmost section is reserved for the analog read wire to the FSR.</center>
 <center><img src="assets/board1.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
 
+<center>The other side of the flex PCB with the components/wires on it.</center>
+<center>The wiring here is directly taken from the breadboard and adapted for the size constraint of the flex PCB</center>
 <center><img src="assets/board2.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
 
 ### Assembly & Integration
