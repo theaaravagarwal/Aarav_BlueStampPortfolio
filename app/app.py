@@ -398,7 +398,7 @@ class BluetoothApp:
                     elapsed = time.time() - start_time
                     print(f"{debug_prefix} [{uuid}] Write successful, result: {result}, elapsed: {elapsed:.3f}s")
                     success = True
-                    self.master.after(0, lambda: self.add_received_message(f"Sent via {uuid}: {message}"))
+                    #self.master.after(0, lambda: self.add_received_message(f"Sent via {uuid}: {message}"))
                     break
                 except Exception as e:
                     print(f"{debug_prefix} [{uuid}] Exception during write_gatt_char:")
