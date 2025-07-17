@@ -182,7 +182,6 @@ void draw_arrow(const glm::vec3& from, const glm::vec3& to, float r, float g, fl
     glTranslatef(to.x, to.y, to.z);
     glutSolidCone(0.05, 0.15, 8, 2);
     glPopMatrix();
-    // Draw label at tip
     glColor3f(1,1,1);
     glRasterPos3f(to.x, to.y, to.z);
     for (const char* c = label; *c; ++c) {
@@ -190,7 +189,6 @@ void draw_arrow(const glm::vec3& from, const glm::vec3& to, float r, float g, fl
     }
 }
 
-// Draw overlay text at window coordinates (x, y)
 void draw_overlay_text(float x, float y, const char* text) {
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
@@ -202,7 +200,7 @@ void draw_overlay_text(float x, float y, const char* text) {
     glPushMatrix();
     glLoadIdentity();
     glColor3f(1,1,1);
-    glRasterPos2f(x, viewport[3] - y); // y from top
+    glRasterPos2f(x, viewport[3] - y);
     for (const char* c = text; *c; ++c) {
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *c);
     }
@@ -212,12 +210,10 @@ void draw_overlay_text(float x, float y, const char* text) {
     glMatrixMode(GL_MODELVIEW);
 }
 
-// Global playback state
 std::atomic<bool> paused{false};
 std::atomic<bool> step_fwd{false};
 std::atomic<bool> step_back{false};
 
-// GLFW key callback for playback controls
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     if (action == GLFW_PRESS) {
         if (key == GLFW_KEY_SPACE) paused = !paused;
@@ -227,13 +223,11 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 }
 
 int main() {
-    // Load data
     auto data = read_csv("data.csv");
     std::vector<glm::vec3> positions, velocities;
     std::vector<bool> zupt_flags;
     std::vector<std::string> zupt_reasons;
     integrate(data, positions, velocities, zupt_flags, zupt_reasons);
-    // Find min/max for temp/fsr
     float tmin = data[0].temp, tmax = data[0].temp;
     float fmin = data[0].fsr, fmax = data[0].fsr;
     for (const auto& row : data) {
@@ -242,22 +236,18 @@ int main() {
         fmin = std::min(fmin, row.fsr);
         fmax = std::max(fmax, row.fsr);
     }
-    // Find min/max for positions
     glm::vec3 min_pos, max_pos;
     find_min_max(positions, min_pos, max_pos);
-    // Init GLUT (needed for glutSolidCube, gluPerspective, gluLookAt)
     int argc = 1;
     char* argv[1] = {(char*)""};
     glutInit(&argc, argv);
-    // Init GLFW
     if (!glfwInit()) return -1;
     GLFWwindow* window = glfwCreateWindow(800, 600, "SmartSole Animation", NULL, NULL);
     if (!window) { glfwTerminate(); return -1; }
     glfwMakeContextCurrent(window);
     glfwSetKeyCallback(window, key_callback);
     glEnable(GL_DEPTH_TEST);
-    glClearColor(0.1f, 0.1f, 0.1f, 1.0f); // Set background color
-    // Main loop
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
     size_t frame = 0;
     while (!glfwWindowShouldClose(window)) {
         int width, height;
@@ -269,10 +259,8 @@ int main() {
         gluPerspective(45, (double)width/height, 0.1, 100);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
-        gluLookAt(0,2,8, 0,0,0, 0,1,0); // Camera farther back
-        // Draw axes
+        gluLookAt(0,2,8, 0,0,0, 0,1,0);
         draw_axes();
-        // Animate
         if (frame >= data.size()) frame = 0;
         const auto& row = data[frame];
         glm::vec3 color = temp_to_color(row.temp, tmin, tmax);
