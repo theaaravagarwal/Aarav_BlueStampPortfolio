@@ -449,11 +449,15 @@ I will begin working on my intensive project after this Starter Milestone.
 
 The SmartSole uses several key sensors to monitor physical activity and provide feedback. Here's how each sensor works and contributes to the system:
 
-### Accelerometer
+### Accelerometer (LSM6DS3TR-C)
 
 The accelerometer measures linear acceleration in three axes (X, Y, Z) and is the primary sensor for detecting movement patterns. It works by detecting changes in velocity over time:
 
-### Gyroscope
+- **Activity Classification**: Different activities (walking, running, jumping) produce distinct acceleration signatures. Walking typically shows moderate, regular peaks, while running shows higher-frequency, more intense peaks, and jumping produces very high, sharp acceleration spikes.
+
+- **Movement Detection**: By monitoring changes in orientation (pitch and roll angles), the accelerometer can determine if the user is stationary or moving, helping to conserve power by only processing data when activity is detected.
+
+### Gyroscope (LSM6DS3TR-C)
 
 The gyroscope measures angular velocity (rotational speed) around the three axes and provides complementary data to the accelerometer:
 
@@ -461,9 +465,7 @@ The gyroscope measures angular velocity (rotational speed) around the three axes
 
 - **Rotation Detection**: The gyroscope helps distinguish between different types of movements. For example, a simple step forward might show minimal rotation, while a turn or pivot would show significant angular velocity.
 
-- **Motion Filtering**: Combined with the accelerometer data, the gyroscope helps filter out noise and provides more stable orientation estimates through sensor fusion algorithms.
-
-### Magnetometer
+### Magnetometer (LIS3MDL)
 
 The magnetometer detects the Earth's magnetic field and provides heading information:
 
