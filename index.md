@@ -59,7 +59,7 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 
 
 <!-- PLACEHOLDER: Add image of all 3d prints/any cad drawings here -->
-</br> <!-- temp newline for spacing -->
+<br/> <!-- temp newline for spacing -->
 <center><img src="assets/espcase.png" alt="ESP32 Case" width="350" style="border-radius: 8px;"/></center>
 <center>Figure #, The only issue with the ESP Case was the size of the USB-C port being too small, so the ESP would not fit in nicely. Other than that, this case is very sturdy other than the lid which sometimes can fall off just due to small errors in the print</center>
 <br/> <!-- temp newline for spacing -->
@@ -74,7 +74,7 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 I used a flexible PCB to connect the ESP32 to the FSR and other components, which made the wiring more robust and suitable for the constant movement inside a shoe. Soldering the connections onto the flex PCB was a delicate process, but it greatly improved the durability and reliability of the system. The breadboard and the PCB share the same layout of connections while vastly varying in size and strength as the breadboard had no soldered connections. All connections were tested for continuity and strength before final assembly.
 
 <!-- PLACEHOLDER: Add image of soldered flex PCB and connections here -->
-</br> <!-- temp newline for spacing -->
+<br/> <!-- temp newline for spacing -->
 <center><img src="assets/board1.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
 <center>Figure #, Here, the leftmost rail is the power rail while the middle rail is the ground rail. The rightmost section is reserved for the FSR wiring.</center>
 <br/> <!-- temp newline for spacing -->
