@@ -52,7 +52,7 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 
 
 <!-- PLACEHOLDER: Add image of all 3d prints/any cad drawings here -->
-<center><img src="assets/ecase.png" alt="ESP32 Case" width="350" style="border-radius: 8px;"/></center>
+<center><img src="assets/espcase.png" alt="ESP32 Case" width="350" style="border-radius: 8px;"/></center>
 
 <center><img src="assets/ecasedrawing.png" alt="ESP32 Case CAD Drawing" width="350" style="border-radius: 8px;"/></center>
 
