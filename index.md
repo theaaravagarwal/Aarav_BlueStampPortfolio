@@ -35,10 +35,10 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 <!-- PLACEHOLDER: Add image of any 3d prints/any cad drawings here -->
 <div style="text-align: right;"><center><img src="assets/threeclips.png" alt="Each Clip Version" width="350" style="border-radius: 8px;"/></center></div>
 <center>Figure#, The first clip from the left is my first attempt at making the clip, but it did not even attach to the shoe collar so I opted to remake it to be wider. The second clip was able to fit on the shoe's collar but lacked the strength and sleekness of the first design, so it was scrapped. The third clip was designed to be able to fit on the lip of the shoe rather than the collar, keeping it space efficient and strong.</center>
-</br>
+<br/> <!-- temp newline for spacing -->
 <center><img src="assets/molleclip_self_drawing.png" alt="Clip Design #2" width="350" style="border-radius: 8px;"/></center>
 <center>Figure #, I was testing how I could modify the other clip, but it just came out looking like the Doordash logo</center>
-</br>
+<br/> <!-- temp newline for spacing -->
 <center><img src="assets/clipdrawing.png" alt="Clip CAD Drawing" width="350" style="border-radius: 8px;"/></center>
 <center>Figure #, This is the other iteration's CAD drawing that had 2 legs of equal length. Through this I learned that having equal leg length is not as strong as having unequal leg length.</center>
 
@@ -61,10 +61,10 @@ In this milestone, I designed and printed several custom 3D parts to house and p
 <!-- PLACEHOLDER: Add image of all 3d prints/any cad drawings here -->
 <center><img src="assets/espcase.png" alt="ESP32 Case" width="350" style="border-radius: 8px;"/></center>
 <center>Figure #, The only issue with the ESP Case was the size of the USB-C port being too small, so the ESP would not fit in nicely. Other than that, this case is very sturdy other than the lid which sometimes can fall off just due to small errors in the print</center>
-</br>
+<br/> <!-- temp newline for spacing -->
 <center><img src="assets/esp_body_case_drawing.png" alt="ESP Case Body CAD Drawing" width="350" style="border-radius: 8px;"/></center>
 <center>Figure #, This is a CAD drawing of the ESP32's case body. All dimensions are in mm.</center>
-</br>
+<br/> <!-- temp newline for spacing -->
 <center><img src="assets/esp_lid_case_drawing.png" alt="ESP Case Lid CAD Drawing" width="350" style="border-radius: 8px;"/></center>
 <center>Figure #, This is a CAD drawing of the ESP32's case body. All dimensions are in mm.</center>
 
@@ -75,7 +75,7 @@ I used a flexible PCB to connect the ESP32 to the FSR and other components, whic
 <!-- PLACEHOLDER: Add image of soldered flex PCB and connections here -->
 <center><img src="assets/board1.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
 <center>Figure #, Here, the leftmost rail is the power rail while the middle rail is the ground rail. The rightmost section is reserved for the FSR wiring.</center>
-</br>
+<br/> <!-- temp newline for spacing -->
 <center><img src="assets/board2.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
 <center>Figure #, This is the other side of the flex PCB with the components/wires on it. The wiring here is directly taken from the breadboard and adapted for the size constraint of the flex PCB.</center>
 
