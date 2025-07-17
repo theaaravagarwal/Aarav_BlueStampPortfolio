@@ -35,7 +35,6 @@ std::vector<DataRow> read_csv(const std::string& filename) {
     std::vector<DataRow> data;
     std::ifstream file(filename);
     std::string line;
-    // Skip header
     std::getline(file, line);
     while (std::getline(file, line)) {
         std::stringstream ss(line);
@@ -66,7 +65,6 @@ std::vector<DataRow> read_csv(const std::string& filename) {
     return data;
 }
 
-// Helper: Detect valley in linmag
 bool is_valley(const std::vector<DataRow>& data, size_t i, float threshold) {
     if (i == 0 || i+1 >= data.size()) return false;
     return (data[i-1].linmag > data[i].linmag) &&
@@ -102,9 +100,7 @@ void integrate(const std::vector<DataRow>& data, std::vector<glm::vec3>& positio
         float yaw = glm::radians(row.yaw);
         glm::mat4 rot = glm::eulerAngleYXZ(yaw, pitch, roll);
         glm::vec3 acc_world = glm::vec3(rot * glm::vec4(acc_nograv, 0.0f));
-        // Low-pass filter acceleration
         acc_lp = acc_lp_alpha * acc_lp + (1.0f - acc_lp_alpha) * acc_world;
-        // ZUPT trigger: only valley in linmag
         bool zupt_valley = is_valley(data, i, valley_threshold);
         bool zupt = zupt_valley;
         std::string reason = zupt ? "Valley" : "";

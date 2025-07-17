@@ -1,5 +1,7 @@
 # SmartSole C++ Animation
 
+**THIS IS EXCLUSIVELY DESIGNED TO WORK ON MACOS**
+
 ## Dependencies (macOS)
 
 Install dependencies with Homebrew:
