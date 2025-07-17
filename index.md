@@ -12,7 +12,8 @@ The SmartSole is a smart shoe sole designed to monitor physical activity by trac
 
 <!-- **Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.** -->
 
-![SmartSole](assets/smartsole.png)
+<!-- ![SmartSole](assets/smartsole.png) -->
+<center><img src="assets/smartsole.png" alt="SmartSole Final" width="1050" style="border-radius: 8px;"/></center>
 
 # Third Milestone
 
@@ -71,9 +72,9 @@ I used a flexible PCB to connect the ESP32 to the FSR and other components, whic
 
 ### Assembly & Integration
 
-The final assembly involved attaching the battery to the ankle strap using velcro, mounting the ESP32 with the custom clip, and securing the FSR to the insole of the shoe with tape. The velcro ankle strap that is pictured below works by just wrapping around itself. I took particular care to ensure that all components were firmly attached. The flex PCB allowed for easy routing of wires and minimized bulk inside the shoe.
+The final assembly involved attaching the battery to the ankle strap using velcro, mounting the ESP32 with the custom clip, and securing the FSR to the insole of the shoe with tape. The velcro ankle strap that is pictured below works by just wrapping around itself. I took particular care to ensure that all components were firmly attached. The flex PCB allowed for easy routing of wires and minimized bulk inside the shoe. If you would like to see the final image of the SmartSole please scroll up.
 
-<!-- PLACEHOLDER: Add image of fully assembled SmartSole in the shoe here -->
+<!-- PLACEHOLDER: Add image of velcro strap here -->
 <center>This is the inside of the strap, that fuzzy velcro piece is for the outside of the strap to attach to when it wraps around the ankle.</center>
 <center><img src="assets/strapin.png" alt="Soldered Connections on PCB" width="350" style="border-radius: 8px;"/></center>
 
