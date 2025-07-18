@@ -465,20 +465,6 @@ The FSR is a polymer sheet with both electrically conducting and non-conducting 
 
 - **Foot Pressure Monitoring**: Placed in the insole, the FSR detects how much pressure the user is applying to different parts of their foot. This helps identify proper foot placement and weight distribution.
 
-# Bill of Materials
-
-<!-- Here's where you'll list the parts in your project. To add more rows, just copy and paste the example rows below.
-Don't forget to place the link of where to buy each component inside the quotation marks in the corresponding row after href =. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize this to your project needs. -->
-
-| **Part Name** | **Purpose** | **Price** | **Qty Required** | **Link** |
-|:--:|:--:|:--:|:--:|:--:|
-| ESP32 | Main microcontroller for processing sensor data and handling communication | $9.99 | 1 | <a href="https://craftyhandy.com/products/esp32-microcontroller-developed?variant=41267690373210&_gsid=uMzkBAbUT2vk">Link</a> |
-| Adafruit LSM6DS3TR-C + LIS3MDL (Accelerometer/Gyroscope/Magnetometer) | Measures acceleration and gyroscopic data to detect steps, jumps, and running | $19.95 | 1 | <a href="https://www.adafruit.com/product/5543?srsltid=AfmBOor_6pZPwRcHRZHS-mpSJlug-TE36hjlET9mtg6MUXK0WvTJxpiA">Link</a> |
-| Force Sensitive Resistor (FSR) Sensor - Long 200mm | Detects pressure changes to monitor footfalls and activity intensity | $5.99 | 2 | <a href="https://ddrpad.com/products/force-sensitive-resistor-fsr-sensor-long-200mm-size?variant=39251887161396&_gsid=BvxQWwP1pmjv">Link</a> |
-| Vibration Motor Module (5 Pack) | Gives haptic feedback to alert the user while running | $24.50 | 1 | <a href="https://sifosolutions.com/products/vibration-motor-module-5-pack?variant=47463109132566&_gsid=iNEdwihSUzSD">Link</a> |
-| SeeedStudio Grove Buzzer Module | Emits sound alerts for user notifications | $1.90 | 1 | <a href="https://www.robotshop.com/products/seeedstudio-grove-buzzer-module?variant=42359586881697&_gsid=FuTD3wVtsaCK">Link</a> |
-| Fully Flexible PCB | Integrates all electronic components into a flexible form factor suitable for insoles that are constantly changing shape | $35.00 | 1 | <a href="https://skree.us/products/fully-flexible-pcbs?variant=51374897561891&_gsid=ZVbFXJ49jfnh">Link</a> |
-
 # Starter Milestone
 
 <center><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/2HmSv4AucCM?si=lUCH4t8UGWBSdCUS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></center>
@@ -496,6 +482,20 @@ Some challenges I encountered while working on this project were properly solder
 ### Next Steps
 
 I will begin working on my intensive project after this Starter Milestone.
+
+# Bill of Materials
+
+<!-- Here's where you'll list the parts in your project. To add more rows, just copy and paste the example rows below.
+Don't forget to place the link of where to buy each component inside the quotation marks in the corresponding row after href =. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize this to your project needs. -->
+
+| **Part Name** | **Purpose** | **Price** | **Qty Required** | **Link** |
+|:--:|:--:|:--:|:--:|:--:|
+| ESP32 | Main microcontroller for processing sensor data and handling communication | $9.99 | 1 | <a href="https://craftyhandy.com/products/esp32-microcontroller-developed?variant=41267690373210&_gsid=uMzkBAbUT2vk">Link</a> |
+| Adafruit LSM6DS3TR-C + LIS3MDL (Accelerometer/Gyroscope/Magnetometer) | Measures acceleration and gyroscopic data to detect steps, jumps, and running | $19.95 | 1 | <a href="https://www.adafruit.com/product/5543?srsltid=AfmBOor_6pZPwRcHRZHS-mpSJlug-TE36hjlET9mtg6MUXK0WvTJxpiA">Link</a> |
+| Force Sensitive Resistor (FSR) Sensor - Long 200mm | Detects pressure changes to monitor footfalls and activity intensity | $5.99 | 2 | <a href="https://ddrpad.com/products/force-sensitive-resistor-fsr-sensor-long-200mm-size?variant=39251887161396&_gsid=BvxQWwP1pmjv">Link</a> |
+| Vibration Motor Module (5 Pack) | Gives haptic feedback to alert the user while running | $24.50 | 1 | <a href="https://sifosolutions.com/products/vibration-motor-module-5-pack?variant=47463109132566&_gsid=iNEdwihSUzSD">Link</a> |
+| SeeedStudio Grove Buzzer Module | Emits sound alerts for user notifications | $1.90 | 1 | <a href="https://www.robotshop.com/products/seeedstudio-grove-buzzer-module?variant=42359586881697&_gsid=FuTD3wVtsaCK">Link</a> |
+| Fully Flexible PCB | Integrates all electronic components into a flexible form factor suitable for insoles that are constantly changing shape | $35.00 | 1 | <a href="https://skree.us/products/fully-flexible-pcbs?variant=51374897561891&_gsid=ZVbFXJ49jfnh">Link</a> |
 
 <!-- # Schematics -->
 
