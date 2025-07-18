@@ -22,7 +22,7 @@ The SmartSole is a smart shoe sole designed to monitor physical activity by trac
 
 ### Description
 
-In my first modification, I implemented a comprehensive command-line interface (CLI) system that allows users to interact with the SmartSole through Bluetooth Low Energy serial communication. This modification was much easier than other code segments I wrote for this project as it intersected with many past skills of mine. The CLI system takes in commands the user enters by text as well as any arguments separated by a single space.
+In my first modification, I implemented a comprehensive command line interface (CLI) system that allows users to interact with the SmartSole through Bluetooth Low Energy (BLE) serial communication. This modification was much easier than other code segments I wrote for this project as it intersected with many past skills of mine. The CLI system takes in commands the user enters by text as well as any arguments separated by a single space.
 
 The system features a robust command structure with 17 different commands covering sensor data retrieval, system control, and even entertainment features. Commands include getting the current step count, distance traveled in meters, gravity vector on the accelerometer, FSR pressure readings, orientation data, and more.
 
