@@ -5,6 +5,7 @@
 #include <BLEUtils.h>
 #include <BLE2902.h>
 #include <functional>
+#include <map>
 
 #define SERVICE_UUID            "f5371dca-980d-4eb1-b50e-b4a7223853c7"
 #define CHARACTERISTIC_UUID     "a6269c86-5982-4b90-9ce7-c2e249f71c7c"
@@ -115,6 +116,10 @@ public:
         print(String(value) + '\n');
     }
 
+    void println(long long value) {
+        print(String(value) + '\n');
+    }
+
     void println(unsigned long value) {
         print(String(value) + '\n');
     }
@@ -152,6 +157,11 @@ public:
         echoReceived = enable;
     }
 
+    void addCommand(const String& command, std::function<void(String)> action) {
+        commandMap[command] = action;
+    }
+
+
 private:
     BLEServer* pServer;
     BLECharacteristic* pCharacteristic;
@@ -159,6 +169,7 @@ private:
     String receivedValue;
     bool echoReceived;
     ReceiveCallback receiveCallback;
+    std::map<String, std::function<void(const String&)>> commandMap;
 
     class ServerCallbacks : public BLEServerCallbacks {
         BluetoothSerial* parent;
@@ -183,13 +194,25 @@ private:
             if (!parent) return;
             std::string rxValue = characteristic->getValue();
             String strValue = String(rxValue.c_str());
-            Serial.println(strValue);
             parent->receivedValue = strValue;
             if (parent->echoReceived) {
                 parent->println(strValue);
             }
             if (parent->receiveCallback) {
                 parent->receiveCallback(strValue);
+            }
+            int spidx = strValue.indexOf(' ');
+            String cmdnm = strValue;
+            String args = "";
+            if (spidx!=-1) {
+                cmdnm = strValue.substring(0, spidx);
+                args = strValue.substring(spidx+1);
+            }
+            auto it = parent->commandMap.find(cmdnm);
+            if (it!=parent->commandMap.end()) {
+                it->second(args);
+            } else {
+                parent->println("Unknown command: "+cmdnm);
             }
         }
     };
