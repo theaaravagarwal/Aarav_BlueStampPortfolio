@@ -129,105 +129,185 @@ pre.expanded {
   max-height: none;
 }
 
-/* --- Modern Code Block Card Styles --- */
-.code-block-container {
-  border-radius: 0px;
-  box-shadow: 0 2px 12px 0 rgba(30,41,59,0.10);
+/* --- Improved Code Block Styles --- */
+/* Custom code-block tag styles */
+code-block {
+  display: block;
+  margin: 1.5em 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  background: var(--cbg, #181c24);
+  background: var(--cbg, #1a1a1a);
+  border: 1px solid var(--cborder, #333);
+  transition: all 0.3s ease;
 }
-.code-header {
+
+code-block:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+code-block .code-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--chead, #23283a);
-  color: var(--ctext, #e2e8f0);
+  background: var(--chead, #2d2d2d);
+  color: var(--ctext, #e6e6e6);
   font-weight: 600;
-  font-size: 0.97em;
-  padding: 0.7em 1.2em;
-  border-radius: 0px 0px 0 0;
-  border-bottom: 1px solid #23283a;
+  font-size: 0.9em;
+  padding: 0.8em 1.2em;
+  border-bottom: 1px solid var(--cborder, #444);
   margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
-.code-header span {
-  font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
-  color: var(--clabel, #8b949e);
-  font-size: 0.97em;
+
+code-block .code-header .language-label {
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  color: var(--clabel, #888);
+  font-size: 0.85em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
-.code-toggle-btn {
+
+code-block .code-toggle-btn {
   background: none;
   border: none;
-  color: var(--clabel, #8b949e);
-  font-size: 0.97em;
-  padding: 2px 12px;
+  color: var(--clabel, #888);
+  font-size: 0.85em;
+  padding: 4px 8px;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: all 0.2s ease;
   font-weight: 500;
   outline: none;
-  box-shadow: none;
   display: flex;
   align-items: center;
   gap: 0.3em;
+  font-family: inherit;
 }
-.code-toggle-btn:hover, .code-toggle-btn:focus {
-  background: rgba(56, 139, 253, 0.10);
-  color: #58a6ff;
+
+code-block .code-toggle-btn:hover,
+code-block .code-toggle-btn:focus {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
 }
-.collapse-indicator {
-  font-size: 1.1em;
-  transition: transform 0.2s;
+
+code-block .collapse-indicator {
+  font-size: 0.8em;
+  transition: transform 0.2s ease;
   display: inline-block;
 }
-.collapse-indicator.collapsed {
+
+code-block .collapse-indicator.collapsed {
   transform: rotate(-90deg);
 }
-.code-block-container pre {
+
+code-block pre {
   margin: 0;
-  border-radius: 0 0 10px 10px;
-  background: var(--cbg, #181c24);
-  color: #e2e8f0;
-  font-size: 1em;
+  background: var(--cbg, #1a1a1a);
+  color: var(--ctext, #e6e6e6);
+  font-size: 0.9em;
   position: relative;
-  z-index: 1;
-  padding: 1.1em 1.2em;
+  padding: 1.2em;
   line-height: 1.6;
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  overflow-x: auto;
+  border-radius: 0;
 }
-.copy-btn {
+
+code-block .copy-btn {
   position: absolute;
-  top: 0.7em;
+  top: 0.8em;
   right: 1.2em;
-  background: #2563eb;
+  background: #3b82f6;
   color: #fff;
   border: none;
-  border-radius: 0.4em;
-  padding: 0.25em 0.9em;
-  font-size: 0.85em;
+  border-radius: 6px;
+  padding: 0.4em 0.8em;
+  font-size: 0.75em;
   font-family: inherit;
   font-weight: 600;
   cursor: pointer;
   z-index: 10;
+  opacity: 0;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+code-block:hover .copy-btn {
   opacity: 1;
-  box-shadow: 0 2px 8px 0 rgba(30,41,59,0.08);
-  transition: background 0.2s;
 }
-.copy-btn:hover, .copy-btn:focus {
-  background: #1d4ed8;
+
+code-block .copy-btn:hover,
+code-block .copy-btn:focus {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
+
+code-block .copy-btn:active {
+  transform: translateY(0);
+}
+
+/* Regular pre/code blocks (for when not using custom tag) */
+.main-content pre:not(code-block pre) {
+  background: var(--cbg, #1a1a1a);
+  color: var(--ctext, #e6e6e6);
+  border-radius: 8px;
+  padding: 1.2em;
+  margin: 1.5em 0;
+  overflow-x: auto;
+  border: 1px solid var(--cborder, #333);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+.main-content pre:not(code-block pre) code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* Dark mode variables */
 @media (prefers-color-scheme: dark) {
   :root {
-    --cbg: #181c24;
-    --chead: #23283a;
-    --ctext: #e2e8f0;
-    --clabel: #8b949e;
+    --cbg: #1a1a1a;
+    --chead: #2d2d2d;
+    --ctext: #e6e6e6;
+    --clabel: #888;
+    --cborder: #333;
   }
 }
+
+/* Light mode variables */
 @media (prefers-color-scheme: light) {
   :root {
-    --cbg: #f8fafc;
-    --chead: #e2e8f0;
-    --ctext: #23283a;
-    --clabel: #475569;
+    --cbg: #f8f9fa;
+    --chead: #e9ecef;
+    --ctext: #212529;
+    --clabel: #6c757d;
+    --cborder: #dee2e6;
+  }
+  
+  code-block {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  code-block:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+  
+  code-block .copy-btn {
+    background: #0d6efd;
+  }
+  
+  code-block .copy-btn:hover {
+    background: #0b5ed7;
   }
 }
 
@@ -399,68 +479,7 @@ pre.expanded {
   }
 }
 
-.manual-code-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--chead, #23283a);
-  color: var(--ctext, #e2e8f0);
-  font-weight: 600;
-  font-size: 0.97em;
-  padding: 0.7em 1.2em;
-  border-radius: 10px 10px 0 0;
-  border-bottom: 1px solid #23283a;
-  margin: 0;
-}
-.manual-code-lang {
-  font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
-  color: var(--clabel, #8b949e);
-  font-size: 0.97em;
-}
-.manual-code-toggle {
-  background: none;
-  border: none;
-  color: var(--clabel, #8b949e);
-  font-size: 0.97em;
-  padding: 2px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-  font-weight: 500;
-  outline: none;
-  box-shadow: none;
-  display: flex;
-  align-items: center;
-  gap: 0.3em;
-}
-.manual-code-toggle:hover, .manual-code-toggle:focus {
-  background: rgba(56, 139, 253, 0.10);
-  color: #58a6ff;
-}
-.manual-collapse-indicator {
-  font-size: 1.1em;
-  transition: transform 0.2s;
-  display: inline-block;
-}
-.manual-collapsible {
-  margin: 0;
-  border-radius: 0 0 10px 10px;
-  background: var(--cbg, #181c24);
-  color: #e2e8f0;
-  font-size: 1em;
-  position: relative;
-  z-index: 1;
-  padding: 1.1em 1.2em;
-  line-height: 1.6;
-  transition: max-height 0.3s ease;
-  overflow: auto;
-  max-height: 1000px;
-}
-.manual-collapsible.collapsed {
-  max-height: 0;
-  padding: 0 1.2em;
-  overflow: hidden;
-}
+
 </style>
 
 <script>
@@ -489,85 +508,187 @@ function initializeFeatures() {
       }
     });
   });
-  function addCopyButtonsToCodeBlocks() {
-    console.log('Adding copy buttons and collapsible features to code blocks...');
-    const codeBlocks = document.querySelectorAll('pre code');
-    console.log('Found', codeBlocks.length, 'code blocks');
-    codeBlocks.forEach((block, index) => {
-      const pre = block.parentElement;
-      if (pre.previousElementSibling && pre.previousElementSibling.classList.contains('code-header')) {
+  function initializeCodeBlocks() {
+    console.log('Initializing code blocks...');
+    
+    // Handle custom code-block tags
+    document.querySelectorAll('code-block').forEach(codeBlock => {
+      const pre = codeBlock.querySelector('pre');
+      const code = pre ? pre.querySelector('code') : null;
+      
+      if (!pre || !code) {
+        console.warn('code-block tag must contain <pre><code>...</code></pre>');
         return;
       }
-      const wrapper = document.createElement('div');
-      wrapper.className = 'code-block-container';
-      wrapper.style.margin = '1.5em 0';
-      wrapper.style.borderRadius = '8px';
-      wrapper.style.overflow = 'hidden';
-      wrapper.style.boxShadow = '0 2px 8px 0 rgba(30,41,59,0.08)';
-      const header = document.createElement('div');
-      header.className = 'code-header';
-      const languageClass = Array.from(block.classList).find(cls => cls.startsWith('language-'));
-      const language = languageClass ? languageClass.replace('language-', '') : 'code';
-      const languageLabel = document.createElement('span');
-      languageLabel.textContent = language.toUpperCase();
-      languageLabel.style.letterSpacing = '0.05em';
-      languageLabel.style.fontWeight = 'bold';
-      const toggleBtn = document.createElement('button');
-      toggleBtn.className = 'code-toggle-btn';
-      toggleBtn.innerHTML = '<span class="collapse-indicator collapsed">▼</span> Expand';
-      toggleBtn.setAttribute('type', 'button');
-      toggleBtn.setAttribute('aria-label', 'Toggle code block visibility');
-      header.appendChild(languageLabel);
-      header.appendChild(toggleBtn);
-      pre.parentNode.insertBefore(wrapper, pre);
-      wrapper.appendChild(header);
-      wrapper.appendChild(pre);
-      const copyButton = document.createElement('button');
-      copyButton.textContent = 'Copy';
-      copyButton.className = 'copy-btn';
-      copyButton.setAttribute('tabindex', '0');
-      copyButton.setAttribute('aria-label', 'Copy code to clipboard');
-      copyButton.setAttribute('type', 'button');
-      pre.appendChild(copyButton);
-      const fadeOverlay = document.createElement('div');
-      fadeOverlay.className = 'code-fade-overlay';
-      pre.appendChild(fadeOverlay);
-      pre.classList.add('collapsed');
-      pre.classList.remove('expanded');
-      toggleBtn.innerHTML = '<span class="collapse-indicator collapsed">▼</span> Expand';
-      toggleBtn.setAttribute('aria-label', 'Expand code block');
-      let isCollapsed = true;
-      function toggleCollapse() {
+      
+      // Create header if it doesn't exist
+      if (!codeBlock.querySelector('.code-header')) {
+        const header = document.createElement('div');
+        header.className = 'code-header';
+        
+        const languageClass = Array.from(code.classList).find(cls => cls.startsWith('language-'));
+        const language = languageClass ? languageClass.replace('language-', '') : 'code';
+        
+        const languageLabel = document.createElement('span');
+        languageLabel.className = 'language-label';
+        languageLabel.textContent = language.toUpperCase();
+        
+        const toggleBtn = document.createElement('button');
+        toggleBtn.className = 'code-toggle-btn';
+        toggleBtn.innerHTML = '<span class="collapse-indicator">▼</span> Collapse';
+        toggleBtn.setAttribute('type', 'button');
+        toggleBtn.setAttribute('aria-label', 'Toggle code block visibility');
+        
+        header.appendChild(languageLabel);
+        header.appendChild(toggleBtn);
+        
+        codeBlock.insertBefore(header, pre);
+      }
+      
+      // Add copy button if it doesn't exist
+      if (!pre.querySelector('.copy-btn')) {
+        const copyButton = document.createElement('button');
+        copyButton.textContent = 'Copy';
+        copyButton.className = 'copy-btn';
+        copyButton.setAttribute('tabindex', '0');
+        copyButton.setAttribute('aria-label', 'Copy code to clipboard');
+        copyButton.setAttribute('type', 'button');
+        pre.appendChild(copyButton);
+        
+        // Copy functionality
+        copyButton.addEventListener('click', async () => {
+          try {
+            if (navigator.clipboard && window.isSecureContext) {
+              await navigator.clipboard.writeText(code.textContent);
+              copyButton.textContent = 'Copied!';
+            } else {
+              // Fallback for older browsers
+              const textarea = document.createElement('textarea');
+              textarea.value = code.textContent;
+              textarea.style.position = 'fixed';
+              textarea.style.left = '-999999px';
+              textarea.style.top = '-999999px';
+              document.body.appendChild(textarea);
+              textarea.focus();
+              textarea.select();
+              try {
+                document.execCommand('copy');
+                copyButton.textContent = 'Copied!';
+              } catch (err) {
+                console.error('Copy failed:', err);
+                copyButton.textContent = 'Error';
+              }
+              document.body.removeChild(textarea);
+            }
+          } catch (err) {
+            console.error('Copy failed:', err);
+            copyButton.textContent = 'Error';
+          }
+          setTimeout(() => {
+            copyButton.textContent = 'Copy';
+          }, 1500);
+        });
+        
+        // Keyboard accessibility
+        copyButton.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            copyButton.click();
+          }
+        });
+      }
+      
+      // Add toggle functionality
+      const toggleBtn = codeBlock.querySelector('.code-toggle-btn');
+      const indicator = toggleBtn.querySelector('.collapse-indicator');
+      let isCollapsed = false;
+      
+      toggleBtn.addEventListener('click', () => {
         isCollapsed = !isCollapsed;
         if (isCollapsed) {
-          pre.classList.add('collapsed');
-          pre.classList.remove('expanded');
+          pre.style.maxHeight = '60px';
+          pre.style.overflow = 'hidden';
+          indicator.classList.add('collapsed');
           toggleBtn.innerHTML = '<span class="collapse-indicator collapsed">▼</span> Expand';
           toggleBtn.setAttribute('aria-label', 'Expand code block');
         } else {
-          pre.classList.remove('collapsed');
-          pre.classList.add('expanded');
+          pre.style.maxHeight = 'none';
+          pre.style.overflow = 'auto';
+          indicator.classList.remove('collapsed');
           toggleBtn.innerHTML = '<span class="collapse-indicator">▼</span> Collapse';
           toggleBtn.setAttribute('aria-label', 'Collapse code block');
         }
-      }
-      toggleBtn.addEventListener('click', toggleCollapse);
+      });
+      
+      // Keyboard accessibility for toggle
       toggleBtn.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          toggleCollapse();
+          toggleBtn.click();
         }
       });
+    });
+    
+    // Handle regular pre/code blocks (only add copy button, no wrapper)
+    document.querySelectorAll('pre code').forEach(code => {
+      const pre = code.parentElement;
+      
+      // Skip if already inside a code-block tag
+      if (pre.closest('code-block')) {
+        return;
+      }
+      
+      // Skip if already has copy button
+      if (pre.querySelector('.copy-btn')) {
+        return;
+      }
+      
+      // Add copy button
+      const copyButton = document.createElement('button');
+      copyButton.textContent = 'Copy';
+      copyButton.className = 'copy-btn';
+      copyButton.style.cssText = `
+        position: absolute;
+        top: 0.8em;
+        right: 1.2em;
+        background: #3b82f6;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 0.4em 0.8em;
+        font-size: 0.75em;
+        font-weight: 600;
+        cursor: pointer;
+        z-index: 10;
+        opacity: 0;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      `;
+      copyButton.setAttribute('tabindex', '0');
+      copyButton.setAttribute('aria-label', 'Copy code to clipboard');
+      copyButton.setAttribute('type', 'button');
+      
+      pre.style.position = 'relative';
+      pre.appendChild(copyButton);
+      
+      // Show copy button on hover
+      pre.addEventListener('mouseenter', () => {
+        copyButton.style.opacity = '1';
+      });
+      
+      pre.addEventListener('mouseleave', () => {
+        copyButton.style.opacity = '0';
+      });
+      
       // Copy functionality
       copyButton.addEventListener('click', async () => {
         try {
           if (navigator.clipboard && window.isSecureContext) {
-            await navigator.clipboard.writeText(block.textContent);
+            await navigator.clipboard.writeText(code.textContent);
             copyButton.textContent = 'Copied!';
           } else {
-            // Fallback for older browsers or non-secure contexts
             const textarea = document.createElement('textarea');
-            textarea.value = block.textContent;
+            textarea.value = code.textContent;
             textarea.style.position = 'fixed';
             textarea.style.left = '-999999px';
             textarea.style.top = '-999999px';
@@ -591,22 +712,18 @@ function initializeFeatures() {
           copyButton.textContent = 'Copy';
         }, 1500);
       });
-      // Keyboard accessibility for copy button
+      
+      // Keyboard accessibility
       copyButton.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           copyButton.click();
         }
       });
-      // Apply dark mode styles if needed
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        header.classList.add('dark');
-        toggleBtn.classList.add('dark');
-      }
     });
   }
   
-  addCopyButtonsToCodeBlocks();
+  initializeCodeBlocks();
 
   // Add alt text to images
   document.querySelectorAll('img').forEach(img => {
@@ -637,23 +754,6 @@ if (document.readyState === 'loading') {
 // Also run after a short delay to catch any dynamically loaded content
 setTimeout(initializeFeatures, 1000);
 
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.manual-code-header').forEach(header => {
-    const btn = header.querySelector('.manual-code-toggle');
-    const indicator = btn.querySelector('.manual-collapse-indicator');
-    const codeBlock = header.nextElementSibling;
-    let collapsed = false;
-    btn.addEventListener('click', function() {
-      collapsed = !collapsed;
-      if (collapsed) {
-        codeBlock.classList.add('collapsed');
-        btn.innerHTML = '<span class=\"manual-collapse-indicator\" style=\"transform:rotate(-90deg)\">▼</span> Expand';
-      } else {
-        codeBlock.classList.remove('collapsed');
-        btn.innerHTML = '<span class=\"manual-collapse-indicator\">▼</span> Collapse';
-      }
-    });
-  });
-});
+
 </script>
 
