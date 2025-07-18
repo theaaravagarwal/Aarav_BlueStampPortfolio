@@ -15,6 +15,24 @@ The SmartSole is a smart shoe sole designed to monitor physical activity by trac
 <!-- ![SmartSole](assets/smartsole.png) -->
 <center><img src="assets/smartsole.png" alt="SmartSole Final" width="1050" style="border-radius: 8px;"/></center>
 
+
+# First Modification
+
+
+
+### Description
+
+In my first modification, I implemented a simple command system between any Bluetooth Low Energy serial and the SmartSole. Since the product is already fully assembled and complete. This modification was much easier than any other code I wrote this project as it intersected with many past skills of mine. 
+
+### Challenges
+
+
+
+### Next Steps
+
+
+
+
 # Third Milestone
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/NOqDibAHOHo?si=W4WEOY1RV_aypJOW&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
