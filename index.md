@@ -22,15 +22,143 @@ The SmartSole is a smart shoe sole designed to monitor physical activity by trac
 
 ### Description
 
-In my first modification, I implemented a simple command system between any Bluetooth Low Energy serial and the SmartSole. Since the product is already fully assembled and complete. This modification was much easier than any other code I wrote this project as it intersected with many past skills of mine. 
+In my first modification, I implemented a comprehensive command-line interface (CLI) system that allows users to interact with the SmartSole through Bluetooth Low Energy serial communication. This modification was much easier than other code segments I wrote for this project as it intersected with many past skills of mine. The CLI system takes in commands the user enters by text as well as any arguments separated by a single space.
+
+The system features a robust command structure with 17 different commands covering sensor data retrieval, system control, and even entertainment features. Commands include getting the current step count, distance traveled in meters, gravity vector on the accelerometer, FSR pressure readings, orientation data, and more.
+
+#### Command System Architecture
+
+The CLI is built around a `Command` struct that maps command names to their corresponding functions:
+
+```cpp
+struct Command {
+  const char* name;
+  void (*func)(const String& args);
+};
+```
+
+To add new commands, you simply:
+1. Create a function with the signature `void functionName(const String& args)`
+2. Add an entry to the command array
+3. The system automatically handles command parsing and execution
+
+```cpp
+void foo(const String& args) {
+    //your code goes here
+}
+
+Command cmd[] = {
+  {"foo", foo},
+  // ... other commands
+};
+```
+
+#### Available Commands
+
+**Sensor Data Commands:**
+- `steps` - Displays current step count
+- `distance` - Shows total distance traveled in meters
+- `force` - Shows normalized foot pressure (0-100%)
+- `forcevar` - Displays variance in foot pressure readings
+- `accel` - Shows raw acceleration vector (x, y, z)
+- `gravity` - Shows gravity vector components
+- `gyro` - Shows gyroscope angular velocity
+- `orient` - Shows roll, pitch, and yaw angles
+- `linmag` - Shows linear acceleration magnitude
+- `temp` - Shows temperature reading
+
+**System Commands:**
+- `time` - Shows time since boot in milliseconds
+- `toggle sound/ble` - Toggles sound alerts or Bluetooth logging
+- `help [command]` - Lists all commands or provides specific command help
+
+**Entertainment Commands:**
+- `dice [n]` - Rolls n dice and shows results
+- `flip [n]` - Flips n coins and shows heads/tails count
+- `fib [n]` - Calculates the nth Fibonacci number using matrix exponentiation
+- `ee [max]` - Generates a random number up to max (default 100)
+
+#### Argument Parsing
+
+The system includes a custom `stoll()` function for parsing long long integers from command arguments, with proper overflow handling and whitespace tolerance:
+
+```cpp
+ll stoll(const String& s) {
+  ll res = 0;
+  int sn = 1;
+  int i = 0;
+  while (s[i]==' '||s[i]=='\t'||s[i]=='\n'||s[i]=='\r'||s[i]=='\f'||s[i]=='\v') i++;
+  if (s[i]=='-') {sn = -1; i++;}
+  else if (s[i]=='+') i++;
+  while (s[i]>='0'&&s[i]<='9') {
+    if (res>(LONG_LONG_MAX/10)||(res==(LONG_LONG_MAX/10)&&(s[i]-'0')>(LONG_LONG_MAX%10))) {
+      res = LONG_LONG_MAX;
+    }
+    res = res*10+(s[i]-'0'); i++;
+  }
+  return sn*res;
+}
+```
+
+#### Advanced Features
+
+**Matrix Exponentiation for Fibonacci:**
+The `fib` command uses matrix exponentiation for efficient calculation of large Fibonacci numbers:
+
+```cpp
+struct Matrix {
+  ll m[2][2];
+  Matrix operator*(const Matrix& b) const {
+    Matrix res = {};
+    for (int i=0; i<2; i++) for (int j=0; j<2; j++) for (int k=0; k<2; k++) 
+      res.m[i][j] = (res.m[i][j]+m[i][k]*b.m[k][j])%MOD;
+    return res;
+  }
+};
+```
+
+**Random Number Generation:**
+The system uses Mersenne Twister for high-quality random number generation:
+
+```cpp
+std::random_device rd;
+std::mt19937 gen(rd());
+std::uniform_int_distribution<int> rng(1, 6);
+```
+
+#### Integration with Existing Systems
+
+The CLI seamlessly integrates with all existing SmartSole systems:
+- Real time access to pedometer data
+- Live sensor readings from accelerometer, gyroscope, and FSR
+- Control over sound alerts and Bluetooth logging
+- Access to movement detection and distance estimation algorithms
 
 ### Challenges
 
+Some challenges I had while implementing this modification included:
 
+**Argument Parsing:** Arduino strings don't have a standard way to parse for some data types, so I had to implement my own `stoll()` function for parsing long long integers. This required careful handling of overflow conditions and various edge cases like whitespace and sign characters.
+
+**Memory Management:** Since this runs on an ESP32 with limited memory, I had to be careful about string allocations and avoid dynamic memory allocation that could cause memory leaks. I used static arrays and careful string handling to maintain system stability.
+
+**Command Structure Design:** Designing a scalable command system that could easily accommodate new commands while maintaining good performance required careful consideration of the data structures used. I chose a simple array-based approach over more complex hash maps to avoid memory overhead.
+
+**Bluetooth Integration:** Ensuring reliable communication between the CLI and Bluetooth serial interface required proper error handling and buffer management to prevent data loss or corruption.
+
+**Real-time Data Access:** Providing real-time access to sensor data through commands required careful synchronization to ensure data consistency across multiple command calls. 
 
 ### Next Steps
 
+For future enhancements to the CLI system, I plan to:
 
+**Command History:** Implement a command history feature that allows users to recall and re-execute previous commands using arrow keys or a history command.
+
+**Scripting Support:** Add the ability to create and execute simple scripts containing multiple commands, enabling automated data collection and analysis workflows.
+
+**Configuration Management:** Add commands to save and load system configurations, allowing users to customize thresholds, alerts, and other parameters.
+
+**Web Interface:** Develop a web-based interface that can be accessed through a smartphone browser, providing a more user-friendly alternative to the text-based CLI.
 
 
 # Third Milestone
