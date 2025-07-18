@@ -49,7 +49,7 @@ const double G = 9.851400755649225;       //gravity, std = 9.80665 but for sf it
 const int del = 50;                       //main loop delay in ms
 const int MOD = 1e9+7;                    //fib mod
 std::random_device rd;                    //nondeterministic random num gen (for seeding)
-std::mt19937 gen(rd());                     //generator of 32 bit nums with a state size of 19937 bits
+std::mt19937 gen(rd());                   //generator of 32 bit nums with a state size of 19937 bits
 
 //accelerometer config
 Adafruit_LSM6DS3TRC lsm6ds3trc;           //accelerometer/gyro sensor
