@@ -173,7 +173,7 @@ int lstpc = 0;                            //last step count
 //funcs
 void playTone(int freq) {ledcWriteTone(ledcch, freq);}
 void stopTone() {ledcWriteTone(ledcch, 0);}
-ll stoll(const String& s) {
+ll stoll(const String& s) {               //convert an Arduino String to a long long (can be used for unsigned ints)
   ll res = 0;                             //resultant long long
   int sn = 1;                             //signage
   int i = 0;                              //where in the string are we
