@@ -433,24 +433,6 @@ For your first milestone, describe what your project is and how you plan to buil
 - Challenges you're facing and solving in your future milestones
 - What your plan is to complete your project -->
 
-# Starter Milestone
-
-<center><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/2HmSv4AucCM?si=lUCH4t8UGWBSdCUS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></center>
-
-### Description
-
-My starter project is a retro arcade console that allows the user to play classic video games like Tetris, Snake, and Space Invaders. The screen is constructed from two 8x8 dot matrices on the top left and has a screen capable of displaying three digits in the top right. The system can be powered by the battery pack on the back of the device or by using the Micro USB port near to the number screen. The device creates sound by using a buzzer below the red power switch. There are six yellow buttons below those components which control the elements on the screen in various games.
-
-<center><img src="assets/starterproj.png" alt="Device Image" width="350" style="border-radius: 8px;"/></center>
-
-### Challenges
-
-Some challenges I encountered while working on this project were properly soldering the parts to the board as it was time consuming and was the hardest part of this project. I also discovered near the end of the project that I had attached the battery pack backwards and had to spend time fixing my mistake.
-
-### Next Steps
-
-I will begin working on my intensive project after this Starter Milestone.
-
 # How the Sensors Work
 
 The SmartSole uses several key sensors to monitor physical activity and provide feedback. Here's how each sensor works and contributes to the system:
@@ -483,10 +465,6 @@ The FSR is a polymer sheet with both electrically conducting and non-conducting 
 
 - **Foot Pressure Monitoring**: Placed in the insole, the FSR detects how much pressure the user is applying to different parts of their foot. This helps identify proper foot placement and weight distribution.
 
-<!-- # Schematics -->
-
-<!-- Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. -->
-
 # Bill of Materials
 
 <!-- Here's where you'll list the parts in your project. To add more rows, just copy and paste the example rows below.
@@ -495,12 +473,33 @@ Don't forget to place the link of where to buy each component inside the quotati
 | **Part Name** | **Purpose** | **Price** | **Qty Required** | **Link** |
 |:--:|:--:|:--:|:--:|:--:|
 | ESP32 | Main microcontroller for processing sensor data and handling communication | $9.99 | 1 | <a href="https://craftyhandy.com/products/esp32-microcontroller-developed?variant=41267690373210&_gsid=uMzkBAbUT2vk">Link</a> |
-| MPU-6050 IMU Module (Accelerometer/Gyroscope) | Measures acceleration and gyroscopic data to detect steps, jumps, and running | $6.99 | 1 | <a href="https://www.amazon.com/HiLetgo-MPU-6050-Accelerometer-Gyroscope-Converter/dp/B01DK83ZYQ?th=1">Link</a> |
+| Adafruit LSM6DS3TR-C + LIS3MDL (Accelerometer/Gyroscope/Magnetometer) | Measures acceleration and gyroscopic data to detect steps, jumps, and running | $19.95 | 1 | <a href="https://www.adafruit.com/product/5543?srsltid=AfmBOor_6pZPwRcHRZHS-mpSJlug-TE36hjlET9mtg6MUXK0WvTJxpiA">Link</a> |
 | Force Sensitive Resistor (FSR) Sensor - Long 200mm | Detects pressure changes to monitor footfalls and activity intensity | $5.99 | 2 | <a href="https://ddrpad.com/products/force-sensitive-resistor-fsr-sensor-long-200mm-size?variant=39251887161396&_gsid=BvxQWwP1pmjv">Link</a> |
-| TP4056 USB-C Charging Module | To charge the battery with USB-C | $6.74 | 1 | <a href="https://garsupply.com/en-us/products/tp4056-usb-c-type-c-combo-protection-charging-1a-lithium-battery-charging-board-module?variant=49554664718659&_gsid=GJsuveiHBC3P">Link</a> |
 | Vibration Motor Module (5 Pack) | Gives haptic feedback to alert the user while running | $24.50 | 1 | <a href="https://sifosolutions.com/products/vibration-motor-module-5-pack?variant=47463109132566&_gsid=iNEdwihSUzSD">Link</a> |
 | SeeedStudio Grove Buzzer Module | Emits sound alerts for user notifications | $1.90 | 1 | <a href="https://www.robotshop.com/products/seeedstudio-grove-buzzer-module?variant=42359586881697&_gsid=FuTD3wVtsaCK">Link</a> |
 | Fully Flexible PCB | Integrates all electronic components into a flexible form factor suitable for insoles that are constantly changing shape | $35.00 | 1 | <a href="https://skree.us/products/fully-flexible-pcbs?variant=51374897561891&_gsid=ZVbFXJ49jfnh">Link</a> |
+
+# Starter Milestone
+
+<center><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/2HmSv4AucCM?si=lUCH4t8UGWBSdCUS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></center>
+
+### Description
+
+My starter project is a retro arcade console that allows the user to play classic video games like Tetris, Snake, and Space Invaders. The screen is constructed from two 8x8 dot matrices on the top left and has a screen capable of displaying three digits in the top right. The system can be powered by the battery pack on the back of the device or by using the Micro USB port near to the number screen. The device creates sound by using a buzzer below the red power switch. There are six yellow buttons below those components which control the elements on the screen in various games.
+
+<center><img src="assets/starterproj.png" alt="Device Image" width="350" style="border-radius: 8px;"/></center>
+
+### Challenges
+
+Some challenges I encountered while working on this project were properly soldering the parts to the board as it was time consuming and was the hardest part of this project. I also discovered near the end of the project that I had attached the battery pack backwards and had to spend time fixing my mistake.
+
+### Next Steps
+
+I will begin working on my intensive project after this Starter Milestone.
+
+<!-- # Schematics -->
+
+<!-- Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. -->
 
 # Works Cited
 
