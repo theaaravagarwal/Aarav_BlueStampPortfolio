@@ -96,12 +96,40 @@ class BluetoothApp:
         received_frame = tk.Frame(main_frame)
         received_frame.pack(fill=tk.BOTH, expand=True, pady=10)
         
+        # Toggle button for received messages
+        self.show_messages = True
+        def toggle_messages():
+            self.show_messages = not self.show_messages
+            if self.show_messages:
+                self.received_text.pack(fill=tk.BOTH, expand=True, pady=(5, 0))
+                toggle_button.config(text="Hide Messages")
+            else:
+                self.received_text.pack_forget()
+                toggle_button.config(text="Show Messages")
+        toggle_button = tk.Button(received_frame, text="Hide Messages", command=toggle_messages, font=("Arial", 10, "bold"), bg="#607D8B", fg="white")
+        toggle_button.pack(anchor=tk.W, pady=(0, 2))
+        
         tk.Label(received_frame, text="Messages from ESP32:", font=("Arial", 11, "bold")).pack(anchor=tk.W)
         
-        self.received_text = scrolledtext.ScrolledText(received_frame, height=8, width=80, font=("Courier", 10), bg="black", fg="green")
+        # Improved received_text widget
+        # Store font config for dynamic resizing
+        self.base_font_size = 16
+        self.received_font = ("Consolas", self.base_font_size, "bold")
+        self.received_text = scrolledtext.ScrolledText(
+            received_frame, height=16, width=90, font=self.received_font, bg="#181818", fg="#e0ffe0",
+            borderwidth=4, relief=tk.SOLID, padx=16, pady=16, spacing1=10, spacing3=10
+        )
         self.received_text.pack(fill=tk.BOTH, expand=True, pady=(5, 0))
+        self.received_text.tag_configure('even', background='#181818')
+        self.received_text.tag_configure('odd', background='#232323')
+        self.received_text.tag_configure('msg', lmargin1=16, lmargin2=16, rmargin=16)
+        self.received_text.tag_configure('highlight', background='#ffe066', foreground='#222', font=self.received_font)
+        self.received_text.tag_configure('info', foreground='#4caf50', font=self.received_font)
+        self.received_text.tag_configure('error', foreground='#f44336', font=self.received_font)
+        self.received_text.tag_configure('warning', foreground='#ff9800', font=self.received_font)
+        # Bind resize event for dynamic font scaling
+        master.bind('<Configure>', self.on_resize)
         
-        # --- Logging controls ---
         log_frame = tk.Frame(received_frame)
         log_frame.pack(anchor=tk.W, pady=(5, 0))
         self.log_to_file_var = tk.BooleanVar(value=False)
@@ -110,7 +138,6 @@ class BluetoothApp:
         log_checkbox.pack(side=tk.LEFT)
         self.choose_log_button = tk.Button(log_frame, text="Choose log file...", command=self.choose_log_file, state=tk.DISABLED)
         self.choose_log_button.pack(side=tk.LEFT, padx=(5, 0))
-        # --- End logging controls ---
         
         clear_button = tk.Button(received_frame, text="Clear Messages", command=self.clear_messages,
                                font=("Arial", 10), bg="#FF9800", fg="white")
@@ -300,10 +327,10 @@ class BluetoothApp:
     def notification_handler(self, sender, data):
         try:
             message = data.decode('utf-8')
-            self.master.after(0, lambda: self.add_received_message(f"{message}"))
+            self.master.after(0, lambda: self.add_received_message(f"{message}", msg_type=None))
         except UnicodeDecodeError:
             hex_data = ' '.join([f'{b:02x}' for b in data])
-            self.master.after(0, lambda: self.add_received_message(f"[HEX] {hex_data}"))
+            self.master.after(0, lambda: self.add_received_message(f"[HEX] {hex_data}", msg_type='info'))
 
     def disconnect_device(self):
         if self.client and self.connected:
@@ -424,16 +451,30 @@ class BluetoothApp:
     def clear_messages(self):
         self.received_text.delete(1.0, tk.END)
 
-    def add_received_message(self, message):
+    def add_received_message(self, message, msg_type=None):
         print(f"DEBUG: {message}")
-        self.received_text.insert(tk.END, f"[{self.get_timestamp()}] {message}\n")
+        line_count = int(self.received_text.index('end-1c').split('.')[0])
+        tag = 'even' if line_count % 2 == 0 else 'odd'
+        tags = [tag, 'msg']
+        if msg_type in ('info', 'error', 'warning'):
+            tags.append(msg_type)
+        tags.append('highlight')
+        #self.received_text.insert(tk.END, f"[{self.get_timestamp()}] {message}\n", tuple(tags))
+        self.received_text.insert(tk.END, f"{message}\n", tuple(tags))
         self.received_text.see(tk.END)
+        self.received_text.after(600, lambda: self._remove_highlight(line_count + 1))
         if getattr(self, 'log_to_file_var', None) and self.log_to_file_var.get() and self.log_file_path:
             try:
                 with open(self.log_file_path, 'a', encoding='utf-8') as f:
                     f.write(f"[{self.get_timestamp()}] {message}\n")
             except Exception as e:
                 print(f"[Log Error] {e}")
+
+    def _remove_highlight(self, line_number):
+        try:
+            self.received_text.tag_remove('highlight', f"{line_number}.0", f"{line_number}.end")
+        except Exception:
+            pass
 
     def get_timestamp(self):
         from datetime import datetime
@@ -510,6 +551,22 @@ class BluetoothApp:
         else:
             self.log_to_file_var.set(False)
             self.choose_log_button.config(state=tk.DISABLED)
+
+    def on_resize(self, event):
+        # Dynamically scale font size based on window height (or width)
+        min_font = 12
+        max_font = 32
+        # Use the smaller of width or height for scaling
+        scale = min(event.width / 1000, event.height / 1000)
+        new_size = int(self.base_font_size * scale * 1.2)
+        new_size = max(min_font, min(max_font, new_size))
+        new_font = ("Consolas", new_size, "bold")
+        self.received_text.configure(font=new_font)
+        # Update tag fonts as well
+        self.received_text.tag_configure('highlight', font=new_font)
+        self.received_text.tag_configure('info', font=new_font)
+        self.received_text.tag_configure('error', font=new_font)
+        self.received_text.tag_configure('warning', font=new_font)
 
 if __name__ == "__main__":
     root = tk.Tk()
